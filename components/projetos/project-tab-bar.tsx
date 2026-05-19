@@ -20,12 +20,9 @@ import {
   IconFlagCheck,
 } from "@tabler/icons-react";
 
-interface Tab {
-  href: string;
-  label: string;
-  icon: React.ElementType;
-  accent?: boolean;
-}
+type TabItem =
+  | { type: "tab"; href: string; label: string; icon: React.ElementType; accent?: boolean }
+  | { type: "phase"; label: string };
 
 interface ProjectTabBarProps {
   projetoId: string;
@@ -35,27 +32,43 @@ export function ProjectTabBar({ projetoId }: ProjectTabBarProps) {
   const pathname = usePathname();
   const base = `/projetos/${projetoId}`;
 
-  const tabs: Tab[] = [
-    { href: base,                             label: "Dados",              icon: IconPencil        },
-    { href: `${base}/escopo`,                 label: "Escopo & EAP",       icon: IconLayoutList    },
-    { href: `${base}/cronograma`,             label: "Cronograma",         icon: IconCalendar      },
-    { href: `${base}/custos`,                 label: "Custos",             icon: IconCoin          },
-    { href: `${base}/riscos`,                 label: "Riscos",             icon: IconAlertTriangle },
-    { href: `${base}/comunicacao`,            label: "Comunicação",        icon: IconMessage       },
-    { href: `${base}/partes-interessadas`,    label: "Stakeholders",       icon: IconUsers          },
-    { href: `${base}/qualidade`,              label: "Qualidade",          icon: IconClipboardCheck },
-    { href: `${base}/recursos`,               label: "Recursos",           icon: IconUsersGroup     },
-    { href: `${base}/aquisicoes`,             label: "Aquisições",         icon: IconBuildingStore  },
-    { href: `${base}/mudancas`,               label: "Mudanças",           icon: IconGitPullRequest },
-    { href: `${base}/atas`,                   label: "Atas",               icon: IconNotes          },
-    { href: `${base}/encerramento`,           label: "Encerramento",       icon: IconFlagCheck      },
-    { href: `${base}/documentos`,             label: "IA Docs",            icon: IconSparkles, accent: true },
-    { href: `${base}/relatorio`,              label: "Relatório",          icon: IconFileText  },
+  const items: TabItem[] = [
+    { type: "tab",   href: base,                             label: "Dados",        icon: IconPencil         },
+    { type: "phase", label: "Planejamento"                                                                    },
+    { type: "tab",   href: `${base}/escopo`,                 label: "Escopo",       icon: IconLayoutList     },
+    { type: "tab",   href: `${base}/cronograma`,             label: "Cronograma",   icon: IconCalendar       },
+    { type: "tab",   href: `${base}/custos`,                 label: "Custos",       icon: IconCoin           },
+    { type: "phase", label: "Execução"                                                                        },
+    { type: "tab",   href: `${base}/riscos`,                 label: "Riscos",       icon: IconAlertTriangle  },
+    { type: "tab",   href: `${base}/comunicacao`,            label: "Comunicação",  icon: IconMessage        },
+    { type: "tab",   href: `${base}/partes-interessadas`,    label: "Stakeholders", icon: IconUsers          },
+    { type: "tab",   href: `${base}/qualidade`,              label: "Qualidade",    icon: IconClipboardCheck },
+    { type: "tab",   href: `${base}/recursos`,               label: "Recursos",     icon: IconUsersGroup     },
+    { type: "tab",   href: `${base}/aquisicoes`,             label: "Aquisições",   icon: IconBuildingStore  },
+    { type: "tab",   href: `${base}/mudancas`,               label: "Mudanças",     icon: IconGitPullRequest },
+    { type: "tab",   href: `${base}/atas`,                   label: "Atas",         icon: IconNotes          },
+    { type: "phase", label: "Encerramento"                                                                    },
+    { type: "tab",   href: `${base}/encerramento`,           label: "Encerramento", icon: IconFlagCheck      },
+    { type: "phase", label: "+"                                                                               },
+    { type: "tab",   href: `${base}/documentos`,             label: "IA Docs",      icon: IconSparkles, accent: true },
+    { type: "tab",   href: `${base}/relatorio`,              label: "Relatório",    icon: IconFileText       },
   ];
 
   return (
-    <div className="flex items-center gap-0.5 px-6 overflow-x-auto" style={{ scrollbarWidth: "none" }}>
-      {tabs.map(({ href, label, icon: Icon, accent }) => {
+    <div className="flex items-center gap-0 px-6 overflow-x-auto" style={{ scrollbarWidth: "none" }}>
+      {items.map((item, i) => {
+        if (item.type === "phase") {
+          return (
+            <span
+              key={`phase-${i}`}
+              className="mx-1 text-[9px] font-bold uppercase tracking-[0.12em] text-text-disabled/50 px-1.5 shrink-0 select-none"
+            >
+              {item.label}
+            </span>
+          );
+        }
+
+        const { href, label, icon: Icon, accent } = item;
         const isExact = href === base;
         const active  = isExact ? pathname === base : pathname.startsWith(href);
 

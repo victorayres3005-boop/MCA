@@ -15,9 +15,10 @@ export default async function ContratadasPage() {
         action={
           <Link
             href="/contratadas/novo"
-            className="inline-flex items-center gap-2 bg-brand-500 hover:bg-brand-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors"
+            className="inline-flex items-center gap-1.5 text-white text-[12px] font-semibold px-3 py-1.5 rounded-lg transition-all hover:bg-white/20"
+            style={{ background: "rgba(255,255,255,0.12)", border: "1px solid rgba(255,255,255,0.18)" }}
           >
-            <IconPlus size={15} />
+            <IconPlus size={13} />
             Nova contratada
           </Link>
         }

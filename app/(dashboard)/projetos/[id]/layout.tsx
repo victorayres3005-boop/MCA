@@ -28,11 +28,11 @@ const STATUS_LABEL: Record<Projeto["status"], string> = {
 };
 
 const STATUS_CLS: Record<Projeto["status"], string> = {
-  planejamento:  "bg-blue-50 text-blue-600 border-blue-100",
-  execucao:      "bg-teal-50 text-teal-700 border-teal-200",
-  monitoramento: "bg-purple-50 text-purple-600 border-purple-100",
-  encerrado:     "bg-green-50 text-green-700 border-green-200",
-  suspenso:      "bg-gray-100 text-gray-500 border-gray-200",
+  planejamento:  "bg-blue-500/20 text-blue-200 border-blue-400/30",
+  execucao:      "bg-teal-400/20 text-teal-200 border-teal-400/30",
+  monitoramento: "bg-purple-500/20 text-purple-200 border-purple-400/30",
+  encerrado:     "bg-green-500/20 text-green-200 border-green-400/30",
+  suspenso:      "bg-white/10 text-white/50 border-white/20",
 };
 
 function formatCurrency(value: number) {
@@ -61,64 +61,67 @@ export default async function ProjetoLayout({ children, params }: LayoutProps) {
   return (
     <div className="flex flex-col h-full">
       {/* Header do projeto */}
-      <div className="print:hidden bg-white border-b border-surface-border shrink-0">
-        <div className="h-[3px] bg-brand-gradient" />
+      <div className="print:hidden shrink-0">
+        {/* Gradient identity bar */}
+        <div
+          style={{ background: "linear-gradient(110deg, #0D2B45 0%, #0D2B45 40%, #0A7B72 75%, #00B4A6 100%)" }}
+        >
+          <div className="flex items-center gap-2 px-6 h-12">
+            <Link
+              href="/projetos"
+              className="flex items-center gap-1 text-[11px] text-white/50 hover:text-white/80 transition-colors shrink-0"
+            >
+              <IconChevronLeft size={12} />
+              Carteira
+            </Link>
+            <span className="text-white/20 shrink-0">/</span>
+            <h1 className="text-[14px] font-semibold text-white truncate">{projeto.nome}</h1>
 
-        {/* Breadcrumb + título */}
-        <div className="flex items-center gap-2 px-6 h-11 border-b border-surface-border/50">
-          <Link
-            href="/projetos"
-            className="flex items-center gap-1 text-[12px] text-text-disabled hover:text-brand-700 transition-colors shrink-0"
-          >
-            <IconChevronLeft size={13} />
-            Carteira
-          </Link>
-          <span className="text-surface-border text-sm shrink-0">/</span>
-          <h1 className="text-[14px] font-semibold text-text-primary truncate">{projeto.nome}</h1>
-
-          {/* Badges */}
-          <div className="ml-2 flex items-center gap-2 shrink-0">
-            <span className={`text-[10px] font-medium px-1.5 py-0.5 rounded border ${STATUS_CLS[projeto.status]}`}>
-              {STATUS_LABEL[projeto.status]}
-            </span>
-            <span className={`w-2 h-2 rounded-full ${SEM_DOT[projeto.semaforo]}`} />
-          </div>
-
-          {/* Metrics strip — right side */}
-          <div className="ml-auto flex items-center gap-4 shrink-0">
-            {/* Progress */}
-            <div className="hidden sm:flex items-center gap-2">
-              <div className="w-16 h-[3px] bg-surface-input rounded-full overflow-hidden">
-                <div
-                  className={`h-full ${SEM_BAR[projeto.semaforo]} rounded-full`}
-                  style={{ width: `${projeto.percentual_concluido}%` }}
-                />
-              </div>
-              <span className="text-[11px] text-text-disabled tabular-nums">{projeto.percentual_concluido}%</span>
+            <div className="ml-2 flex items-center gap-2 shrink-0">
+              <span className={`text-[10px] font-medium px-2 py-0.5 rounded-full border ${STATUS_CLS[projeto.status]}`}>
+                {STATUS_LABEL[projeto.status]}
+              </span>
+              <span className={`w-2 h-2 rounded-full ${SEM_DOT[projeto.semaforo]}`} />
             </div>
 
-            {projeto.data_fim_prevista && (
-              <span className="hidden md:block text-[11px] text-text-disabled">
-                Prazo: <span className="text-text-secondary font-medium">{formatDate(projeto.data_fim_prevista)}</span>
-              </span>
-            )}
+            <div className="ml-auto flex items-center gap-4 shrink-0">
+              <div className="hidden sm:flex items-center gap-2">
+                <div className="w-16 h-[3px] bg-white/20 rounded-full overflow-hidden">
+                  <div
+                    className={`h-full ${SEM_BAR[projeto.semaforo]} rounded-full`}
+                    style={{ width: `${projeto.percentual_concluido}%` }}
+                  />
+                </div>
+                <span className="text-[11px] text-white/60 tabular-nums">{projeto.percentual_concluido}%</span>
+              </div>
 
-            {projeto.valor_contrato && projeto.valor_contrato > 0 && (
-              <span className="hidden lg:block text-[11px] text-text-disabled">
-                Contrato: <span className="text-text-secondary font-medium">{formatCurrency(projeto.valor_contrato)}</span>
-              </span>
-            )}
+              {projeto.data_fim_prevista && (
+                <span className="hidden md:flex flex-col items-end leading-none gap-0.5">
+                  <span className="text-[9px] text-white/40 uppercase tracking-wider">Prazo</span>
+                  <span className="text-[11px] text-white/80 font-medium">{formatDate(projeto.data_fim_prevista)}</span>
+                </span>
+              )}
 
-            {projeto.codigo && (
-              <span className="hidden md:block text-[11px] font-mono text-text-disabled bg-surface-input px-1.5 py-0.5 rounded">
-                {projeto.codigo}
-              </span>
-            )}
+              {projeto.valor_contrato && projeto.valor_contrato > 0 && (
+                <span className="hidden lg:flex flex-col items-end leading-none gap-0.5">
+                  <span className="text-[9px] text-white/40 uppercase tracking-wider">Contrato</span>
+                  <span className="text-[11px] text-white/80 font-medium">{formatCurrency(projeto.valor_contrato)}</span>
+                </span>
+              )}
+
+              {projeto.codigo && (
+                <span className="hidden md:block text-[10px] font-mono text-white/40 bg-white/10 px-1.5 py-0.5 rounded">
+                  {projeto.codigo}
+                </span>
+              )}
+            </div>
           </div>
         </div>
 
-        {/* Tabs de módulos */}
-        <ProjectTabBar projetoId={id} />
+        {/* Tab bar on white */}
+        <div className="bg-white border-b border-surface-border">
+          <ProjectTabBar projetoId={id} />
+        </div>
       </div>
 
       {/* Conteúdo do módulo */}

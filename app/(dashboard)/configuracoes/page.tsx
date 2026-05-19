@@ -4,6 +4,7 @@ import { getProfile, getOrg, getMembers, updateProfile, updateOrg } from "@/app/
 import { ProfileForm } from "@/components/configuracoes/profile-form";
 import { OrgForm } from "@/components/configuracoes/org-form";
 import { MembersTable } from "@/components/configuracoes/members-table";
+import { PageTitle } from "@/components/shared/page-title";
 
 function Card({ title, icon: Icon, children }: { title: string; icon: React.ElementType; children: React.ReactNode }) {
   return (
@@ -31,15 +32,12 @@ export default async function ConfiguracoesPage() {
   const saveOrg     = updateOrg;
 
   return (
-    <div className="p-6 space-y-5 max-w-3xl">
-
-      <div>
-        <h1 className="text-[15px] font-semibold text-text-primary flex items-center gap-2">
-          <IconSettings size={16} className="text-text-disabled" />
-          Configurações
-        </h1>
-        <p className="text-[12px] text-text-disabled mt-0.5">Gerencie seu perfil, organização e membros da equipe.</p>
-      </div>
+    <>
+      <PageTitle
+        title="Configurações"
+        description="Perfil, organização e equipe"
+      />
+      <div className="p-6 space-y-5 max-w-3xl">
 
       <div className="grid grid-cols-2 gap-5">
         {/* Perfil */}
@@ -95,5 +93,6 @@ export default async function ConfiguracoesPage() {
       </Card>
 
     </div>
+    </>
   );
 }
