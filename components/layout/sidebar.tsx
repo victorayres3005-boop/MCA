@@ -18,11 +18,7 @@ const navItems = [
   { href: "/contratadas", label: "Contratadas", icon: IconHelmet          },
 ];
 
-interface SidebarProps {
-  userEmail?: string;
-}
-
-export function Sidebar({ userEmail: _userEmail = "" }: SidebarProps) {
+export function Sidebar() {
   const pathname = usePathname();
 
   return (
