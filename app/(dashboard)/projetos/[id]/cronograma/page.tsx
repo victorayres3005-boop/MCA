@@ -1,11 +1,14 @@
 import { notFound } from "next/navigation";
 import { getProjeto } from "@/app/actions/projetos";
 import { getMarcos, createMarco } from "@/app/actions/cronograma";
+import { getAtividades, createAtividade } from "@/app/actions/atividades";
 import { MarcoRow } from "@/components/cronograma/marco-row";
 import { InlineAddMarco } from "@/components/cronograma/inline-add-marco";
+import { AtividadeRow } from "@/components/cronograma/atividade-row";
+import { InlineAddAtividade } from "@/components/cronograma/inline-add-atividade";
 import { CurvaS, type CurvaSPoint } from "@/components/charts/curva-s";
 import { ModuleSection, ModuleKpis, KpiCell } from "@/components/shared/module-section";
-import { IconFlag } from "@tabler/icons-react";
+import { IconFlag, IconClipboardList } from "@tabler/icons-react";
 import type { Marco, Projeto } from "@/lib/types";
 
 interface Props { params: Promise<{ id: string }> }
@@ -65,10 +68,18 @@ function buildCurvaS(marcos: Marco[], projeto: Projeto): { data: CurvaSPoint[]; 
 
 export default async function CronogramaPage({ params }: Props) {
   const { id } = await params;
-  const [projeto, marcos] = await Promise.all([getProjeto(id), getMarcos(id)]);
+  const [projeto, marcos, atividades] = await Promise.all([
+    getProjeto(id),
+    getMarcos(id),
+    getAtividades(id),
+  ]);
   if (!projeto) notFound();
 
-  const addMarco = createMarco.bind(null, id);
+  const addMarco     = createMarco.bind(null, id);
+  const addAtividade = createAtividade.bind(null, id);
+  const atividadesPendentes  = atividades.filter((a) => a.status === "pendente" || a.status === "em_andamento");
+  const atividadesConcluidas = atividades.filter((a) => a.status === "concluida");
+  const totalAtividades      = atividades.length;
   const { total, concluidos, atrasados } = resumo(marcos);
   const pendentes   = marcos.filter((m) => m.status === "pendente");
   const concluidos_ = marcos.filter((m) => m.status === "concluido");
@@ -168,6 +179,56 @@ export default async function CronogramaPage({ params }: Props) {
             <div>
               <p className="text-[13px] font-medium text-text-secondary">Nenhum marco cadastrado</p>
               <p className="text-[12px] text-text-disabled mt-0.5">Use a linha acima para adicionar o primeiro marco.</p>
+            </div>
+          </div>
+        )}
+      </ModuleSection>
+
+      <ModuleSection
+        title="Atividades"
+        badge={totalAtividades > 0 ? `${totalAtividades} ${totalAtividades === 1 ? "atividade" : "atividades"}` : undefined}
+        noPadding
+      >
+        <div className="grid grid-cols-[16px_1fr_140px_100px_80px_64px] items-center gap-3 px-5 py-2.5 border-b border-[#F0F2F5]">
+          <span />
+          <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider">Atividade</span>
+          <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider">Responsável</span>
+          <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider">Prazo</span>
+          <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider">Status</span>
+          <span />
+        </div>
+
+        {atividadesPendentes.length > 0 && (
+          <div className="divide-y divide-[#F0F2F5]">
+            {atividadesPendentes.map((a) => <AtividadeRow key={a.id} atividade={a} />)}
+          </div>
+        )}
+
+        <div className="border-t border-dashed border-[#E9EBF0]">
+          <InlineAddAtividade action={addAtividade} />
+        </div>
+
+        {atividadesConcluidas.length > 0 && (
+          <div className="border-t border-[#E9EBF0]">
+            <div className="px-5 py-2 bg-[#FAFBFC]">
+              <p className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider">
+                Concluídas · {atividadesConcluidas.length}
+              </p>
+            </div>
+            <div className="divide-y divide-[#F0F2F5] opacity-60">
+              {atividadesConcluidas.map((a) => <AtividadeRow key={a.id} atividade={a} />)}
+            </div>
+          </div>
+        )}
+
+        {totalAtividades === 0 && (
+          <div className="flex flex-col items-center gap-3 py-12 text-center">
+            <div className="w-10 h-10 rounded-full bg-[#F5F7FA] flex items-center justify-center">
+              <IconClipboardList size={18} className="text-text-disabled" />
+            </div>
+            <div>
+              <p className="text-[13px] font-medium text-text-secondary">Nenhuma atividade cadastrada</p>
+              <p className="text-[12px] text-text-disabled mt-0.5">Use a linha acima para adicionar a primeira atividade.</p>
             </div>
           </div>
         )}

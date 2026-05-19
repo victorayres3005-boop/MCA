@@ -293,3 +293,24 @@ export interface Contratada {
   created_at: string;
   updated_at: string;
 }
+
+// M06 Cronograma — Atividades
+export type StatusAtividade = 'pendente' | 'em_andamento' | 'concluida' | 'cancelada';
+
+export interface Atividade {
+  id:                   string;
+  projeto_id:           string;
+  eap_item_id:          string | null;
+  nome:                 string;
+  descricao:            string | null;
+  responsavel:          string | null;
+  data_inicio_prevista: string | null;
+  data_fim_prevista:    string;
+  data_inicio_real:     string | null;
+  data_fim_real:        string | null;
+  status:               StatusAtividade;
+  percentual_concluido: number;
+  ordem:                number;
+  created_at:           string;
+  updated_at:           string;
+}
