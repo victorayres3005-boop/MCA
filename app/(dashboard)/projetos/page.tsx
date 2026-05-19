@@ -13,9 +13,9 @@ export default async function ProjetosPage() {
   return (
     <div className="flex flex-col h-full">
 
-      {/* Slim brand header */}
+      {/* Brand header */}
       <div
-        className="shrink-0 flex items-center justify-between px-7 h-[56px] print:hidden"
+        className="shrink-0 flex items-center justify-between px-7 h-[60px] print:hidden"
         style={{
           background: "linear-gradient(110deg, #0D2B45 0%, #0D2B45 50%, #0A7B72 80%, #00B4A6 100%)",
           borderBottom: "1px solid rgba(255,255,255,0.07)",
@@ -28,9 +28,14 @@ export default async function ProjetosPage() {
           >
             <IconLayoutDashboard size={15} className="text-white/80" />
           </div>
-          <h1 className="text-[15px] font-semibold text-white tracking-tight leading-none">
-            Carteira de Obras
-          </h1>
+          <div>
+            <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-white/35 leading-none mb-[5px]">
+              MCA Gestão
+            </p>
+            <h1 className="text-[15px] font-semibold text-white tracking-tight leading-none">
+              Carteira de Obras
+            </h1>
+          </div>
         </div>
       </div>
 

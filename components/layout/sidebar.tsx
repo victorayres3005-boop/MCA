@@ -58,28 +58,37 @@ export function Sidebar({ userEmail = "" }: SidebarProps) {
 
       {/* Nav */}
       <nav className="flex-1 px-3 py-5 overflow-y-auto space-y-5">
+
         {/* Principal */}
         <div>
-          <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-white/25 px-2 mb-2">
+          <p className="text-[9.5px] font-bold uppercase tracking-[0.16em] text-white/25 px-2 mb-2">
             Principal
           </p>
-          <div className="space-y-0.5">
+          <div className="space-y-1">
             {navItems.map(({ href, label, icon: Icon }) => {
               const active = pathname === href || pathname.startsWith(href + "/");
               return (
                 <Link
                   key={href}
                   href={href}
-                  className={`flex items-center gap-3 px-2 py-[7px] rounded-lg text-[13px] transition-all duration-100 ${
+                  className={`flex items-center gap-3 px-3 py-[8px] rounded-xl text-[13px] transition-all duration-150 ${
                     active
-                      ? "font-medium text-white"
-                      : "text-white/45 hover:bg-white/[0.05] hover:text-white/75"
+                      ? "font-semibold text-white"
+                      : "text-white/45 hover:bg-white/[0.06] hover:text-white/80"
                   }`}
-                  style={active ? { background: "rgba(0,180,166,0.12)" } : undefined}
+                  style={
+                    active
+                      ? {
+                          background: "rgba(0,180,166,0.18)",
+                          border: "1px solid rgba(0,180,166,0.22)",
+                          boxShadow: "0 0 0 0px rgba(0,180,166,0.1)",
+                        }
+                      : undefined
+                  }
                 >
                   <Icon
                     size={16}
-                    stroke={active ? 2 : 1.5}
+                    stroke={active ? 2.2 : 1.5}
                     style={active ? { color: "#00B4A6" } : undefined}
                   />
                   {label}
@@ -91,10 +100,10 @@ export function Sidebar({ userEmail = "" }: SidebarProps) {
 
         {/* Sistema */}
         <div>
-          <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-white/25 px-2 mb-2">
+          <p className="text-[9.5px] font-bold uppercase tracking-[0.16em] text-white/25 px-2 mb-2">
             Sistema
           </p>
-          <div className="space-y-0.5">
+          <div className="space-y-1">
             {[{ href: "/configuracoes", label: "Configurações", icon: IconSettings }].map(
               ({ href, label, icon: Icon }) => {
                 const active = pathname.startsWith(href);
@@ -102,16 +111,23 @@ export function Sidebar({ userEmail = "" }: SidebarProps) {
                   <Link
                     key={href}
                     href={href}
-                    className={`flex items-center gap-3 px-2 py-[7px] rounded-lg text-[13px] transition-all duration-100 ${
+                    className={`flex items-center gap-3 px-3 py-[8px] rounded-xl text-[13px] transition-all duration-150 ${
                       active
-                        ? "font-medium text-white"
-                        : "text-white/45 hover:bg-white/[0.05] hover:text-white/75"
+                        ? "font-semibold text-white"
+                        : "text-white/45 hover:bg-white/[0.06] hover:text-white/80"
                     }`}
-                    style={active ? { background: "rgba(0,180,166,0.12)" } : undefined}
+                    style={
+                      active
+                        ? {
+                            background: "rgba(0,180,166,0.18)",
+                            border: "1px solid rgba(0,180,166,0.22)",
+                          }
+                        : undefined
+                    }
                   >
                     <Icon
                       size={16}
-                      stroke={active ? 2 : 1.5}
+                      stroke={active ? 2.2 : 1.5}
                       style={active ? { color: "#00B4A6" } : undefined}
                     />
                     {label}
@@ -125,11 +141,11 @@ export function Sidebar({ userEmail = "" }: SidebarProps) {
 
       {/* Rodapé */}
       <div
-        className="shrink-0 px-3 py-3 space-y-0.5"
+        className="shrink-0 px-3 py-3 space-y-1"
         style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}
       >
         {userEmail && (
-          <div className="flex items-center gap-2.5 px-2 py-[7px] rounded-lg">
+          <div className="flex items-center gap-2.5 px-3 py-[8px] rounded-xl">
             <div
               className="w-[26px] h-[26px] rounded-full flex items-center justify-center shrink-0"
               style={{ background: "rgba(0,180,166,0.18)" }}
@@ -142,7 +158,7 @@ export function Sidebar({ userEmail = "" }: SidebarProps) {
         <form action={signOut}>
           <button
             type="submit"
-            className="w-full flex items-center gap-3 px-2 py-[7px] rounded-lg text-[13px] text-white/35 hover:bg-white/[0.05] hover:text-white/65 transition-colors"
+            className="w-full flex items-center gap-3 px-3 py-[8px] rounded-xl text-[13px] text-white/35 hover:bg-white/[0.06] hover:text-white/65 transition-all duration-150"
           >
             <IconLogout size={16} stroke={1.5} />
             Sair

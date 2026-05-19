@@ -11,6 +11,7 @@ export default async function ClientesPage() {
     <>
       <PageTitle
         title="Clientes"
+        eyebrow="Cadastro"
         icon={IconBuilding}
         action={
           <Link

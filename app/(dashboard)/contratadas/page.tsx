@@ -11,6 +11,7 @@ export default async function ContratadasPage() {
     <>
       <PageTitle
         title="Contratadas"
+        eyebrow="Cadastro"
         icon={IconHelmet}
         action={
           <Link
