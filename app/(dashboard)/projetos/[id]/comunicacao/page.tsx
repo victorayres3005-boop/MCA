@@ -71,14 +71,14 @@ export default async function ComunicacaoPage({ params }: Props) {
           <div className="overflow-x-auto">
             <table className="w-full text-left min-w-[700px]">
               <thead>
-                <tr className="border-b border-surface-border bg-surface-page/20">
+                <tr className="border-b border-[#E9EBF0] bg-[#FAFBFC]">
                   <th className="px-4 py-2 text-[10px] font-semibold text-text-disabled uppercase tracking-wider w-[200px]">Assunto</th>
-                  <th className="px-3 py-2 text-[10px] font-semibold text-text-disabled uppercase tracking-wider w-[90px]">Tipo</th>
-                  <th className="px-3 py-2 text-[10px] font-semibold text-text-disabled uppercase tracking-wider">Destinatários</th>
-                  <th className="px-3 py-2 text-[10px] font-semibold text-text-disabled uppercase tracking-wider w-[110px]">Responsável</th>
-                  <th className="px-3 py-2 text-[10px] font-semibold text-text-disabled uppercase tracking-wider w-[100px]">Frequência</th>
-                  <th className="px-3 py-2 text-[10px] font-semibold text-text-disabled uppercase tracking-wider w-[120px]">Meio</th>
-                  <th className="px-3 py-2 w-16" />
+                  <th className="px-4 py-2 text-[10px] font-semibold text-text-disabled uppercase tracking-wider w-[90px]">Tipo</th>
+                  <th className="px-4 py-2 text-[10px] font-semibold text-text-disabled uppercase tracking-wider">Destinatários</th>
+                  <th className="px-4 py-2 text-[10px] font-semibold text-text-disabled uppercase tracking-wider w-[110px]">Responsável</th>
+                  <th className="px-4 py-2 text-[10px] font-semibold text-text-disabled uppercase tracking-wider w-[100px]">Frequência</th>
+                  <th className="px-4 py-2 text-[10px] font-semibold text-text-disabled uppercase tracking-wider w-[120px]">Meio</th>
+                  <th className="px-4 py-2 w-16" />
                 </tr>
               </thead>
               <tbody className="divide-y divide-[#E9EBF0]">

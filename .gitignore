@@ -40,3 +40,12 @@ next-env.d.ts
 
 # playwright logs
 .playwright-mcp/
+
+# dev server logs
+dev-server.log
+dev-next.log
+
+# screenshots de debug (sessões de revisão visual)
+*.jpeg
+*.jpg
+*.png

@@ -201,11 +201,18 @@ export default async function CustosPage({ params }: Props) {
         {cats.map(({ cat, label, itens: grupo }) => (
           <div key={cat}>
             {/* Subgrupo header */}
-            <div className="flex items-center justify-between px-4 py-1.5 bg-[#FAFBFC] border-b border-surface-border">
+            <div
+              className="grid items-center gap-3 px-4 py-1.5 bg-[#FAFBFC] border-b border-surface-border"
+              style={{ gridTemplateColumns: "1fr 110px 120px 120px 100px 24px" }}
+            >
+              <span />
               <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider">{label}</span>
-              <span className="text-[11px] text-text-disabled tabular-nums">
+              <span className="text-[11px] text-text-disabled tabular-nums text-right">
                 {fmt(grupo.reduce((s, i) => s + i.valor_planejado, 0))}
               </span>
+              <span />
+              <span />
+              <span />
             </div>
             <div className="divide-y divide-[#E9EBF0]">
               {grupo.map((item) => <OrcamentoRow key={item.id} item={item} />)}
