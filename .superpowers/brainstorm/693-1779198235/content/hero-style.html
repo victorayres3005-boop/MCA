@@ -1,0 +1,345 @@
+<h2>Como deve ser o topo da Carteira de Obras?</h2>
+<p class="subtitle">Primeira coisa que o gestor vê ao entrar. Define o tom de toda a página.</p>
+
+<style>
+.hero-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 24px;
+}
+.hero-card {
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+.hero-card:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0,0,0,0.25); }
+.hero-card.selected { border-color: #00B4A6 !important; box-shadow: 0 0 0 3px rgba(0,180,166,0.2); }
+
+/* Shared page shell */
+.page-shell {
+  background: #eef2f2;
+  height: 230px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  font-family: system-ui;
+}
+.fake-list {
+  flex: 1;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.fake-row {
+  background: white;
+  border-radius: 6px;
+  border: 1px solid #e8eeee;
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.fr-sem { width: 20px; height: 20px; border-radius: 5px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.fr-dot { width: 7px; height: 7px; border-radius: 50%; }
+.fr-info { flex: 1; }
+.fr-name { font-size: 9px; font-weight: 600; color: #0F1F1F; }
+.fr-meta { font-size: 7px; color: #94a3a3; }
+.fr-right { text-align: right; }
+.fr-val { font-size: 8px; font-weight: 700; color: #0F1F1F; }
+.fr-pct { font-size: 7px; color: #94a3a3; }
+
+/* ── A: Slim topbar ── */
+.slim-topbar {
+  background: #0D2B45;
+  padding: 8px 12px 9px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.slim-topbar .title { font-size: 12px; font-weight: 800; color: white; }
+.slim-topbar .sub { font-size: 7px; color: rgba(0,180,166,0.7); text-transform: uppercase; letter-spacing: 0.12em; margin-top: 1px; }
+.slim-topbar .btn { padding: 4px 9px; border-radius: 5px; background: rgba(0,180,166,0.2); border: 1px solid rgba(0,180,166,0.3); font-size: 8px; font-weight: 600; color: #00B4A6; display: flex; align-items: center; gap: 3px; }
+.slim-kpi-strip {
+  display: flex;
+  gap: 0;
+  background: white;
+  border-bottom: 1px solid #e2e8e8;
+}
+.slim-kpi {
+  flex: 1;
+  padding: 6px 10px;
+  border-right: 1px solid #e8eeee;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.slim-kpi:last-child { border-right: none; }
+.slim-kpi .k-icon { width: 22px; height: 22px; border-radius: 6px; background: #F0F5F5; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.slim-kpi .k-icon .ki { width: 8px; height: 8px; border-radius: 2px; background: #0A7B72; }
+.slim-kpi .k-info .kl { font-size: 7px; color: #94a3a3; text-transform: uppercase; letter-spacing: 0.08em; }
+.slim-kpi .k-info .kv { font-size: 11px; font-weight: 800; color: #0F1F1F; line-height: 1.1; font-family: monospace; }
+
+/* ── B: Gradient hero com big numbers ── */
+.grad-hero {
+  background: linear-gradient(110deg, #0D2B45 0%, #0D2B45 40%, #0A7B72 75%, #00B4A6 100%);
+  padding: 11px 13px 13px;
+}
+.gh-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 10px; }
+.gh-title { font-size: 13px; font-weight: 800; color: white; }
+.gh-sub { font-size: 7px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 2px; }
+.gh-btn { padding: 4px 8px; border-radius: 5px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); font-size: 8px; font-weight: 600; color: white; }
+.gh-metrics { display: flex; gap: 10px; }
+.gh-left { flex: 3; }
+.gh-divider { width: 1px; background: rgba(255,255,255,0.1); align-self: stretch; }
+.gh-right { flex: 2; display: flex; flex-direction: column; justify-content: space-between; }
+.gh-health { }
+.gh-health-label { font-size: 7px; font-weight: 700; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 5px; }
+.gh-bar-row { display: flex; align-items: center; gap: 4px; margin-bottom: 3px; }
+.gh-bar-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+.gh-bar-label { font-size: 7px; width: 36px; flex-shrink: 0; }
+.gh-bar-track { flex: 1; height: 3px; background: rgba(255,255,255,0.08); border-radius: 2px; overflow: hidden; }
+.gh-bar-fill { height: 100%; border-radius: 2px; }
+.gh-bar-num { font-size: 9px; font-weight: 700; width: 10px; text-align: right; font-family: monospace; }
+.gh-big { display: flex; align-items: baseline; gap: 4px; margin-top: 5px; }
+.gh-big-num { font-size: 34px; font-weight: 900; color: white; font-family: monospace; line-height: 1; }
+.gh-big-label { font-size: 10px; color: rgba(255,255,255,0.4); }
+.gh-kpi { }
+.gh-kpi-label { font-size: 7px; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.1em; }
+.gh-kpi-val { font-size: 18px; font-weight: 900; color: white; font-family: monospace; line-height: 1.2; }
+.gh-kpi-sub { font-size: 7px; margin-top: 1px; }
+
+/* ── C: Glass KPI cards flutuando ── */
+.glass-hero {
+  background: linear-gradient(110deg, #0D2B45 0%, #0D2B45 45%, #0A7B72 80%, #00B4A6 100%);
+  padding: 11px 13px 20px;
+  position: relative;
+}
+.glass-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.glass-title-group .glass-eyebrow { font-size: 7px; font-weight: 700; color: rgba(0,180,166,0.6); text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 2px; }
+.glass-title-group .glass-title { font-size: 15px; font-weight: 800; color: white; line-height: 1; }
+.glass-btn { padding: 4px 9px; border-radius: 6px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); font-size: 8px; font-weight: 600; color: white; }
+.glass-kpis {
+  display: flex;
+  gap: 6px;
+}
+.glass-kpi {
+  flex: 1;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 8px;
+  padding: 7px 9px;
+  position: relative;
+  overflow: hidden;
+}
+.glass-kpi::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+}
+.glass-kpi .gk-label { font-size: 6px; font-weight: 700; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 3px; }
+.glass-kpi .gk-val { font-size: 17px; font-weight: 900; color: white; font-family: monospace; line-height: 1; }
+.glass-kpi .gk-sub { font-size: 7px; color: rgba(255,255,255,0.4); margin-top: 2px; }
+.glass-kpi .gk-accent { position: absolute; bottom: 0; left: 0; right: 0; height: 2px; }
+.glass-page-body { background: #eef2f2; padding: 8px 8px 0; }
+
+.card-label {
+  padding: 12px 16px;
+  background: #0D2B45;
+  border-top: 1px solid rgba(255,255,255,0.07);
+}
+.card-label h3 { font-size: 13px; font-weight: 700; color: #fff; margin: 0 0 3px; }
+.card-label .tag { font-size: 11px; color: rgba(255,255,255,0.4); }
+</style>
+
+<div class="hero-grid">
+
+  <!-- A: Slim topbar + KPI strip -->
+  <div class="hero-card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="page-shell">
+      <div class="slim-topbar">
+        <div>
+          <div class="sub">MCA Engenharia</div>
+          <div class="title">Carteira de Obras</div>
+        </div>
+        <div class="btn">+ Novo projeto</div>
+      </div>
+      <div class="slim-kpi-strip">
+        <div class="slim-kpi">
+          <div class="k-icon"><div class="ki" style="background:#0A7B72"></div></div>
+          <div class="k-info"><div class="kl">Total</div><div class="kv">12</div></div>
+        </div>
+        <div class="slim-kpi">
+          <div class="k-icon"><div class="ki" style="background:#16A34A"></div></div>
+          <div class="k-info"><div class="kl">Saudável</div><div class="kv" style="color:#16A34A">7</div></div>
+        </div>
+        <div class="slim-kpi">
+          <div class="k-icon"><div class="ki" style="background:#DC2626"></div></div>
+          <div class="k-info"><div class="kl">Crítico</div><div class="kv" style="color:#DC2626">2</div></div>
+        </div>
+        <div class="slim-kpi">
+          <div class="k-icon"><div class="ki" style="background:#00B4A6"></div></div>
+          <div class="k-info"><div class="kl">Valor total</div><div class="kv">R$ 15.5M</div></div>
+        </div>
+      </div>
+      <div class="fake-list">
+        <div class="fake-row">
+          <div class="fr-sem" style="background:#F0FDF4"><div class="fr-dot" style="background:#16A34A"></div></div>
+          <div class="fr-info"><div class="fr-name">Ponte Rio Sul</div><div class="fr-meta">OBR-001 · Pref. SP · 15 dez</div></div>
+          <div class="fr-right"><div class="fr-val">R$ 2.1M</div><div class="fr-pct">82%</div></div>
+        </div>
+        <div class="fake-row">
+          <div class="fr-sem" style="background:#FFFBEB"><div class="fr-dot" style="background:#F59E0B"></div></div>
+          <div class="fr-info"><div class="fr-name">Galpão Campinas</div><div class="fr-meta">OBR-002 · LogTech · 30 nov</div></div>
+          <div class="fr-right"><div class="fr-val">R$ 780K</div><div class="fr-pct">45%</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-label">
+      <h3>A — Slim + KPI Strip</h3>
+      <div class="tag">Header sóbrio · KPIs em linha branca · Mais espaço para lista · Estilo app empresarial</div>
+    </div>
+  </div>
+
+  <!-- B: Gradient hero -->
+  <div class="hero-card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="page-shell" style="background:#eef2f2">
+      <div class="grad-hero">
+        <div class="gh-top">
+          <div>
+            <div class="gh-sub">MCA Engenharia</div>
+            <div class="gh-title">Carteira de Obras</div>
+          </div>
+          <div class="gh-btn">+ Novo</div>
+        </div>
+        <div class="gh-metrics">
+          <div class="gh-left">
+            <div class="gh-health-label">Saúde da carteira</div>
+            <div class="gh-bar-row">
+              <div class="gh-bar-dot" style="background:#16A34A"></div>
+              <div class="gh-bar-label" style="font-size:7px;color:#4ade80">Saudável</div>
+              <div class="gh-bar-track"><div class="gh-bar-fill" style="width:58%;background:#16A34A;opacity:0.8"></div></div>
+              <div class="gh-bar-num" style="color:#4ade80">7</div>
+            </div>
+            <div class="gh-bar-row">
+              <div class="gh-bar-dot" style="background:#F59E0B"></div>
+              <div class="gh-bar-label" style="font-size:7px;color:#fbbf24">Atenção</div>
+              <div class="gh-bar-track"><div class="gh-bar-fill" style="width:25%;background:#F59E0B;opacity:0.8"></div></div>
+              <div class="gh-bar-num" style="color:#fbbf24">3</div>
+            </div>
+            <div class="gh-bar-row">
+              <div class="gh-bar-dot" style="background:#DC2626"></div>
+              <div class="gh-bar-label" style="font-size:7px;color:#f87171">Crítico</div>
+              <div class="gh-bar-track"><div class="gh-bar-fill" style="width:17%;background:#DC2626;opacity:0.8"></div></div>
+              <div class="gh-bar-num" style="color:#f87171">2</div>
+            </div>
+            <div class="gh-big">
+              <div class="gh-big-num">12</div>
+              <div class="gh-big-label">projetos</div>
+            </div>
+          </div>
+          <div class="gh-divider"></div>
+          <div class="gh-right">
+            <div class="gh-kpi">
+              <div class="gh-kpi-label">Em execução</div>
+              <div class="gh-kpi-val">08</div>
+            </div>
+            <div class="gh-kpi">
+              <div class="gh-kpi-label">Valor total</div>
+              <div class="gh-kpi-val" style="font-size:14px">R$ 15.5M</div>
+            </div>
+            <div class="gh-kpi">
+              <div class="gh-kpi-label">Conclusão média</div>
+              <div class="gh-kpi-val" style="color:#4ade80">67%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="fake-list" style="padding:6px 8px">
+        <div class="fake-row">
+          <div class="fr-sem" style="background:#F0FDF4"><div class="fr-dot" style="background:#16A34A"></div></div>
+          <div class="fr-info"><div class="fr-name">Ponte Rio Sul</div><div class="fr-meta">OBR-001 · Pref. SP</div></div>
+          <div class="fr-right"><div class="fr-val">82%</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-label">
+      <h3>B — Hero com Big Numbers</h3>
+      <div class="tag">Impacto visual máximo · Dados de saúde proeminentes · Atual refinado</div>
+    </div>
+  </div>
+
+  <!-- C: Glass KPI cards -->
+  <div class="hero-card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="page-shell" style="background:#eef2f2">
+      <div class="glass-hero">
+        <div class="glass-top">
+          <div class="glass-title-group">
+            <div class="glass-eyebrow">MCA Engenharia</div>
+            <div class="glass-title">Carteira de Obras</div>
+          </div>
+          <div class="glass-btn">+ Novo projeto</div>
+        </div>
+        <div class="glass-kpis">
+          <div class="glass-kpi">
+            <div class="gk-label">Total</div>
+            <div class="gk-val">12</div>
+            <div class="gk-sub">projetos</div>
+            <div class="gk-accent" style="background:rgba(0,180,166,0.5)"></div>
+          </div>
+          <div class="glass-kpi">
+            <div class="gk-label">Execução</div>
+            <div class="gk-val">08</div>
+            <div class="gk-sub">ativos</div>
+            <div class="gk-accent" style="background:rgba(0,180,166,0.4)"></div>
+          </div>
+          <div class="glass-kpi">
+            <div class="gk-label">Saudável</div>
+            <div class="gk-val" style="color:#4ade80">07</div>
+            <div class="gk-sub" style="color:#4ade80;opacity:0.7">verde</div>
+            <div class="gk-accent" style="background:#16A34A;opacity:0.6"></div>
+          </div>
+          <div class="glass-kpi">
+            <div class="gk-label">Crítico</div>
+            <div class="gk-val" style="color:#f87171">02</div>
+            <div class="gk-sub" style="color:#f87171;opacity:0.7">alerta</div>
+            <div class="gk-accent" style="background:#DC2626;opacity:0.6"></div>
+          </div>
+          <div class="glass-kpi">
+            <div class="gk-label">Valor</div>
+            <div class="gk-val" style="font-size:13px">15.5M</div>
+            <div class="gk-sub">BRL total</div>
+            <div class="gk-accent" style="background:rgba(255,255,255,0.3)"></div>
+          </div>
+        </div>
+      </div>
+      <div class="glass-page-body">
+        <div class="fake-row" style="background:white;border-radius:6px;border:1px solid #e8eeee;padding:6px 10px;display:flex;align-items:center;gap:7px;margin-bottom:5px">
+          <div class="fr-sem" style="background:#F0FDF4"><div class="fr-dot" style="background:#16A34A"></div></div>
+          <div class="fr-info"><div class="fr-name">Ponte Rio Sul</div><div class="fr-meta">OBR-001 · Pref. SP · 15 dez</div></div>
+          <div class="fr-right"><div class="fr-val">R$ 2.1M</div><div class="fr-pct">82%</div></div>
+        </div>
+        <div class="fake-row" style="background:white;border-radius:6px;border:1px solid #e8eeee;padding:6px 10px;display:flex;align-items:center;gap:7px">
+          <div class="fr-sem" style="background:#FFFBEB"><div class="fr-dot" style="background:#F59E0B"></div></div>
+          <div class="fr-info"><div class="fr-name">Galpão Campinas</div><div class="fr-meta">OBR-002 · LogTech · 30 nov</div></div>
+          <div class="fr-right"><div class="fr-val">R$ 780K</div><div class="fr-pct">45%</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-label">
+      <h3>C — Glass KPI Cards</h3>
+      <div class="tag">Glassmorphism · 5 métricas em destaque · Semáforos coloridos · Premium</div>
+    </div>
+  </div>
+
+</div>
+
+<p class="subtitle" style="margin-top:20px;text-align:center;">
+  B é o mais informativo. C é o mais sofisticado visualmente. A é o mais clean e funcional.
+</p>

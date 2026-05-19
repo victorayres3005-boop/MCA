@@ -1,0 +1,285 @@
+<h2>Slim Header — versão com personalidade</h2>
+<p class="subtitle">Mesma estrutura A, mas com a identidade MCA aplicada de verdade. Escolha qual refinamento te agrada mais.</p>
+
+<style>
+.ref-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 24px;
+}
+.ref-card {
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+.ref-card:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0,0,0,0.25); }
+.ref-card.selected { border-color: #00B4A6 !important; box-shadow: 0 0 0 3px rgba(0,180,166,0.2); }
+
+.page-shell {
+  background: #eef2f2;
+  height: 260px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  font-family: system-ui;
+}
+
+/* ── VERSÃO 1: Header navy + accent line + KPI strip colorida ── */
+.v1-header {
+  background: #0D2B45;
+  padding: 10px 16px 11px;
+  position: relative;
+  border-bottom: 1px solid rgba(0,180,166,0.25);
+}
+.v1-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #00B4A6 0%, #00B4A6 30%, transparent 100%);
+  opacity: 0.6;
+}
+.v1-top { display: flex; align-items: center; justify-content: space-between; }
+.v1-eyebrow { font-size: 8px; font-weight: 700; color: rgba(0,180,166,0.55); text-transform: uppercase; letter-spacing: 0.22em; margin-bottom: 3px; }
+.v1-title { font-size: 16px; font-weight: 800; color: white; letter-spacing: -0.02em; line-height: 1; }
+.v1-btn {
+  display: flex; align-items: center; gap: 5px;
+  padding: 5px 11px; border-radius: 6px;
+  background: rgba(0,180,166,0.15);
+  border: 1px solid rgba(0,180,166,0.3);
+  font-size: 9px; font-weight: 700; color: #00B4A6;
+}
+.v1-btn .plus { font-size: 14px; line-height: 1; font-weight: 300; }
+
+.v1-kpi-strip {
+  display: flex;
+  background: white;
+  border-bottom: 1px solid #e2e8e8;
+}
+.v1-kpi {
+  flex: 1;
+  padding: 7px 14px;
+  border-right: 1px solid #eff2f2;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+.v1-kpi:last-child { border-right: none; }
+.v1-kpi-accent {
+  position: absolute;
+  left: 0; top: 25%; bottom: 25%;
+  width: 3px;
+  border-radius: 0 2px 2px 0;
+}
+.v1-kpi-icon {
+  width: 28px; height: 28px; border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.v1-kpi-icon .icon-inner { width: 10px; height: 10px; border-radius: 3px; }
+.v1-kpi-data .kl { font-size: 8px; color: #94a3a3; font-weight: 500; line-height: 1; margin-bottom: 2px; }
+.v1-kpi-data .kv { font-size: 14px; font-weight: 800; line-height: 1; font-family: monospace; }
+
+/* ── VERSÃO 2: Header com subtle gradient + KPI badges compactos ── */
+.v2-header {
+  background: linear-gradient(135deg, #0D2B45 0%, #112e48 60%, #0e3341 100%);
+  padding: 12px 16px 13px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.v2-left {}
+.v2-tag {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 2px 7px; border-radius: 4px;
+  background: rgba(0,180,166,0.12);
+  border: 1px solid rgba(0,180,166,0.2);
+  margin-bottom: 5px;
+}
+.v2-tag span { font-size: 7px; font-weight: 700; color: rgba(0,180,166,0.8); text-transform: uppercase; letter-spacing: 0.15em; }
+.v2-tag .dot { width: 4px; height: 4px; border-radius: 50%; background: #00B4A6; }
+.v2-title { font-size: 16px; font-weight: 800; color: white; letter-spacing: -0.02em; line-height: 1; }
+.v2-right { display: flex; align-items: center; gap: 8px; }
+.v2-btn {
+  display: flex; align-items: center; gap: 4px;
+  padding: 6px 12px; border-radius: 7px;
+  background: #00B4A6;
+  font-size: 9px; font-weight: 700; color: white;
+  letter-spacing: 0.02em;
+}
+
+.v2-kpi-strip {
+  display: flex;
+  background: white;
+  border-bottom: 1px solid #e2e8e8;
+  padding: 0 16px;
+  gap: 0;
+}
+.v2-kpi {
+  padding: 6px 16px 6px 0;
+  margin-right: 16px;
+  border-right: 1px solid #eff2f2;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.v2-kpi:last-child { border-right: none; margin-right: 0; }
+.v2-kpi-num { font-size: 16px; font-weight: 900; font-family: monospace; line-height: 1; }
+.v2-kpi-info .kl { font-size: 8px; color: #94a3a3; line-height: 1; }
+.v2-kpi-divider { width: 1px; height: 14px; background: #e2e8e8; align-self: center; }
+.v2-status-dots { display: flex; gap: 4px; align-items: center; margin-top: 2px; }
+.v2-status-dot { display: flex; align-items: center; gap: 3px; }
+.v2-status-dot .d { width: 6px; height: 6px; border-radius: 50%; }
+.v2-status-dot .n { font-size: 9px; font-weight: 700; font-family: monospace; }
+
+.fake-list { flex: 1; padding: 8px; display: flex; flex-direction: column; gap: 5px; }
+.fake-row { background: white; border-radius: 6px; border: 1px solid #e8eeee; padding: 6px 10px; display: flex; align-items: center; gap: 7px; }
+.fr-sem { width: 22px; height: 22px; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.fr-dot { width: 7px; height: 7px; border-radius: 50%; }
+.fr-info { flex: 1; }
+.fr-name { font-size: 9px; font-weight: 600; color: #0F1F1F; }
+.fr-meta { font-size: 7px; color: #94a3a3; }
+.fr-right { text-align: right; }
+.fr-val { font-size: 8px; font-weight: 700; color: #0F1F1F; }
+.fr-pct { font-size: 7px; color: #94a3a3; }
+
+.card-label {
+  padding: 12px 16px;
+  background: #0D2B45;
+  border-top: 1px solid rgba(255,255,255,0.07);
+}
+.card-label h3 { font-size: 13px; font-weight: 700; color: #fff; margin: 0 0 3px; }
+.card-label .tag { font-size: 11px; color: rgba(255,255,255,0.4); }
+</style>
+
+<div class="ref-grid">
+
+  <!-- V1: Navy + accent line + KPI colorida -->
+  <div class="ref-card" data-choice="v1" onclick="toggleSelect(this)">
+    <div class="page-shell">
+      <div class="v1-header">
+        <div class="v1-top">
+          <div>
+            <div class="v1-eyebrow">MCA Engenharia</div>
+            <div class="v1-title">Carteira de Obras</div>
+          </div>
+          <div class="v1-btn"><span class="plus">+</span> Novo projeto</div>
+        </div>
+      </div>
+      <div class="v1-kpi-strip">
+        <div class="v1-kpi">
+          <div class="v1-kpi-accent" style="background:#00B4A6"></div>
+          <div class="v1-kpi-icon" style="background:#E0F5F3"><div class="icon-inner" style="background:#00B4A6"></div></div>
+          <div class="v1-kpi-data"><div class="kl">Total</div><div class="kv" style="color:#0F1F1F">12</div></div>
+        </div>
+        <div class="v1-kpi">
+          <div class="v1-kpi-accent" style="background:#16A34A"></div>
+          <div class="v1-kpi-icon" style="background:#F0FDF4"><div class="icon-inner" style="background:#16A34A"></div></div>
+          <div class="v1-kpi-data"><div class="kl">Saudável</div><div class="kv" style="color:#16A34A">7</div></div>
+        </div>
+        <div class="v1-kpi">
+          <div class="v1-kpi-accent" style="background:#DC2626"></div>
+          <div class="v1-kpi-icon" style="background:#FEF2F2"><div class="icon-inner" style="background:#DC2626"></div></div>
+          <div class="v1-kpi-data"><div class="kl">Crítico</div><div class="kv" style="color:#DC2626">2</div></div>
+        </div>
+        <div class="v1-kpi">
+          <div class="v1-kpi-accent" style="background:#0A7B72"></div>
+          <div class="v1-kpi-icon" style="background:#E0F5F3"><div class="icon-inner" style="background:#0A7B72"></div></div>
+          <div class="v1-kpi-data"><div class="kl">Valor total</div><div class="kv" style="color:#0F1F1F;font-size:11px">R$ 15.5M</div></div>
+        </div>
+      </div>
+      <div class="fake-list">
+        <div class="fake-row">
+          <div class="fr-sem" style="background:#F0FDF4"><div class="fr-dot" style="background:#16A34A"></div></div>
+          <div class="fr-info"><div class="fr-name">Ponte Rio Sul</div><div class="fr-meta">OBR-001 · Pref. SP · 15 dez</div></div>
+          <div class="fr-right"><div class="fr-val">R$ 2.1M</div><div class="fr-pct">82%</div></div>
+        </div>
+        <div class="fake-row">
+          <div class="fr-sem" style="background:#FFFBEB"><div class="fr-dot" style="background:#F59E0B"></div></div>
+          <div class="fr-info"><div class="fr-name">Galpão Campinas</div><div class="fr-meta">OBR-002 · LogTech · 30 nov</div></div>
+          <div class="fr-right"><div class="fr-val">R$ 780K</div><div class="fr-pct">45%</div></div>
+        </div>
+        <div class="fake-row">
+          <div class="fr-sem" style="background:#FEF2F2"><div class="fr-dot" style="background:#DC2626"></div></div>
+          <div class="fr-info"><div class="fr-name">Ed. Comercial Centro</div><div class="fr-meta">OBR-003 · Constru ABC · 01 out</div></div>
+          <div class="fr-right"><div class="fr-val">R$ 4.5M</div><div class="fr-pct">23%</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-label">
+      <h3>V1 — Navy + Accent Line + KPI Icons</h3>
+      <div class="tag">Linha teal embaixo do header · KPI com ícone colorido · Formal e marcado</div>
+    </div>
+  </div>
+
+  <!-- V2: Subtle gradient + tag de status + KPI com números grandes -->
+  <div class="ref-card" data-choice="v2" onclick="toggleSelect(this)">
+    <div class="page-shell">
+      <div class="v2-header">
+        <div class="v2-left">
+          <div class="v2-tag"><div class="dot"></div><span>MCA Engenharia</span></div>
+          <div class="v2-title">Carteira de Obras</div>
+        </div>
+        <div class="v2-right">
+          <div class="v2-btn">+ Novo projeto</div>
+        </div>
+      </div>
+      <div class="v2-kpi-strip">
+        <div class="v2-kpi">
+          <div class="v2-kpi-num" style="color:#0F1F1F">12</div>
+          <div class="v2-kpi-info"><div class="kl">projetos</div></div>
+        </div>
+        <div class="v2-kpi">
+          <div>
+            <div class="v2-status-dots">
+              <div class="v2-status-dot"><div class="d" style="background:#16A34A"></div><div class="n" style="color:#16A34A">7</div></div>
+              <div style="font-size:8px;color:#d5e0e0">·</div>
+              <div class="v2-status-dot"><div class="d" style="background:#F59E0B"></div><div class="n" style="color:#F59E0B">3</div></div>
+              <div style="font-size:8px;color:#d5e0e0">·</div>
+              <div class="v2-status-dot"><div class="d" style="background:#DC2626"></div><div class="n" style="color:#DC2626">2</div></div>
+            </div>
+            <div class="kl" style="font-size:8px;color:#94a3a3;margin-top:2px">semáforos</div>
+          </div>
+        </div>
+        <div class="v2-kpi">
+          <div class="v2-kpi-num" style="color:#0A7B72;font-size:13px">R$ 15.5M</div>
+          <div class="v2-kpi-info"><div class="kl">contratado</div></div>
+        </div>
+        <div class="v2-kpi">
+          <div class="v2-kpi-num" style="color:#16A34A">67%</div>
+          <div class="v2-kpi-info"><div class="kl">conclusão</div></div>
+        </div>
+      </div>
+      <div class="fake-list">
+        <div class="fake-row">
+          <div class="fr-sem" style="background:#F0FDF4"><div class="fr-dot" style="background:#16A34A"></div></div>
+          <div class="fr-info"><div class="fr-name">Ponte Rio Sul</div><div class="fr-meta">OBR-001 · Pref. SP · 15 dez</div></div>
+          <div class="fr-right"><div class="fr-val">R$ 2.1M</div><div class="fr-pct">82%</div></div>
+        </div>
+        <div class="fake-row">
+          <div class="fr-sem" style="background:#FFFBEB"><div class="fr-dot" style="background:#F59E0B"></div></div>
+          <div class="fr-info"><div class="fr-name">Galpão Campinas</div><div class="fr-meta">OBR-002 · LogTech · 30 nov</div></div>
+          <div class="fr-right"><div class="fr-val">R$ 780K</div><div class="fr-pct">45%</div></div>
+        </div>
+        <div class="fake-row">
+          <div class="fr-sem" style="background:#FEF2F2"><div class="fr-dot" style="background:#DC2626"></div></div>
+          <div class="fr-info"><div class="fr-name">Ed. Comercial Centro</div><div class="fr-meta">OBR-003 · Constru ABC · 01 out</div></div>
+          <div class="fr-right"><div class="fr-val">R$ 4.5M</div><div class="fr-pct">23%</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-label">
+      <h3>V2 — Tag Badge + Números Grandes + Semáforos inline</h3>
+      <div class="tag">Badge de org · Botão teal sólido · Semáforos 3 cores em linha · Mais contemporâneo</div>
+    </div>
+  </div>
+
+</div>
+
+<p class="subtitle" style="margin-top:20px;text-align:center;">
+  Ambas são slim e deixam espaço para a lista. A diferença é o tom: V1 mais formal/técnico, V2 mais contemporâneo.
+</p>

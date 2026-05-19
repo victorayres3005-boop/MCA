@@ -1,0 +1,291 @@
+<h2>Qual direção de design te representa?</h2>
+<p class="subtitle">Cada opção é uma filosofia visual distinta para a Plataforma MCA. Clique para selecionar.</p>
+
+<style>
+.dir-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 24px;
+}
+.dir-card {
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+  background: #1a1a2e;
+}
+.dir-card:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0,0,0,0.3); }
+.dir-card.selected { border-color: #00B4A6 !important; box-shadow: 0 0 0 3px rgba(0,180,166,0.2); }
+
+/* ── Mockup A: Command Center (Dark-dominant) ── */
+.mockup-a {
+  height: 220px;
+  background: #050d1a;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+}
+.mockup-a .sidebar {
+  width: 44px;
+  background: #0a1628;
+  border-right: 1px solid rgba(0,180,166,0.12);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 0;
+  gap: 10px;
+}
+.mockup-a .sidebar .dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(0,180,166,0.25); }
+.mockup-a .sidebar .dot.active { background: #00B4A6; }
+.mockup-a .content { flex: 1; padding: 14px 12px; }
+.mockup-a .hud-bar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.mockup-a .hud-kpi {
+  flex: 1;
+  background: rgba(0,180,166,0.06);
+  border: 1px solid rgba(0,180,166,0.12);
+  border-radius: 6px;
+  padding: 6px 8px;
+}
+.mockup-a .hud-kpi .kpi-label { font-size: 7px; color: rgba(0,180,166,0.5); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 3px; font-family: monospace; }
+.mockup-a .hud-kpi .kpi-val { font-size: 16px; font-weight: 900; color: #00B4A6; font-family: monospace; }
+.mockup-a .table-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.mockup-a .table-row .dot2 { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+.mockup-a .table-row .bar { flex: 1; height: 2px; background: rgba(255,255,255,0.05); border-radius: 1px; }
+.mockup-a .table-row .bar-fill { height: 100%; border-radius: 1px; }
+.mockup-a .table-row .num { font-size: 8px; color: rgba(255,255,255,0.3); font-family: monospace; }
+.mockup-a .scan-line {
+  position: absolute;
+  left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0,180,166,0.3), transparent);
+  animation: scan 4s linear infinite;
+  pointer-events: none;
+}
+@keyframes scan { 0% { top: 0; } 100% { top: 100%; } }
+
+/* ── Mockup B: Premium SaaS (Light) ── */
+.mockup-b {
+  height: 220px;
+  background: #f8fafb;
+  display: flex;
+}
+.mockup-b .sidebar {
+  width: 44px;
+  background: #0D2B45;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 0;
+  gap: 8px;
+}
+.mockup-b .sidebar .sq { width: 18px; height: 3px; border-radius: 2px; background: rgba(255,255,255,0.15); }
+.mockup-b .sidebar .sq.active { background: #00B4A6; }
+.mockup-b .content { flex: 1; }
+.mockup-b .topbar { height: 32px; background: white; border-bottom: 1px solid #e2e8e8; display: flex; align-items: center; padding: 0 12px; gap: 6px; }
+.mockup-b .topbar .breadcrumb { font-size: 9px; color: #94a3a3; font-family: system-ui; }
+.mockup-b .topbar .breadcrumb span { color: #0F1F1F; font-weight: 600; }
+.mockup-b .body { padding: 10px 12px; }
+.mockup-b .hero { background: linear-gradient(110deg, #0D2B45, #0A7B72, #00B4A6); border-radius: 8px; padding: 10px 12px; margin-bottom: 8px; }
+.mockup-b .hero .htitle { font-size: 11px; font-weight: 700; color: white; margin-bottom: 6px; font-family: system-ui; }
+.mockup-b .hero .kpi-row { display: flex; gap: 8px; }
+.mockup-b .hero .kpi { background: rgba(255,255,255,0.1); border-radius: 4px; padding: 4px 6px; }
+.mockup-b .hero .kpi .kl { font-size: 6px; color: rgba(255,255,255,0.5); text-transform: uppercase; }
+.mockup-b .hero .kpi .kv { font-size: 11px; font-weight: 800; color: white; font-family: monospace; }
+.mockup-b .card-row { display: flex; gap: 6px; }
+.mockup-b .card { flex: 1; background: white; border: 1px solid #e2e8e8; border-radius: 6px; padding: 6px 8px; }
+.mockup-b .card .cl { font-size: 7px; color: #94a3a3; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 2px; }
+.mockup-b .card .cv { font-size: 10px; font-weight: 600; color: #0F1F1F; }
+.mockup-b .card .cb { height: 2px; border-radius: 1px; margin-top: 4px; }
+
+/* ── Mockup C: Hybrid Pro ── */
+.mockup-c {
+  height: 220px;
+  background: #f0f4f4;
+  display: flex;
+}
+.mockup-c .sidebar {
+  width: 56px;
+  background: #0D2B45;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 8px;
+  gap: 2px;
+}
+.mockup-c .sidebar .logo { width: 24px; height: 24px; border-radius: 6px; background: linear-gradient(135deg, #00B4A6, #007A73); margin: 0 auto 8px; display: flex; align-items: center; justify-content: center; }
+.mockup-c .sidebar .logo-text { font-size: 7px; font-weight: 900; color: white; font-family: monospace; }
+.mockup-c .sidebar .nav { display: flex; flex-direction: column; gap: 1px; }
+.mockup-c .sidebar .nav-item { border-radius: 5px; padding: 5px 4px; display: flex; align-items: center; justify-content: center; }
+.mockup-c .sidebar .nav-item.active { background: rgba(0,180,166,0.2); }
+.mockup-c .sidebar .nav-item .icon { width: 14px; height: 14px; border-radius: 2px; }
+.mockup-c .sidebar .nav-item.active .icon { background: #00B4A6; }
+.mockup-c .sidebar .nav-item:not(.active) .icon { background: rgba(255,255,255,0.15); }
+.mockup-c .main { flex: 1; display: flex; flex-direction: column; }
+.mockup-c .header { background: linear-gradient(110deg, #0D2B45 0%, #0D2B45 50%, #0A7B72 80%, #00B4A6 100%); padding: 12px 14px 14px; }
+.mockup-c .header .htitle { font-size: 12px; font-weight: 800; color: white; margin-bottom: 6px; font-family: system-ui; }
+.mockup-c .header .kpis { display: flex; gap: 6px; }
+.mockup-c .header .kpi-glass { background: rgba(255,255,255,0.1); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; padding: 5px 8px; }
+.mockup-c .header .kpi-glass .gl { font-size: 6px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.1em; }
+.mockup-c .header .kpi-glass .gv { font-size: 13px; font-weight: 900; color: white; font-family: monospace; line-height: 1; }
+.mockup-c .body { flex: 1; padding: 10px 12px; background: #f0f4f4; }
+.mockup-c .table { background: white; border-radius: 8px; border: 1px solid #e2e8e8; overflow: hidden; }
+.mockup-c .thead { display: flex; align-items: center; gap: 8px; padding: 5px 10px; background: #f8fafb; border-bottom: 1px solid #e2e8e8; }
+.mockup-c .thead span { font-size: 7px; font-weight: 600; color: #94a3a3; text-transform: uppercase; letter-spacing: 0.1em; }
+.mockup-c .trow { display: flex; align-items: center; gap: 8px; padding: 5px 10px; border-bottom: 1px solid #f1f5f5; }
+.mockup-c .trow .sem { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.mockup-c .trow .tname { font-size: 9px; font-weight: 500; color: #0F1F1F; flex: 1; font-family: system-ui; }
+.mockup-c .trow .prog-wrap { width: 40px; }
+.mockup-c .trow .prog-bg { height: 2px; background: #f1f5f5; border-radius: 1px; }
+.mockup-c .trow .prog-fill { height: 100%; border-radius: 1px; }
+
+.card-label {
+  padding: 14px 16px;
+  background: #111;
+}
+.card-label h3 { font-size: 14px; font-weight: 700; color: #fff; margin: 0 0 4px; }
+.card-label .tag { font-size: 11px; color: rgba(255,255,255,0.4); }
+.dir-card.a .card-label { background: #050d1a; border-top: 1px solid rgba(0,180,166,0.15); }
+.dir-card.b .card-label { background: #0D2B45; border-top: 1px solid rgba(255,255,255,0.08); }
+.dir-card.c .card-label { background: #0D2B45; border-top: 1px solid rgba(255,255,255,0.08); }
+</style>
+
+<div class="dir-cards">
+
+  <!-- A: Command Center -->
+  <div class="dir-card a" data-choice="a" onclick="toggleSelect(this)">
+    <div class="mockup-a">
+      <div class="scan-line"></div>
+      <div class="sidebar">
+        <div class="dot active"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div class="content">
+        <div class="hud-bar">
+          <div class="hud-kpi"><div class="kpi-label">Carteira</div><div class="kpi-val">12</div></div>
+          <div class="hud-kpi"><div class="kpi-label">Execução</div><div class="kpi-val">08</div></div>
+          <div class="hud-kpi"><div class="kpi-label">R$ Total</div><div class="kpi-val">4.2M</div></div>
+          <div class="hud-kpi"><div class="kpi-label">Conclusão</div><div class="kpi-val">67%</div></div>
+        </div>
+        <div class="table-row">
+          <div class="dot2" style="background:#16A34A"></div>
+          <div style="font-size:8px;color:rgba(255,255,255,0.6);width:80px;font-family:system-ui;">OBR-2024-001</div>
+          <div class="bar"><div class="bar-fill" style="width:82%;background:#16A34A;opacity:0.7"></div></div>
+          <div class="num">82%</div>
+        </div>
+        <div class="table-row">
+          <div class="dot2" style="background:#F59E0B"></div>
+          <div style="font-size:8px;color:rgba(255,255,255,0.6);width:80px;font-family:system-ui;">OBR-2024-002</div>
+          <div class="bar"><div class="bar-fill" style="width:45%;background:#F59E0B;opacity:0.7"></div></div>
+          <div class="num">45%</div>
+        </div>
+        <div class="table-row">
+          <div class="dot2" style="background:#DC2626"></div>
+          <div style="font-size:8px;color:rgba(255,255,255,0.6);width:80px;font-family:system-ui;">OBR-2024-003</div>
+          <div class="bar"><div class="bar-fill" style="width:23%;background:#DC2626;opacity:0.7"></div></div>
+          <div class="num">23%</div>
+        </div>
+        <div class="table-row">
+          <div class="dot2" style="background:#16A34A"></div>
+          <div style="font-size:8px;color:rgba(255,255,255,0.6);width:80px;font-family:system-ui;">OBR-2024-004</div>
+          <div class="bar"><div class="bar-fill" style="width:91%;background:#16A34A;opacity:0.7"></div></div>
+          <div class="num">91%</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-label a">
+      <h3>A — Command Center</h3>
+      <div class="tag">Dark-dominant · HUD técnico · Dados densos · Alta diferenciação</div>
+    </div>
+  </div>
+
+  <!-- B: Premium SaaS -->
+  <div class="dir-card b" data-choice="b" onclick="toggleSelect(this)">
+    <div class="mockup-b">
+      <div class="sidebar">
+        <div class="sq active"></div>
+        <div class="sq"></div>
+        <div class="sq"></div>
+        <div class="sq"></div>
+      </div>
+      <div class="content">
+        <div class="topbar">
+          <div class="breadcrumb">MCA Gestão &rsaquo; <span>Carteira de Obras</span></div>
+        </div>
+        <div class="body">
+          <div class="hero">
+            <div class="htitle">Carteira de Obras</div>
+            <div class="kpi-row">
+              <div class="kpi"><div class="kl">Total</div><div class="kv">12</div></div>
+              <div class="kpi"><div class="kl">Execução</div><div class="kv">08</div></div>
+              <div class="kpi"><div class="kl">Valor</div><div class="kv">4.2M</div></div>
+              <div class="kpi"><div class="kl">Avg.</div><div class="kv">67%</div></div>
+            </div>
+          </div>
+          <div class="card-row">
+            <div class="card"><div class="cl">Saudável</div><div class="cv" style="color:#16A34A">7</div><div class="cb" style="background:#16A34A;width:70%"></div></div>
+            <div class="card"><div class="cl">Atenção</div><div class="cv" style="color:#F59E0B">3</div><div class="cb" style="background:#F59E0B;width:30%"></div></div>
+            <div class="card"><div class="cl">Crítico</div><div class="cv" style="color:#DC2626">2</div><div class="cb" style="background:#DC2626;width:20%"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-label b">
+      <h3>B — Premium SaaS</h3>
+      <div class="tag">Light canvas · Hero gradiente · Cards limpos · Inspirado em Linear/Vercel</div>
+    </div>
+  </div>
+
+  <!-- C: Hybrid Pro -->
+  <div class="dir-card c" data-choice="c" onclick="toggleSelect(this)">
+    <div class="mockup-c">
+      <div class="sidebar">
+        <div class="logo"><div class="logo-text">M</div></div>
+        <div class="nav">
+          <div class="nav-item active"><div class="icon"></div></div>
+          <div class="nav-item"><div class="icon"></div></div>
+          <div class="nav-item"><div class="icon"></div></div>
+        </div>
+      </div>
+      <div class="main">
+        <div class="header">
+          <div class="htitle">Carteira de Obras</div>
+          <div class="kpis">
+            <div class="kpi-glass"><div class="gl">Total</div><div class="gv">12</div></div>
+            <div class="kpi-glass"><div class="gl">R$</div><div class="gv">4.2M</div></div>
+            <div class="kpi-glass"><div class="gl">Avg</div><div class="gv">67%</div></div>
+          </div>
+        </div>
+        <div class="body">
+          <div class="table">
+            <div class="thead"><span>Semáforo</span><span style="flex:1">Projeto</span><span>Progresso</span></div>
+            <div class="trow"><div class="sem" style="background:#16A34A"></div><div class="tname">OBR-001 · Ponte Sul</div><div class="prog-wrap"><div class="prog-bg"><div class="prog-fill" style="width:82%;background:#16A34A"></div></div></div></div>
+            <div class="trow"><div class="sem" style="background:#F59E0B"></div><div class="tname">OBR-002 · Galp. Norte</div><div class="prog-wrap"><div class="prog-bg"><div class="prog-fill" style="width:45%;background:#F59E0B"></div></div></div></div>
+            <div class="trow"><div class="sem" style="background:#DC2626"></div><div class="tname">OBR-003 · Ed. Centro</div><div class="prog-wrap"><div class="prog-bg"><div class="prog-fill" style="width:23%;background:#DC2626"></div></div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-label c">
+      <h3>C — Hybrid Pro</h3>
+      <div class="tag">Sidebar dark + conteúdo light + header gradiente · Melhor dos dois mundos</div>
+    </div>
+  </div>
+
+</div>
+
+<p class="subtitle" style="margin-top:20px; text-align:center;">
+  Estas são direções — não versões finais. Cada uma pode ser refinada e combinada.
+</p>

@@ -1,0 +1,343 @@
+
+> plataforma-mca@0.1.0 dev
+> next dev -p 3890 --port 3890
+
+  ▲ Next.js 14.2.35
+  - Local:        http://localhost:3890
+  - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 2.4s
+ ✓ Compiled /middleware in 259ms (127 modules)
+ ○ Compiling / ...
+ ✓ Compiled / in 3.2s (517 modules)
+ GET / 307 in 3442ms
+ ✓ Compiled in 359ms (243 modules)
+ ○ Compiling /login ...
+ ✓ Compiled /login in 4s (1642 modules)
+ GET /login 200 in 4291ms
+ ✓ Compiled /favicon.ico in 414ms (923 modules)
+ GET /favicon.ico 200 in 543ms
+ ○ Compiling /projetos ...
+ ✓ Compiled /projetos in 4.5s (2829 modules)
+ POST /login 303 in 7103ms
+ ○ Compiling /projetos/[id] ...
+ ✓ Compiled /projetos/[id] in 743ms (2881 modules)
+ GET /projetos/572326bd-88cf-4cfb-af70-6e3391dc7ea6 200 in 1841ms
+ ✓ Compiled in 1092ms (2865 modules)
+ ✓ Compiled in 741ms (2865 modules)
+ ✓ Compiled in 858ms (2865 modules)
+ GET /projetos/572326bd-88cf-4cfb-af70-6e3391dc7ea6 200 in 670ms
+ GET /projetos 200 in 609ms
+ ✓ Compiled in 1450ms (2865 modules)
+ ✓ Compiled in 544ms (2865 modules)
+ GET /projetos 200 in 546ms
+ GET /projetos 200 in 525ms
+ ✓ Compiled /favicon.ico in 447ms (1579 modules)
+ GET /favicon.ico 200 in 535ms
+ ✓ Compiled in 918ms (2865 modules)
+ ✓ Compiled in 1124ms (2869 modules)
+ GET /projetos 200 in 791ms
+ ✓ Compiled in 888ms (2865 modules)
+ ✓ Compiled in 625ms (2865 modules)
+ GET /projetos 200 in 404ms
+ ○ Compiling /clientes ...
+ ✓ Compiled /clientes in 1863ms (2877 modules)
+ ✓ Compiled in 387ms (1321 modules)
+ GET /clientes 200 in 2866ms
+ ○ Compiling /projetos/[id]/cronograma ...
+ ✓ Compiled /projetos/[id]/cronograma in 1193ms (2930 modules)
+ GET /projetos/572326bd-88cf-4cfb-af70-6e3391dc7ea6/cronograma 200 in 2411ms
+ ✓ Compiled in 2.1s (2930 modules)
+ ✓ Compiled in 612ms (2930 modules)
+ ✓ Compiled in 372ms (1343 modules)
+ ✓ Compiled in 393ms (1343 modules)
+ ✓ Compiled in 299ms (1343 modules)
+ ✓ Compiled in 805ms (1343 modules)
+ GET /clientes 200 in 525ms
+ ○ Compiling /configuracoes ...
+ ✓ Compiled /configuracoes in 1064ms (2951 modules)
+ GET /configuracoes 200 in 2045ms
+ ○ Compiling /projetos/novo ...
+ ✓ Compiled /projetos/novo in 1886ms (2433 modules)
+ GET /projetos/novo 200 in 2594ms
+ GET /projetos 200 in 703ms
+ ○ Compiling /favicon.ico ...
+ ✓ Compiled /favicon.ico in 1112ms (1132 modules)
+ GET /favicon.ico 200 in 1259ms
+ ✓ Compiled in 2.8s (2429 modules)
+ GET /projetos 200 in 828ms
+ GET /projetos 200 in 892ms
+ ○ Compiling /favicon.ico ...
+ ✓ Compiled /favicon.ico in 509ms (1120 modules)
+ GET /favicon.ico 200 in 667ms
+ ○ Compiling /projetos/[id] ...
+ ✓ Compiled /projetos/[id] in 677ms (1123 modules)
+ ✓ Compiled in 11.1s (2424 modules)
+ ✓ Compiled in 1193ms (2424 modules)
+ ✓ Compiled in 1673ms (2424 modules)
+ [AuthApiError: Invalid Refresh Token: Refresh Token Not Found] {
+  __isAuthError: true,
+  name: 'AuthApiError',
+  status: 400,
+  code: 'refresh_token_not_found'
+}
+ [AuthApiError: Invalid Refresh Token: Refresh Token Not Found] {
+  __isAuthError: true,
+  name: 'AuthApiError',
+  status: 400,
+  code: 'refresh_token_not_found'
+}
+ [AuthApiError: Invalid Refresh Token: Refresh Token Not Found] {
+  __isAuthError: true,
+  name: 'AuthApiError',
+  status: 400,
+  code: 'refresh_token_not_found'
+}
+ [AuthApiError: Invalid Refresh Token: Refresh Token Not Found] {
+  __isAuthError: true,
+  name: 'AuthApiError',
+  status: 400,
+  code: 'refresh_token_not_found'
+}
+ ○ Compiling /login ...
+ ✓ Compiled /login in 1496ms (1589 modules)
+ GET /login 200 in 2269ms
+ ⨯ Error: Event handlers cannot be passed to Client Component props.
+  <... href=... className=... style=... onMouseOver={function onMouseOver} onMouseOut=... children=...>
+                                                    ^^^^^^^^^^^^^^^^^^^^^^
+If you need interactivity, consider converting part of this to a Client Component.
+    at stringify (<anonymous>)
+digest: "2343822185"
+ POST /login 303 in 2365ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 2.2s (2897 modules)
+ GET /projetos 200 in 881ms
+ ○ Compiling /favicon.ico ...
+ ✓ Compiled /favicon.ico in 846ms (1588 modules)
+ GET /favicon.ico 200 in 984ms
+ ⨯ ./components/charts/curva-s.tsx
+Error: Failed to read source code from C:\Users\Admin\Documents\PLATAFORMA - MCA\components\charts\curva-s.tsx
+
+Caused by:
+    O sistema não pode encontrar o caminho especificado. (os error 3)
+
+Import trace for requested module:
+./components/charts/curva-s.tsx
+ ✓ Compiled in 254ms (243 modules)
+ ✓ Compiled in 124ms (354 modules)
+ ✓ Compiled /_not-found in 441ms (450 modules)
+ GET /projetos 404 in 77ms
+ ✓ Compiled in 478ms (466 modules)
+ ✓ Compiled in 98ms (245 modules)
+ GET /projetos 404 in 84ms
+ ✓ Compiled in 105ms (245 modules)
+ ✓ Compiled in 136ms (245 modules)
+ ✓ Compiled in 84ms (245 modules)
+ GET /projetos 404 in 71ms
+ ✓ Compiled in 91ms (245 modules)
+ GET /projetos 404 in 49ms
+ ✓ Compiled in 220ms (245 modules)
+ ✓ Compiled in 126ms (245 modules)
+ GET /projetos 404 in 67ms
+ ✓ Compiled in 156ms (245 modules)
+ ✓ Compiled in 196ms (245 modules)
+ GET /projetos 404 in 53ms
+ ✓ Compiled in 173ms (245 modules)
+ ✓ Compiled in 116ms (245 modules)
+ GET /projetos 404 in 61ms
+ ✓ Compiled in 166ms (245 modules)
+ ✓ Compiled in 104ms (245 modules)
+ GET /projetos 404 in 73ms
+ ✓ Compiled in 166ms (245 modules)
+ ✓ Compiled in 113ms (245 modules)
+ GET /projetos 404 in 51ms
+ ✓ Compiled in 161ms (245 modules)
+ GET /projetos 404 in 64ms
+ ✓ Compiled in 137ms (245 modules)
+ ○ Compiling /projetos ...
+ ⨯ ./app/(dashboard)/projetos/page.tsx:4:1
+Module not found: Can't resolve '@/components/projetos/projetos-grid'
+[0m [90m 2 |[39m [36mimport[39m { [33mIconPlus[39m[33m,[39m [33mIconAlertTriangle[39m } [36mfrom[39m [32m"@tabler/icons-react"[39m[33m;[39m[0m
+[0m [90m 3 |[39m [36mimport[39m { getProjetos } [36mfrom[39m [32m"@/app/actions/projetos"[39m[33m;[39m[0m
+[0m[31m[1m>[22m[39m[90m 4 |[39m [36mimport[39m { [33mProjetosGrid[39m } [36mfrom[39m [32m"@/components/projetos/projetos-grid"[39m[33m;[39m[0m
+[0m [90m   |[39m [31m[1m^[22m[39m[0m
+[0m [90m 5 |[39m [36mimport[39m { [33mStatusChart[39m } [36mfrom[39m [32m"@/components/dashboard/status-chart"[39m[33m;[39m[0m
+[0m [90m 6 |[39m [36mimport[39m { [33mAlertas[39m } [36mfrom[39m [32m"@/components/dashboard/alertas"[39m[33m;[39m[0m
+[0m [90m 7 |[39m[0m
+
+https://nextjs.org/docs/messages/module-not-found
+ ⨯ ./app/(dashboard)/projetos/page.tsx:4:1
+Module not found: Can't resolve '@/components/projetos/projetos-grid'
+[0m [90m 2 |[39m [36mimport[39m { [33mIconPlus[39m[33m,[39m [33mIconAlertTriangle[39m } [36mfrom[39m [32m"@tabler/icons-react"[39m[33m;[39m[0m
+[0m [90m 3 |[39m [36mimport[39m { getProjetos } [36mfrom[39m [32m"@/app/actions/projetos"[39m[33m;[39m[0m
+[0m[31m[1m>[22m[39m[90m 4 |[39m [36mimport[39m { [33mProjetosGrid[39m } [36mfrom[39m [32m"@/components/projetos/projetos-grid"[39m[33m;[39m[0m
+[0m [90m   |[39m [31m[1m^[22m[39m[0m
+[0m [90m 5 |[39m [36mimport[39m { [33mStatusChart[39m } [36mfrom[39m [32m"@/components/dashboard/status-chart"[39m[33m;[39m[0m
+[0m [90m 6 |[39m [36mimport[39m { [33mAlertas[39m } [36mfrom[39m [32m"@/components/dashboard/alertas"[39m[33m;[39m[0m
+[0m [90m 7 |[39m[0m
+
+https://nextjs.org/docs/messages/module-not-found
+ GET /projetos 500 in 739ms
+ ⨯ ./app/(dashboard)/projetos/page.tsx:5:1
+Module not found: Can't resolve '@/components/dashboard/status-chart'
+[0m [90m 3 |[39m [36mimport[39m { getProjetos } [36mfrom[39m [32m"@/app/actions/projetos"[39m[33m;[39m[0m
+[0m [90m 4 |[39m [36mimport[39m { [33mProjetosGrid[39m } [36mfrom[39m [32m"@/components/projetos/projetos-grid"[39m[33m;[39m[0m
+[0m[31m[1m>[22m[39m[90m 5 |[39m [36mimport[39m { [33mStatusChart[39m } [36mfrom[39m [32m"@/components/dashboard/status-chart"[39m[33m;[39m[0m
+[0m [90m   |[39m [31m[1m^[22m[39m[0m
+[0m [90m 6 |[39m [36mimport[39m { [33mAlertas[39m } [36mfrom[39m [32m"@/components/dashboard/alertas"[39m[33m;[39m[0m
+[0m [90m 7 |[39m[0m
+[0m [90m 8 |[39m [36mfunction[39m fmt(value[33m:[39m number) {[0m
+
+https://nextjs.org/docs/messages/module-not-found
+ ⨯ ./app/(dashboard)/projetos/page.tsx:5:1
+Module not found: Can't resolve '@/components/dashboard/status-chart'
+[0m [90m 3 |[39m [36mimport[39m { getProjetos } [36mfrom[39m [32m"@/app/actions/projetos"[39m[33m;[39m[0m
+[0m [90m 4 |[39m [36mimport[39m { [33mProjetosGrid[39m } [36mfrom[39m [32m"@/components/projetos/projetos-grid"[39m[33m;[39m[0m
+[0m[31m[1m>[22m[39m[90m 5 |[39m [36mimport[39m { [33mStatusChart[39m } [36mfrom[39m [32m"@/components/dashboard/status-chart"[39m[33m;[39m[0m
+[0m [90m   |[39m [31m[1m^[22m[39m[0m
+[0m [90m 6 |[39m [36mimport[39m { [33mAlertas[39m } [36mfrom[39m [32m"@/components/dashboard/alertas"[39m[33m;[39m[0m
+[0m [90m 7 |[39m[0m
+[0m [90m 8 |[39m [36mfunction[39m fmt(value[33m:[39m number) {[0m
+
+https://nextjs.org/docs/messages/module-not-found
+ GET /_next/static/webpack/c51ca801a3d44c90.webpack.hot-update.json 500 in 1100ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /projetos 500 in 11ms
+ ⨯ ./app/(dashboard)/projetos/page.tsx:5:1
+Module not found: Can't resolve '@/components/dashboard/status-chart'
+[0m [90m 3 |[39m [36mimport[39m { getProjetos } [36mfrom[39m [32m"@/app/actions/projetos"[39m[33m;[39m[0m
+[0m [90m 4 |[39m [36mimport[39m { [33mProjetosGrid[39m } [36mfrom[39m [32m"@/components/projetos/projetos-grid"[39m[33m;[39m[0m
+[0m[31m[1m>[22m[39m[90m 5 |[39m [36mimport[39m { [33mStatusChart[39m } [36mfrom[39m [32m"@/components/dashboard/status-chart"[39m[33m;[39m[0m
+[0m [90m   |[39m [31m[1m^[22m[39m[0m
+[0m [90m 6 |[39m [36mimport[39m { [33mAlertas[39m } [36mfrom[39m [32m"@/components/dashboard/alertas"[39m[33m;[39m[0m
+[0m [90m 7 |[39m[0m
+[0m [90m 8 |[39m [36mfunction[39m fmt(value[33m:[39m number) {[0m
+
+https://nextjs.org/docs/messages/module-not-found
+ GET /_next/static/webpack/c51ca801a3d44c90.webpack.hot-update.json 500 in 501ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /projetos 500 in 10ms
+ ✓ Compiled /favicon.ico in 158ms (496 modules)
+ GET /projetos 500 in 14ms
+ ✓ Compiled in 175ms (496 modules)
+ ✓ Compiled in 145ms (496 modules)
+ GET /projetos 500 in 13ms
+ ✓ Compiled in 176ms (496 modules)
+ ⨯ ./app/(dashboard)/projetos/page.tsx:5:1
+Module not found: Can't resolve '@/components/dashboard/status-chart'
+[0m [90m 3 |[39m [36mimport[39m { getProjetos } [36mfrom[39m [32m"@/app/actions/projetos"[39m[33m;[39m[0m
+[0m [90m 4 |[39m [36mimport[39m { [33mProjetosGrid[39m } [36mfrom[39m [32m"@/components/projetos/projetos-grid"[39m[33m;[39m[0m
+[0m[31m[1m>[22m[39m[90m 5 |[39m [36mimport[39m { [33mStatusChart[39m } [36mfrom[39m [32m"@/components/dashboard/status-chart"[39m[33m;[39m[0m
+[0m [90m   |[39m [31m[1m^[22m[39m[0m
+[0m [90m 6 |[39m [36mimport[39m { [33mAlertas[39m } [36mfrom[39m [32m"@/components/dashboard/alertas"[39m[33m;[39m[0m
+[0m [90m 7 |[39m[0m
+[0m [90m 8 |[39m [36mfunction[39m fmt(value[33m:[39m number) {[0m
+
+https://nextjs.org/docs/messages/module-not-found
+ GET /projetos 200 in 2155ms
+ GET /_next/static/webpack/c51ca801a3d44c90.webpack.hot-update.json 500 in 2436ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /projetos 500 in 12ms
+ ✓ Compiled in 194ms (496 modules)
+ ⨯ ./app/(dashboard)/projetos/page.tsx:5:1
+Module not found: Can't resolve '@/components/dashboard/status-chart'
+[0m [90m 3 |[39m [36mimport[39m { getProjetos } [36mfrom[39m [32m"@/app/actions/projetos"[39m[33m;[39m[0m
+[0m [90m 4 |[39m [36mimport[39m { [33mProjetosGrid[39m } [36mfrom[39m [32m"@/components/projetos/projetos-grid"[39m[33m;[39m[0m
+[0m[31m[1m>[22m[39m[90m 5 |[39m [36mimport[39m { [33mStatusChart[39m } [36mfrom[39m [32m"@/components/dashboard/status-chart"[39m[33m;[39m[0m
+[0m [90m   |[39m [31m[1m^[22m[39m[0m
+[0m [90m 6 |[39m [36mimport[39m { [33mAlertas[39m } [36mfrom[39m [32m"@/components/dashboard/alertas"[39m[33m;[39m[0m
+[0m [90m 7 |[39m[0m
+[0m [90m 8 |[39m [36mfunction[39m fmt(value[33m:[39m number) {[0m
+
+https://nextjs.org/docs/messages/module-not-found
+ ⨯ ./app/(dashboard)/projetos/page.tsx:5:1
+Module not found: Can't resolve '@/components/dashboard/status-chart'
+[0m [90m 3 |[39m [36mimport[39m { getProjetos } [36mfrom[39m [32m"@/app/actions/projetos"[39m[33m;[39m[0m
+[0m [90m 4 |[39m [36mimport[39m { [33mProjetosGrid[39m } [36mfrom[39m [32m"@/components/projetos/projetos-grid"[39m[33m;[39m[0m
+[0m[31m[1m>[22m[39m[90m 5 |[39m [36mimport[39m { [33mStatusChart[39m } [36mfrom[39m [32m"@/components/dashboard/status-chart"[39m[33m;[39m[0m
+[0m [90m   |[39m [31m[1m^[22m[39m[0m
+[0m [90m 6 |[39m [36mimport[39m { [33mAlertas[39m } [36mfrom[39m [32m"@/components/dashboard/alertas"[39m[33m;[39m[0m
+[0m [90m 7 |[39m[0m
+[0m [90m 8 |[39m [36mfunction[39m fmt(value[33m:[39m number) {[0m
+
+https://nextjs.org/docs/messages/module-not-found
+ GET /_next/static/webpack/c51ca801a3d44c90.webpack.hot-update.json 500 in 768ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /projetos 500 in 126ms
+ GET /projetos 500 in 11ms
+ ✓ Compiled in 164ms (496 modules)
+ ⨯ ./app/(dashboard)/projetos/page.tsx:5:1
+Module not found: Can't resolve '@/components/dashboard/status-chart'
+[0m [90m 3 |[39m [36mimport[39m { getProjetos } [36mfrom[39m [32m"@/app/actions/projetos"[39m[33m;[39m[0m
+[0m [90m 4 |[39m [36mimport[39m { [33mProjetosGrid[39m } [36mfrom[39m [32m"@/components/projetos/projetos-grid"[39m[33m;[39m[0m
+[0m[31m[1m>[22m[39m[90m 5 |[39m [36mimport[39m { [33mStatusChart[39m } [36mfrom[39m [32m"@/components/dashboard/status-chart"[39m[33m;[39m[0m
+[0m [90m   |[39m [31m[1m^[22m[39m[0m
+[0m [90m 6 |[39m [36mimport[39m { [33mAlertas[39m } [36mfrom[39m [32m"@/components/dashboard/alertas"[39m[33m;[39m[0m
+[0m [90m 7 |[39m[0m
+[0m [90m 8 |[39m [36mfunction[39m fmt(value[33m:[39m number) {[0m
+
+https://nextjs.org/docs/messages/module-not-found
+ GET /_next/static/webpack/c51ca801a3d44c90.webpack.hot-update.json 500 in 404ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⨯ ./app/(dashboard)/projetos/page.tsx:5:1
+Module not found: Can't resolve '@/components/dashboard/status-chart'
+[0m [90m 3 |[39m [36mimport[39m { getProjetos } [36mfrom[39m [32m"@/app/actions/projetos"[39m[33m;[39m[0m
+[0m [90m 4 |[39m [36mimport[39m { [33mProjetosGrid[39m } [36mfrom[39m [32m"@/components/projetos/projetos-grid"[39m[33m;[39m[0m
+[0m[31m[1m>[22m[39m[90m 5 |[39m [36mimport[39m { [33mStatusChart[39m } [36mfrom[39m [32m"@/components/dashboard/status-chart"[39m[33m;[39m[0m
+[0m [90m   |[39m [31m[1m^[22m[39m[0m
+[0m [90m 6 |[39m [36mimport[39m { [33mAlertas[39m } [36mfrom[39m [32m"@/components/dashboard/alertas"[39m[33m;[39m[0m
+[0m [90m 7 |[39m[0m
+[0m [90m 8 |[39m [36mfunction[39m fmt(value[33m:[39m number) {[0m
+
+https://nextjs.org/docs/messages/module-not-found
+ GET /projetos 500 in 13ms
+ ✓ Compiled in 165ms (496 modules)
+ ✓ Compiled in 153ms (496 modules)
+ GET /projetos 500 in 10ms
+ ✓ Compiled in 151ms (496 modules)
+ ✓ Compiled in 250ms (496 modules)
+ GET /projetos 500 in 13ms
+ ⨯ ./app/(dashboard)/projetos/page.tsx:5:1
+Module not found: Can't resolve '@/components/dashboard/status-chart'
+[0m [90m 3 |[39m [36mimport[39m { getProjetos } [36mfrom[39m [32m"@/app/actions/projetos"[39m[33m;[39m[0m
+[0m [90m 4 |[39m [36mimport[39m { [33mProjetosGrid[39m } [36mfrom[39m [32m"@/components/projetos/projetos-grid"[39m[33m;[39m[0m
+[0m[31m[1m>[22m[39m[90m 5 |[39m [36mimport[39m { [33mStatusChart[39m } [36mfrom[39m [32m"@/components/dashboard/status-chart"[39m[33m;[39m[0m
+[0m [90m   |[39m [31m[1m^[22m[39m[0m
+[0m [90m 6 |[39m [36mimport[39m { [33mAlertas[39m } [36mfrom[39m [32m"@/components/dashboard/alertas"[39m[33m;[39m[0m
+[0m [90m 7 |[39m[0m
+[0m [90m 8 |[39m [36mfunction[39m fmt(value[33m:[39m number) {[0m
+
+https://nextjs.org/docs/messages/module-not-found
+ GET /_next/static/webpack/c51ca801a3d44c90.webpack.hot-update.json 500 in 994ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /projetos 500 in 10ms
+ ✓ Compiled in 1558ms (2016 modules)
+ ✓ Compiled (2000 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /_next/static/webpack/c51ca801a3d44c90.webpack.hot-update.json 404 in 1667ms
+ GET /projetos 200 in 6ms
+ GET /projetos 200 in 280ms
+ ○ Compiling /clientes ...
+ ✓ Compiled /clientes in 848ms (2015 modules)
+ ✓ Compiled /contratadas in 357ms (2026 modules)
+ GET /configuracoes 404 in 82ms
+ ✓ Compiled in 752ms (2042 modules)
+ GET /configuracoes 404 in 64ms
+ ✓ Compiled in 777ms (2042 modules)
+ GET /configuracoes 404 in 35ms
+ ✓ Compiled in 182ms (980 modules)
+ GET /configuracoes 404 in 41ms
+ ✓ Compiled in 1250ms (2156 modules)
+ ✓ Compiled /configuracoes in 444ms (2036 modules)
+ ✓ Compiled in 12s (2049 modules)
+ ✓ Compiled in 10.6s (2049 modules)
+ ✓ Compiled in 337ms (982 modules)
+ ✓ Compiled in 236ms (982 modules)
+ ✓ Compiled in 2.2s (2049 modules)
+ ✓ Compiled in 1333ms (2077 modules)
+ ✓ Compiled in 876ms (2077 modules)
+ ✓ Compiled in 767ms (2077 modules)
+ ✓ Compiled in 396ms (993 modules)
+ ✓ Compiled in 317ms (993 modules)
+ ✓ Compiled in 235ms (993 modules)

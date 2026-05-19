@@ -1,0 +1,11 @@
+  ▲ Next.js 14.2.35
+  - Local:        http://localhost:3891
+  - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 5s
+ ✓ Compiled /middleware in 450ms (127 modules)
+ ○ Compiling /login ...
+ ✓ Compiled /login in 22.1s (1667 modules)
+ ✓ Compiled in 651ms (766 modules)
+ ✓ Compiled in 145ms (750 modules)

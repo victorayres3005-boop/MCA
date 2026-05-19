@@ -1,0 +1,289 @@
+<h2>Qual direção visual combina com a MCA?</h2>
+<p class="subtitle">Cada opção muda o tom geral da plataforma — dashboard, abas, cards e listas. Clique para selecionar.</p>
+
+<style>
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 24px; }
+  .card { background: #fff; border: 2px solid #e5e7eb; border-radius: 16px; overflow: hidden; cursor: pointer; transition: all 0.2s; }
+  .card:hover { border-color: #00B4A6; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+  .card.selected { border-color: #00B4A6; box-shadow: 0 0 0 4px rgba(0,180,166,0.15); }
+  .card-label { padding: 14px 16px 10px; }
+  .card-label h3 { font-size: 15px; font-weight: 700; color: #0f172a; margin: 0 0 4px; }
+  .card-label p { font-size: 12px; color: #64748b; margin: 0; }
+  .letter { display: none; }
+
+  /* MOCKUP BASE */
+  .mini { font-family: -apple-system, sans-serif; overflow: hidden; }
+  .mini * { box-sizing: border-box; }
+
+  /* ===== OPÇÃO A: REFINED ENTERPRISE ===== */
+  .a-wrap { background: #F0F4F8; height: 280px; display: flex; }
+  .a-sidebar { width: 52px; background: linear-gradient(160deg,#0D2B45,#0A5C56); display: flex; flex-direction: column; align-items: center; padding: 12px 0; gap: 16px; }
+  .a-sidebar-logo { width: 32px; height: 32px; background: #00B4A6; border-radius: 8px; }
+  .a-nav-item { width: 32px; height: 32px; border-radius: 8px; background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; }
+  .a-nav-item.active { background: rgba(0,180,166,0.3); }
+  .a-nav-dot { width: 14px; height: 3px; background: rgba(255,255,255,0.4); border-radius: 2px; }
+  .a-nav-dot.active { background: #00B4A6; }
+  .a-main { flex: 1; display: flex; flex-direction: column; }
+  .a-topbar { height: 44px; background: #fff; border-bottom: 1px solid #e8eef2; display: flex; align-items: center; padding: 0 16px; gap: 8px; }
+  .a-title { font-size: 13px; font-weight: 700; color: #0D2B45; }
+  .a-badge { font-size: 10px; padding: 2px 8px; background: #E0F5F3; color: #00897F; border-radius: 20px; font-weight: 600; }
+  .a-btn { font-size: 10px; padding: 4px 10px; background: #0D2B45; color: #fff; border-radius: 6px; margin-left: auto; font-weight: 600; }
+  .a-content { flex: 1; padding: 12px; display: flex; flex-direction: column; gap: 10px; }
+  .a-kpi-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; }
+  .a-kpi { background: #fff; border-radius: 10px; padding: 10px 12px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); border-left: 3px solid; }
+  .a-kpi:nth-child(1) { border-color: #0D2B45; }
+  .a-kpi:nth-child(2) { border-color: #00B4A6; }
+  .a-kpi:nth-child(3) { border-color: #2563EB; }
+  .a-kpi:nth-child(4) { border-color: #16A34A; }
+  .a-kpi-label { font-size: 9px; color: #94A3B8; text-transform: uppercase; letter-spacing: .5px; font-weight: 600; }
+  .a-kpi-val { font-size: 20px; font-weight: 800; color: #0D2B45; line-height: 1.1; margin-top: 4px; }
+  .a-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; flex: 1; }
+  .a-panel { background: #fff; border-radius: 10px; padding: 10px 12px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  .a-panel-title { font-size: 10px; font-weight: 700; color: #0D2B45; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 6px; }
+  .a-table-row { display: flex; align-items: center; gap: 6px; padding: 4px 0; border-bottom: 1px solid #f1f5f9; }
+  .a-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+  .a-row-text { font-size: 10px; color: #334155; flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .a-row-val { font-size: 10px; color: #64748b; }
+  .a-bar-wrap { height: 3px; background: #f1f5f9; border-radius: 2px; margin-top: 6px; }
+  .a-bar { height: 3px; border-radius: 2px; background: #00B4A6; }
+
+  /* ===== OPÇÃO B: MODERN SAAS ===== */
+  .b-wrap { background: #fff; height: 280px; display: flex; }
+  .b-sidebar { width: 180px; background: #fff; border-right: 1px solid #F1F5F9; padding: 16px 12px; display: flex; flex-direction: column; gap: 4px; }
+  .b-logo-row { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+  .b-logo-sq { width: 28px; height: 28px; background: linear-gradient(135deg,#00B4A6,#0D2B45); border-radius: 8px; }
+  .b-logo-text { font-size: 13px; font-weight: 800; color: #0f172a; letter-spacing: -0.3px; }
+  .b-nav-item { display: flex; align-items: center; gap: 8px; padding: 6px 10px; border-radius: 8px; font-size: 12px; font-weight: 500; color: #64748b; }
+  .b-nav-item.active { background: #F0FAFA; color: #00897F; font-weight: 700; }
+  .b-nav-icon { width: 14px; height: 14px; background: currentColor; border-radius: 3px; opacity: 0.6; }
+  .b-main { flex: 1; overflow: hidden; }
+  .b-header { padding: 16px 16px 0; }
+  .b-header-top { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 12px; }
+  .b-page-title { font-size: 18px; font-weight: 800; color: #0f172a; letter-spacing: -0.5px; }
+  .b-page-sub { font-size: 11px; color: #94a3b8; }
+  .b-btn { font-size: 11px; padding: 6px 14px; background: linear-gradient(135deg,#00B4A6,#0D2B45); color: #fff; border-radius: 8px; font-weight: 700; }
+  .b-kpi-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; padding: 0 16px; }
+  .b-kpi { background: #F8FAFC; border-radius: 12px; padding: 12px; border: 1px solid #F1F5F9; }
+  .b-kpi-label { font-size: 10px; color: #94a3b8; font-weight: 600; text-transform: uppercase; letter-spacing: .4px; }
+  .b-kpi-val { font-size: 22px; font-weight: 900; color: #0f172a; letter-spacing: -0.5px; margin-top: 2px; }
+  .b-kpi-change { font-size: 10px; color: #16a34a; font-weight: 600; margin-top: 2px; }
+  .b-content { padding: 10px 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .b-card { background: #F8FAFC; border-radius: 12px; padding: 10px 12px; border: 1px solid #F1F5F9; }
+  .b-card-title { font-size: 11px; font-weight: 700; color: #0f172a; margin-bottom: 8px; }
+  .b-pill { display: inline-flex; align-items: center; gap: 4px; padding: 3px 8px; border-radius: 20px; font-size: 10px; font-weight: 600; margin: 2px; }
+
+  /* ===== OPÇÃO C: DATA-FORWARD ===== */
+  .c-wrap { background: #0D2B45; height: 280px; display: flex; color: #fff; }
+  .c-sidebar { width: 44px; background: rgba(0,0,0,0.2); display: flex; flex-direction: column; align-items: center; padding: 10px 0; gap: 12px; border-right: 1px solid rgba(255,255,255,0.06); }
+  .c-logo { width: 26px; height: 26px; background: #00B4A6; border-radius: 6px; }
+  .c-icon { width: 26px; height: 26px; border-radius: 6px; background: rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: center; }
+  .c-icon.active { background: rgba(0,180,166,0.25); }
+  .c-icon-dot { width: 10px; height: 2px; background: rgba(255,255,255,0.35); border-radius: 1px; }
+  .c-icon-dot.active { background: #00B4A6; }
+  .c-main { flex: 1; display: flex; flex-direction: column; }
+  .c-topbar { height: 38px; background: rgba(0,0,0,0.15); border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; padding: 0 12px; gap: 6px; }
+  .c-title { font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.9); letter-spacing: 0.3px; }
+  .c-sep { flex: 1; }
+  .c-status { font-size: 9px; color: #00B4A6; font-weight: 600; text-transform: uppercase; letter-spacing: .8px; }
+  .c-body { flex: 1; padding: 10px; display: flex; gap: 8px; }
+  .c-left { flex: 1; display: flex; flex-direction: column; gap: 8px; }
+  .c-kpi-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 6px; }
+  .c-kpi { background: rgba(255,255,255,0.05); border-radius: 8px; padding: 8px; border: 1px solid rgba(255,255,255,0.07); }
+  .c-kpi-label { font-size: 9px; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: .5px; }
+  .c-kpi-val { font-size: 20px; font-weight: 800; color: #fff; margin-top: 2px; font-variant-numeric: tabular-nums; }
+  .c-kpi.green .c-kpi-val { color: #4ade80; }
+  .c-kpi.teal .c-kpi-val { color: #2dd4bf; }
+  .c-table { background: rgba(0,0,0,0.15); border-radius: 8px; flex: 1; overflow: hidden; border: 1px solid rgba(255,255,255,0.06); }
+  .c-table-head { display: grid; grid-template-columns: 6px 60px 1fr 50px; gap: 6px; padding: 5px 8px; background: rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .c-th { font-size: 9px; font-weight: 600; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: .4px; }
+  .c-table-row { display: grid; grid-template-columns: 6px 60px 1fr 50px; gap: 6px; padding: 5px 8px; border-bottom: 1px solid rgba(255,255,255,0.04); align-items: center; }
+  .c-td { font-size: 10px; color: rgba(255,255,255,0.7); }
+  .c-td.code { color: #2dd4bf; font-family: monospace; font-size: 9px; }
+  .c-td.val { color: #fff; font-weight: 600; text-align: right; }
+  .c-right { width: 90px; display: flex; flex-direction: column; gap: 6px; }
+  .c-chart-card { background: rgba(255,255,255,0.05); border-radius: 8px; padding: 8px; border: 1px solid rgba(255,255,255,0.07); flex: 1; }
+  .c-chart-title { font-size: 9px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 6px; }
+  .c-donut { width: 50px; height: 50px; border-radius: 50%; background: conic-gradient(#4ade80 0deg 162deg, #fbbf24 162deg 234deg, #f87171 234deg 360deg); margin: 0 auto; display: flex; align-items: center; justify-content: center; }
+  .c-donut-inner { width: 30px; height: 30px; background: #0D2B45; border-radius: 50%; }
+  .c-bar-group { display: flex; flex-direction: column; gap: 4px; }
+  .c-bar-row { display: flex; align-items: center; gap: 4px; }
+  .c-bar-label { font-size: 8px; color: rgba(255,255,255,0.4); width: 20px; }
+  .c-mini-bar { height: 6px; border-radius: 3px; }
+</style>
+
+<div class="cards">
+
+  <!-- OPÇÃO A -->
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="mini a-wrap">
+      <div class="a-sidebar">
+        <div class="a-sidebar-logo"></div>
+        <div class="a-nav-item active"><div class="a-nav-dot active"></div></div>
+        <div class="a-nav-item"><div class="a-nav-dot"></div></div>
+        <div class="a-nav-item"><div class="a-nav-dot"></div></div>
+        <div class="a-nav-item"><div class="a-nav-dot"></div></div>
+      </div>
+      <div class="a-main">
+        <div class="a-topbar">
+          <span class="a-title">Carteira de Obras</span>
+          <span class="a-badge">12 projetos</span>
+          <div class="a-btn">+ Novo Projeto</div>
+        </div>
+        <div class="a-content">
+          <div class="a-kpi-row">
+            <div class="a-kpi"><div class="a-kpi-label">Total</div><div class="a-kpi-val">12</div></div>
+            <div class="a-kpi"><div class="a-kpi-label">Em exec.</div><div class="a-kpi-val">7</div></div>
+            <div class="a-kpi"><div class="a-kpi-label">Valor</div><div class="a-kpi-val">R$14M</div></div>
+            <div class="a-kpi"><div class="a-kpi-label">% Médio</div><div class="a-kpi-val">62%</div></div>
+          </div>
+          <div class="a-row2">
+            <div class="a-panel">
+              <div class="a-panel-title">Projetos</div>
+              <div class="a-table-row"><div class="a-dot" style="background:#16A34A"></div><div class="a-row-text">Usina Hidrelétrica Teles Pires</div><div class="a-row-val">78%</div></div>
+              <div class="a-table-row"><div class="a-dot" style="background:#F59E0B"></div><div class="a-row-text">Terminal Portuário São Luís</div><div class="a-row-val">45%</div></div>
+              <div class="a-table-row"><div class="a-dot" style="background:#DC2626"></div><div class="a-row-text">Subestação Transmissão PA</div><div class="a-row-val">23%</div></div>
+              <div class="a-table-row"><div class="a-dot" style="background:#16A34A"></div><div class="a-row-text">Gasoduto Nordeste</div><div class="a-row-val">91%</div></div>
+            </div>
+            <div class="a-panel">
+              <div class="a-panel-title">Status Carteira</div>
+              <div style="margin:4px 0 2px"><div class="a-kpi-label">VERDE</div><div class="a-bar-wrap"><div class="a-bar" style="width:60%;background:#16A34A"></div></div></div>
+              <div style="margin:4px 0 2px"><div class="a-kpi-label">AMARELO</div><div class="a-bar-wrap"><div class="a-bar" style="width:25%;background:#F59E0B"></div></div></div>
+              <div style="margin:4px 0 2px"><div class="a-kpi-label">VERMELHO</div><div class="a-bar-wrap"><div class="a-bar" style="width:15%;background:#DC2626"></div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-label">
+      <h3>A — Refined Enterprise</h3>
+      <p>Sidebar ícone-only, cards com sombras suaves, tipografia sólida. Profissional e denso sem ser pesado.</p>
+    </div>
+  </div>
+
+  <!-- OPÇÃO B -->
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="mini b-wrap">
+      <div class="b-sidebar">
+        <div class="b-logo-row">
+          <div class="b-logo-sq"></div>
+          <span class="b-logo-text">MCA</span>
+        </div>
+        <div class="b-nav-item active">
+          <div class="b-nav-icon" style="background:#00897F;opacity:1"></div>
+          <span>Carteira</span>
+        </div>
+        <div class="b-nav-item">
+          <div class="b-nav-icon"></div>
+          <span>Clientes</span>
+        </div>
+        <div class="b-nav-item">
+          <div class="b-nav-icon"></div>
+          <span>Empresas</span>
+        </div>
+        <div class="b-nav-item">
+          <div class="b-nav-icon"></div>
+          <span>Config.</span>
+        </div>
+      </div>
+      <div class="b-main">
+        <div class="b-header">
+          <div class="b-header-top">
+            <div><div class="b-page-title">Carteira</div><div class="b-page-sub">12 projetos ativos</div></div>
+            <div class="b-btn">＋ Projeto</div>
+          </div>
+          <div class="b-kpi-row">
+            <div class="b-kpi"><div class="b-kpi-label">Total</div><div class="b-kpi-val">12</div><div class="b-kpi-change">↑ 2 este mês</div></div>
+            <div class="b-kpi"><div class="b-kpi-label">Em Exec.</div><div class="b-kpi-val">7</div><div class="b-kpi-change">normal</div></div>
+            <div class="b-kpi"><div class="b-kpi-label">Valor Total</div><div class="b-kpi-val" style="font-size:15px">R$14M</div></div>
+            <div class="b-kpi"><div class="b-kpi-label">Conclusão</div><div class="b-kpi-val" style="color:#16A34A">62%</div></div>
+          </div>
+        </div>
+        <div class="b-content">
+          <div class="b-card">
+            <div class="b-card-title">Semáforo</div>
+            <span class="b-pill" style="background:#DCFCE7;color:#16A34A">● Verde (7)</span>
+            <span class="b-pill" style="background:#FEF9C3;color:#B45309">● Amarelo (3)</span>
+            <span class="b-pill" style="background:#FEE2E2;color:#DC2626">● Vermelho (2)</span>
+          </div>
+          <div class="b-card">
+            <div class="b-card-title">Próximos vencimentos</div>
+            <div style="font-size:10px;color:#334155;padding:2px 0;border-bottom:1px solid #f1f5f9">Teles Pires — <span style="color:#DC2626">3 dias</span></div>
+            <div style="font-size:10px;color:#334155;padding:2px 0;border-bottom:1px solid #f1f5f9">Terminal Portuário — <span style="color:#F59E0B">12 dias</span></div>
+            <div style="font-size:10px;color:#334155;padding:2px 0">Gasoduto NE — <span style="color:#16A34A">28 dias</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-label">
+      <h3>B — Modern SaaS</h3>
+      <p>Sidebar branco expandido, tipografia grande e bold, KPIs espaçados. Visual de produto tech contemporâneo.</p>
+    </div>
+  </div>
+
+  <!-- OPÇÃO C -->
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="mini c-wrap">
+      <div class="c-sidebar">
+        <div class="c-logo"></div>
+        <div class="c-icon active"><div class="c-icon-dot active"></div></div>
+        <div class="c-icon"><div class="c-icon-dot"></div></div>
+        <div class="c-icon"><div class="c-icon-dot"></div></div>
+        <div class="c-icon"><div class="c-icon-dot"></div></div>
+      </div>
+      <div class="c-main">
+        <div class="c-topbar">
+          <span class="c-title">CARTEIRA DE OBRAS</span>
+          <div class="c-sep"></div>
+          <span class="c-status">● 12 projetos</span>
+        </div>
+        <div class="c-body">
+          <div class="c-left">
+            <div class="c-kpi-grid">
+              <div class="c-kpi"><div class="c-kpi-label">Total</div><div class="c-kpi-val">12</div></div>
+              <div class="c-kpi teal"><div class="c-kpi-label">Exec.</div><div class="c-kpi-val">7</div></div>
+              <div class="c-kpi"><div class="c-kpi-label">Valor</div><div class="c-kpi-val" style="font-size:14px">R$14M</div></div>
+              <div class="c-kpi green"><div class="c-kpi-label">Médio</div><div class="c-kpi-val">62%</div></div>
+            </div>
+            <div class="c-table">
+              <div class="c-table-head">
+                <div></div>
+                <div class="c-th">Código</div>
+                <div class="c-th">Projeto</div>
+                <div class="c-th" style="text-align:right">%</div>
+              </div>
+              <div class="c-table-row"><div class="a-dot" style="background:#4ade80;width:5px;height:5px;border-radius:50%"></div><div class="c-td code">OB-2024-001</div><div class="c-td">Teles Pires</div><div class="c-td val">78%</div></div>
+              <div class="c-table-row"><div class="a-dot" style="background:#fbbf24;width:5px;height:5px;border-radius:50%"></div><div class="c-td code">OB-2024-002</div><div class="c-td">Terminal São Luís</div><div class="c-td val">45%</div></div>
+              <div class="c-table-row"><div class="a-dot" style="background:#f87171;width:5px;height:5px;border-radius:50%"></div><div class="c-td code">OB-2024-003</div><div class="c-td">Subestação PA</div><div class="c-td val">23%</div></div>
+            </div>
+          </div>
+          <div class="c-right">
+            <div class="c-chart-card">
+              <div class="c-chart-title">Semáforo</div>
+              <div class="c-donut"><div class="c-donut-inner"></div></div>
+              <div style="display:flex;justify-content:center;gap:8px;margin-top:6px">
+                <div style="font-size:8px;color:#4ade80">● 7</div>
+                <div style="font-size:8px;color:#fbbf24">● 3</div>
+                <div style="font-size:8px;color:#f87171">● 2</div>
+              </div>
+            </div>
+            <div class="c-chart-card">
+              <div class="c-chart-title">Status</div>
+              <div class="c-bar-group">
+                <div class="c-bar-row"><span class="c-bar-label">Exec.</span><div class="c-mini-bar" style="width:55px;background:#2dd4bf"></div></div>
+                <div class="c-bar-row"><span class="c-bar-label">Plan.</span><div class="c-mini-bar" style="width:25px;background:#818cf8"></div></div>
+                <div class="c-bar-row"><span class="c-bar-label">Enc.</span><div class="c-mini-bar" style="width:15px;background:#94a3b8"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-label">
+      <h3>C — Dark Command Center</h3>
+      <p>Fundo escuro navy, dados em destaque com cores neon, sensação de painel de controle operacional.</p>
+    </div>
+  </div>
+
+</div>
+
+<p class="subtitle" style="margin-top:16px;text-align:center">Clique em uma opção e me diga qual direção você prefere — ou o que gostaria de combinar.</p>
