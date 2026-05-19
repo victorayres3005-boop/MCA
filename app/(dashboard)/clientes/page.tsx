@@ -23,7 +23,7 @@ export default async function ClientesPage() {
           </Link>
         }
       />
-      <div className="p-8">
+      <div className="p-6">
         <ClientesLista clientes={clientes} />
       </div>
     </>

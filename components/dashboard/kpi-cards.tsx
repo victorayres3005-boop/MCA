@@ -1,4 +1,9 @@
-import { IconBriefcase, IconRocket, IconCurrencyReal, IconTrendingUp } from "@tabler/icons-react";
+import {
+  IconBriefcase,
+  IconRocket,
+  IconCurrencyReal,
+  IconTrendingUp,
+} from "@tabler/icons-react";
 import type { Projeto } from "@/lib/types";
 
 interface KpiCardsProps {
@@ -12,6 +17,44 @@ function formatCurrency(value: number) {
   }).format(value);
 }
 
+interface CardProps {
+  label: string;
+  value: string;
+  sub: string;
+  icon: React.ElementType;
+  iconBg: string;
+  iconColor: string;
+  progress?: number;
+  progressColor?: string;
+}
+
+function KpiCard({ label, value, sub, icon: Icon, iconBg, iconColor, progress, progressColor }: CardProps) {
+  return (
+    <div className="bg-white rounded-2xl border border-[#E9EBF0] p-5 flex flex-col gap-4">
+      <div className="flex items-start justify-between">
+        <p className="text-[12.5px] font-medium text-text-secondary leading-tight">{label}</p>
+        <div className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 ${iconBg}`}>
+          <Icon size={15} className={iconColor} />
+        </div>
+      </div>
+      <div>
+        <p className="text-[28px] font-bold text-text-primary tabular-nums leading-none mb-1">
+          {value}
+        </p>
+        <p className="text-[12px] text-text-disabled">{sub}</p>
+      </div>
+      {progress !== undefined && (
+        <div className="h-[3px] bg-surface-input rounded-full overflow-hidden">
+          <div
+            className={`h-full rounded-full transition-all ${progressColor}`}
+            style={{ width: `${progress}%` }}
+          />
+        </div>
+      )}
+    </div>
+  );
+}
+
 export function KpiCards({ projetos }: KpiCardsProps) {
   const total      = projetos.length;
   const emExecucao = projetos.filter((p) => p.status === "execucao").length;
@@ -20,80 +63,55 @@ export function KpiCards({ projetos }: KpiCardsProps) {
     ? Math.round(projetos.reduce((s, p) => s + p.percentual_concluido, 0) / total)
     : 0;
 
-  const cards = [
-    {
-      label:   "Total na carteira",
-      value:   String(total),
-      sub:     "projetos cadastrados",
-      icon:    IconBriefcase,
-      accent:  "border-l-navy-700 bg-navy-700/5",
-      iconCls: "text-navy-700",
-    },
-    {
-      label:   "Em execução",
-      value:   String(emExecucao),
-      sub:     total > 0 ? `${Math.round((emExecucao / total) * 100)}% da carteira` : "—",
-      icon:    IconRocket,
-      accent:  "border-l-brand-500 bg-brand-500/5",
-      iconCls: "text-brand-500",
-    },
-    {
-      label:   "Valor total",
-      value:   valorTotal > 0 ? formatCurrency(valorTotal) : "—",
-      sub:     "contratos ativos",
-      icon:    IconCurrencyReal,
-      accent:  "border-l-blue-500 bg-blue-500/5",
-      iconCls: "text-blue-500",
-    },
-    {
-      label:    "Conclusão média",
-      value:    `${mediaConc}%`,
-      sub:      "média da carteira",
-      icon:     IconTrendingUp,
-      accent:   mediaConc >= 70 ? "border-l-green-500 bg-green-500/5"
-                : mediaConc >= 40 ? "border-l-amber-500 bg-amber-500/5"
-                : "border-l-red-500 bg-red-500/5",
-      iconCls:  mediaConc >= 70 ? "text-green-500" : mediaConc >= 40 ? "text-amber-500" : "text-red-500",
-      progress: mediaConc,
-    },
-  ];
+  const concProgressColor =
+    mediaConc >= 70 ? "bg-green-500" :
+    mediaConc >= 40 ? "bg-amber-500" :
+    "bg-red-500";
 
   return (
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-      {cards.map((card) => {
-        const Icon = card.icon;
-        return (
-          <div
-            key={card.label}
-            className={`bg-white border border-surface-border border-l-4 ${card.accent} rounded-xl p-5 flex flex-col gap-3`}
-          >
-            <div className="flex items-start justify-between">
-              <p className="text-xs font-semibold text-text-disabled uppercase tracking-wider leading-none">
-                {card.label}
-              </p>
-              <div className={`p-1.5 rounded-lg ${card.accent}`}>
-                <Icon size={15} className={card.iconCls} />
-              </div>
-            </div>
-
-            <div>
-              <p className="text-3xl font-bold text-text-primary tabular-nums leading-none mb-1">
-                {card.value}
-              </p>
-              <p className="text-xs text-text-secondary">{card.sub}</p>
-            </div>
-
-            {"progress" in card && card.progress !== undefined && (
-              <div className="h-1 bg-surface-input rounded-full overflow-hidden mt-auto">
-                <div
-                  className={`h-full rounded-full transition-all ${card.iconCls.replace("text-", "bg-")}`}
-                  style={{ width: `${card.progress}%` }}
-                />
-              </div>
-            )}
-          </div>
-        );
-      })}
+      <KpiCard
+        label="Total na Carteira"
+        value={String(total)}
+        sub="projetos cadastrados"
+        icon={IconBriefcase}
+        iconBg="bg-navy-700/8"
+        iconColor="text-navy-700"
+      />
+      <KpiCard
+        label="Em Execução"
+        value={String(emExecucao)}
+        sub={total > 0 ? `${Math.round((emExecucao / total) * 100)}% da carteira` : "nenhum"}
+        icon={IconRocket}
+        iconBg="bg-brand-50"
+        iconColor="text-brand-500"
+      />
+      <KpiCard
+        label="Valor Contratado"
+        value={valorTotal > 0 ? formatCurrency(valorTotal) : "—"}
+        sub="soma dos contratos"
+        icon={IconCurrencyReal}
+        iconBg="bg-blue-50"
+        iconColor="text-blue-500"
+      />
+      <KpiCard
+        label="Conclusão Média"
+        value={`${mediaConc}%`}
+        sub="média da carteira"
+        icon={IconTrendingUp}
+        iconBg={
+          mediaConc >= 70 ? "bg-green-50" :
+          mediaConc >= 40 ? "bg-amber-50" :
+          "bg-red-50"
+        }
+        iconColor={
+          mediaConc >= 70 ? "text-green-600" :
+          mediaConc >= 40 ? "text-amber-600" :
+          "text-red-600"
+        }
+        progress={mediaConc}
+        progressColor={concProgressColor}
+      />
     </div>
   );
 }

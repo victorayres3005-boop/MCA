@@ -2,17 +2,9 @@ import Link from "next/link";
 import { IconAlertTriangle } from "@tabler/icons-react";
 import type { Projeto } from "@/lib/types";
 
-const STATUS_LABEL: Record<string, string> = {
-  planejamento:  "Planejamento",
-  execucao:      "Execução",
-  monitoramento: "Monitoramento",
-  encerrado:     "Encerrado",
-  suspenso:      "Suspenso",
-};
-
-const SEM_CLS = {
-  vermelho: { dot: "bg-status-red",    badge: "bg-red-50 text-status-red border-red-200",    label: "Crítico"  },
-  amarelo:  { dot: "bg-status-yellow", badge: "bg-yellow-50 text-yellow-700 border-yellow-200", label: "Atenção"  },
+const SEM_CFG = {
+  vermelho: { dot: "#DC2626", badge: "bg-red-50 text-red-600 border-red-100",    label: "Crítico"  },
+  amarelo:  { dot: "#F59E0B", badge: "bg-amber-50 text-amber-600 border-amber-100", label: "Atenção" },
 } as const;
 
 interface AlertasProps {
@@ -27,37 +19,46 @@ export function Alertas({ projetos }: AlertasProps) {
   if (criticos.length === 0) return null;
 
   return (
-    <div className="bg-white border border-surface-border rounded-xl overflow-hidden">
-      <div className="flex items-center gap-2 px-5 py-3.5 border-b border-surface-border">
-        <IconAlertTriangle size={16} className="text-status-yellow" />
-        <span className="text-sm font-semibold text-text-primary">
-          Projetos que precisam de atenção
+    <div className="bg-white rounded-2xl border border-[#E9EBF0] overflow-hidden">
+      <div className="flex items-center gap-2 px-5 py-3.5 border-b border-[#E9EBF0]">
+        <IconAlertTriangle size={14} className="text-amber-500 shrink-0" />
+        <span className="text-[13px] font-semibold text-text-primary">
+          Atenção necessária
         </span>
-        <span className="ml-auto text-xs text-text-disabled">{criticos.length} projeto{criticos.length !== 1 ? "s" : ""}</span>
+        <span className="ml-auto text-[11px] text-text-disabled tabular-nums">
+          {criticos.length} projeto{criticos.length !== 1 ? "s" : ""}
+        </span>
       </div>
-      <div className="divide-y divide-surface-border">
+
+      <div className="divide-y divide-[#F0F2F5]">
         {criticos.map((p) => {
-          const cfg = SEM_CLS[p.semaforo as "vermelho" | "amarelo"];
+          const cfg = SEM_CFG[p.semaforo as "vermelho" | "amarelo"];
           return (
             <Link
               key={p.id}
               href={`/projetos/${p.id}`}
-              className="flex items-center gap-4 px-5 py-3.5 hover:bg-surface-input/40 transition-colors"
+              className="flex items-center gap-4 px-5 py-3 hover:bg-[#F8FAFB] transition-colors group"
             >
-              <span className={`w-2 h-2 rounded-full shrink-0 ${cfg.dot}`} />
+              <span
+                className="w-2 h-2 rounded-full shrink-0"
+                style={{ background: cfg.dot }}
+              />
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-text-primary truncate">{p.nome}</p>
-                <p className="text-xs text-text-secondary">
-                  {p.cliente?.nome ?? "—"} · {STATUS_LABEL[p.status]}
+                <p className="text-[13px] font-medium text-text-primary truncate group-hover:text-brand-700 transition-colors">
+                  {p.nome}
+                </p>
+                <p className="text-[11.5px] text-text-disabled mt-0.5">
+                  {p.cliente?.nome ?? "—"}
                 </p>
               </div>
-              <span className={`shrink-0 text-xs font-medium px-2 py-0.5 rounded-full border ${cfg.badge}`}>
+              <span
+                className={`shrink-0 text-[11px] font-medium px-2 py-0.5 rounded-md border ${cfg.badge}`}
+              >
                 {cfg.label}
               </span>
-              <div className="shrink-0 text-right">
-                <p className="text-sm font-semibold text-text-primary">{p.percentual_concluido}%</p>
-                <p className="text-xs text-text-disabled">concluído</p>
-              </div>
+              <span className="shrink-0 text-[12px] font-mono font-semibold text-text-secondary tabular-nums w-9 text-right">
+                {p.percentual_concluido}%
+              </span>
             </Link>
           );
         })}

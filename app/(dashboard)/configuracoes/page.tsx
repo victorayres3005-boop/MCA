@@ -8,12 +8,12 @@ import { PageTitle } from "@/components/shared/page-title";
 
 function Card({ title, icon: Icon, children }: { title: string; icon: React.ElementType; children: React.ReactNode }) {
   return (
-    <div className="bg-white border border-surface-border rounded-xl overflow-hidden">
-      <div className="flex items-center gap-2 px-4 py-2.5 border-b border-surface-border bg-surface-page/40">
-        <Icon size={13} className="text-text-disabled" />
-        <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider">{title}</span>
+    <div className="bg-white rounded-2xl border border-[#E9EBF0] overflow-hidden">
+      <div className="flex items-center gap-2 px-5 py-3.5 border-b border-[#E9EBF0]">
+        <Icon size={14} className="text-text-disabled" />
+        <span className="text-[13px] font-semibold text-text-primary">{title}</span>
       </div>
-      <div className="p-4">{children}</div>
+      <div className="p-5">{children}</div>
     </div>
   );
 }

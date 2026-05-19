@@ -69,10 +69,10 @@ export function ClientesLista({ clientes }: ClientesListaProps) {
       </div>
 
       {/* Tabela */}
-      <div className="bg-white border border-surface-border rounded-xl overflow-hidden">
+      <div className="bg-white border border-[#E9EBF0] rounded-2xl overflow-hidden">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-surface-border bg-surface-input/50">
+            <tr className="border-b border-[#E9EBF0] bg-[#FAFBFC]">
               <th className="text-left px-5 py-3 font-semibold text-text-secondary text-xs uppercase tracking-wide">Nome</th>
               <th className="text-left px-5 py-3 font-semibold text-text-secondary text-xs uppercase tracking-wide">CNPJ</th>
               <th className="text-left px-5 py-3 font-semibold text-text-secondary text-xs uppercase tracking-wide">Setor</th>
@@ -81,7 +81,7 @@ export function ClientesLista({ clientes }: ClientesListaProps) {
               <th className="px-5 py-3" />
             </tr>
           </thead>
-          <tbody className="divide-y divide-surface-border">
+          <tbody className="divide-y divide-[#F0F2F5]">
             {filtrados.length === 0 ? (
               <tr>
                 <td colSpan={6} className="px-5 py-10 text-center text-text-secondary text-sm">

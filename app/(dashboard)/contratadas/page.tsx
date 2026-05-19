@@ -23,7 +23,7 @@ export default async function ContratadasPage() {
           </Link>
         }
       />
-      <div className="p-8">
+      <div className="p-6">
         <ContratadasLista contratadas={contratadas} />
       </div>
     </>

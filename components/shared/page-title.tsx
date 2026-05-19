@@ -12,31 +12,37 @@ interface PageTitleProps {
 export function PageTitle({ title, description, action, backHref, backLabel }: PageTitleProps) {
   return (
     <div
-      className="shrink-0 print:hidden px-8 pt-6 pb-5"
-      style={{ background: "linear-gradient(110deg, #0D2B45 0%, #0D2B45 40%, #0A7B72 75%, #00B4A6 100%)" }}
+      className="shrink-0 print:hidden flex items-center justify-between px-7 h-[56px]"
+      style={{
+        background: "linear-gradient(110deg, #0D2B45 0%, #0D2B45 50%, #0A7B72 80%, #00B4A6 100%)",
+        borderBottom: "1px solid rgba(255,255,255,0.07)",
+      }}
     >
-      {backHref && (
-        <Link
-          href={backHref}
-          className="inline-flex items-center gap-1 text-[11px] text-white/50 hover:text-white/80 transition-colors mb-2.5"
-        >
-          <IconChevronLeft size={12} />
-          {backLabel ?? "Voltar"}
-        </Link>
-      )}
-      <div className="flex items-end justify-between gap-4">
-        <div>
+      <div className="flex items-center gap-3 min-w-0">
+        {backHref && (
+          <>
+            <Link
+              href={backHref}
+              className="inline-flex items-center gap-0.5 text-[11.5px] text-white/50 hover:text-white/80 transition-colors shrink-0"
+            >
+              <IconChevronLeft size={13} />
+              {backLabel ?? "Voltar"}
+            </Link>
+            <span className="text-white/20 text-xs shrink-0">/</span>
+          </>
+        )}
+        <div className="min-w-0">
           {description && (
-            <p className="text-[9px] font-bold text-white/30 uppercase tracking-[0.2em] mb-1.5">
+            <p className="text-[9.5px] font-semibold uppercase tracking-[0.18em] text-white/30 leading-none mb-0.5">
               {description}
             </p>
           )}
-          <h1 className="text-[22px] font-bold text-white tracking-tight leading-none">
+          <h1 className="text-[15px] font-semibold text-white tracking-tight leading-none truncate">
             {title}
           </h1>
         </div>
-        {action && <div className="shrink-0">{action}</div>}
       </div>
+      {action && <div className="shrink-0 ml-4">{action}</div>}
     </div>
   );
 }
