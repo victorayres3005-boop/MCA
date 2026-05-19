@@ -40,7 +40,7 @@ export default async function EncerramentoPage({ params }: Props) {
           : "border-surface-border bg-white"
       }`}>
         <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
-          enc?.aceite_formal ? "bg-green-100" : "bg-surface-input"
+          enc?.aceite_formal ? "bg-green-100" : "bg-[#F5F7FA]"
         }`}>
           <IconCircleCheck size={20} className={enc?.aceite_formal ? "text-green-600" : "text-text-disabled"} />
         </div>
@@ -62,7 +62,7 @@ export default async function EncerramentoPage({ params }: Props) {
 
       {/* KPIs resumo */}
       <div className="grid grid-cols-4 gap-3 animate-stagger">
-        <div className="bg-white border border-surface-border rounded-xl p-4">
+        <div className="bg-white border border-[#E9EBF0] rounded-2xl p-4">
           <div className="flex items-center gap-2 mb-2">
             <IconList size={14} className="text-text-disabled" />
             <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider">Marcos</span>
@@ -71,7 +71,7 @@ export default async function EncerramentoPage({ params }: Props) {
           <p className="text-[11px] text-text-disabled mt-0.5">concluídos</p>
         </div>
 
-        <div className="bg-white border border-surface-border rounded-xl p-4">
+        <div className="bg-white border border-[#E9EBF0] rounded-2xl p-4">
           <div className="flex items-center gap-2 mb-2">
             <IconCalendar size={14} className="text-text-disabled" />
             <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider">Conclusão</span>
@@ -80,7 +80,7 @@ export default async function EncerramentoPage({ params }: Props) {
           <p className="text-[11px] text-text-disabled mt-0.5">progresso geral</p>
         </div>
 
-        <div className="bg-white border border-surface-border rounded-xl p-4">
+        <div className="bg-white border border-[#E9EBF0] rounded-2xl p-4">
           <div className="flex items-center gap-2 mb-2">
             <IconCoin size={14} className="text-text-disabled" />
             <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider">Custo Realizado</span>
@@ -89,7 +89,7 @@ export default async function EncerramentoPage({ params }: Props) {
           <p className="text-[11px] text-text-disabled mt-0.5">de {fmtCurrency(valorPlanejado)} planejados</p>
         </div>
 
-        <div className="bg-white border border-surface-border rounded-xl p-4">
+        <div className="bg-white border border-[#E9EBF0] rounded-2xl p-4">
           <div className="flex items-center gap-2 mb-2">
             <IconCoin size={14} className="text-text-disabled" />
             <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider">CPI</span>
@@ -107,8 +107,8 @@ export default async function EncerramentoPage({ params }: Props) {
       </div>
 
       {/* Formulário de encerramento */}
-      <div className="bg-white border border-surface-border rounded-xl overflow-hidden">
-        <div className="px-4 py-2.5 border-b border-surface-border bg-surface-page/40">
+      <div className="bg-white border border-[#E9EBF0] rounded-2xl overflow-hidden">
+        <div className="px-4 py-2.5 border-b border-surface-border bg-[#FAFBFC]">
           <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider">
             Termo de Encerramento
           </span>

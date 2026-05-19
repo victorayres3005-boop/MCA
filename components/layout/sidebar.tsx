@@ -70,18 +70,14 @@ export function Sidebar({ userEmail: _userEmail = "" }: SidebarProps) {
                 <Link
                   key={href}
                   href={href}
-                  className={`flex items-center gap-3 px-3 py-[8px] rounded-xl text-[13px] transition-all duration-150 ${
+                  className={`flex items-center gap-3 px-3 py-[8px] rounded-xl text-[13px] transition-colors duration-150 border ${
                     active
                       ? "font-semibold text-white"
-                      : "text-white/45 hover:bg-white/[0.06] hover:text-white/80"
+                      : "border-transparent text-white/45 hover:bg-white/[0.06] hover:text-white/80"
                   }`}
                   style={
                     active
-                      ? {
-                          background: "rgba(0,180,166,0.18)",
-                          border: "1px solid rgba(0,180,166,0.22)",
-                          boxShadow: "0 0 0 0px rgba(0,180,166,0.1)",
-                        }
+                      ? { background: "rgba(0,180,166,0.18)", borderColor: "rgba(0,180,166,0.22)" }
                       : undefined
                   }
                 >
@@ -110,17 +106,14 @@ export function Sidebar({ userEmail: _userEmail = "" }: SidebarProps) {
                   <Link
                     key={href}
                     href={href}
-                    className={`flex items-center gap-3 px-3 py-[8px] rounded-xl text-[13px] transition-all duration-150 ${
+                    className={`flex items-center gap-3 px-3 py-[8px] rounded-xl text-[13px] transition-colors duration-150 border ${
                       active
                         ? "font-semibold text-white"
-                        : "text-white/45 hover:bg-white/[0.06] hover:text-white/80"
+                        : "border-transparent text-white/45 hover:bg-white/[0.06] hover:text-white/80"
                     }`}
                     style={
                       active
-                        ? {
-                            background: "rgba(0,180,166,0.18)",
-                            border: "1px solid rgba(0,180,166,0.22)",
-                          }
+                        ? { background: "rgba(0,180,166,0.18)", borderColor: "rgba(0,180,166,0.22)" }
                         : undefined
                     }
                   >

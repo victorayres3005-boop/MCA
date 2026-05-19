@@ -25,7 +25,7 @@ export default async function RecursosPage({ params }: Props) {
 
       {/* KPI strip */}
       {recursos.length > 0 && (
-        <div className="flex items-center gap-0 bg-white border border-surface-border rounded-xl overflow-hidden divide-x divide-surface-border animate-stagger">
+        <div className="flex items-center gap-0 bg-white border border-[#E9EBF0] rounded-2xl overflow-hidden divide-x divide-[#E9EBF0] animate-stagger">
           <div className="flex-1 px-5 py-3.5">
             <p className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider mb-1">Equipe</p>
             <p className="text-lg font-bold text-text-primary tabular-nums">{recursos.length}</p>
@@ -48,9 +48,9 @@ export default async function RecursosPage({ params }: Props) {
       )}
 
       {/* Tabela */}
-      <div className="bg-white border border-surface-border rounded-xl overflow-hidden">
+      <div className="bg-white border border-[#E9EBF0] rounded-2xl overflow-hidden">
         <div
-          className="grid items-center gap-3 px-4 py-2 border-b border-surface-border bg-surface-page/50"
+          className="grid items-center gap-3 px-4 py-2 border-b border-surface-border bg-[#FAFBFC]"
           style={{ gridTemplateColumns: "1fr 130px 100px 80px 180px 32px" }}
         >
           <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider">Recurso</span>
@@ -62,12 +62,12 @@ export default async function RecursosPage({ params }: Props) {
         </div>
 
         {recursos.length > 0 ? (
-          <div className="divide-y divide-surface-border">
+          <div className="divide-y divide-[#E9EBF0]">
             {recursos.map((r) => <RecursoRow key={r.id} recurso={r} projetoId={id} />)}
           </div>
         ) : (
           <div className="flex flex-col items-center gap-3 py-12 text-center">
-            <div className="w-10 h-10 rounded-full bg-surface-input flex items-center justify-center">
+            <div className="w-10 h-10 rounded-full bg-[#F5F7FA] flex items-center justify-center">
               <IconUsersGroup size={18} className="text-text-disabled" />
             </div>
             <div>
@@ -79,8 +79,8 @@ export default async function RecursosPage({ params }: Props) {
       </div>
 
       {/* Formulário */}
-      <div className="bg-white border border-surface-border rounded-xl overflow-hidden">
-        <div className="px-4 py-2.5 border-b border-surface-border bg-surface-page/40">
+      <div className="bg-white border border-[#E9EBF0] rounded-2xl overflow-hidden">
+        <div className="px-4 py-2.5 border-b border-surface-border bg-[#FAFBFC]">
           <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider">
             Adicionar Recurso
           </span>

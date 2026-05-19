@@ -144,7 +144,7 @@ export default async function CustosPage({ params }: Props) {
     <div className="p-6 space-y-4 animate-page">
       {/* KPI strip */}
       {itens.length > 0 && (
-        <div className="flex items-center gap-0 bg-white border border-surface-border rounded-xl overflow-hidden divide-x divide-surface-border animate-stagger">
+        <div className="flex items-center gap-0 bg-white border border-[#E9EBF0] rounded-2xl overflow-hidden divide-x divide-[#E9EBF0] animate-stagger">
           {[
             { label: "Orçamento",    value: fmtCompact(planejado), sub: "planejado",        color: "text-text-primary" },
             { label: "Executado",    value: fmtCompact(realizado),  sub: `${perc}% do orç.`, color: "text-text-primary" },
@@ -160,7 +160,7 @@ export default async function CustosPage({ params }: Props) {
           {/* Barra de progresso no último item */}
           <div className="flex-1 px-5 py-3.5">
             <p className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider mb-1">Execução</p>
-            <div className="h-2 bg-surface-input rounded-full overflow-hidden mb-1">
+            <div className="h-2 bg-[#F5F7FA] rounded-full overflow-hidden mb-1">
               <div
                 className={`h-full rounded-full transition-all ${perc > 100 ? "bg-red-500" : "bg-brand-500"}`}
                 style={{ width: `${Math.min(perc, 100)}%` }}
@@ -173,8 +173,8 @@ export default async function CustosPage({ params }: Props) {
 
       {/* Curva S financeira */}
       {curvaSData.length >= 2 && (
-        <div className="bg-white border border-surface-border rounded-xl overflow-hidden">
-          <div className="flex items-center gap-2 px-4 py-2.5 border-b border-surface-border bg-surface-page/40">
+        <div className="bg-white border border-[#E9EBF0] rounded-2xl overflow-hidden">
+          <div className="flex items-center gap-2 px-4 py-2.5 border-b border-surface-border bg-[#FAFBFC]">
             <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider">
               Curva S — Desembolso Acumulado
             </span>
@@ -187,9 +187,9 @@ export default async function CustosPage({ params }: Props) {
       )}
 
       {/* Tabela de itens agrupada por categoria */}
-      <div className="bg-white border border-surface-border rounded-xl overflow-hidden">
+      <div className="bg-white border border-[#E9EBF0] rounded-2xl overflow-hidden">
         {/* Cabeçalho */}
-        <div className="grid grid-cols-[1fr_110px_120px_120px_100px_24px] items-center gap-3 px-4 py-2 border-b border-surface-border bg-surface-page/50">
+        <div className="grid grid-cols-[1fr_110px_120px_120px_100px_24px] items-center gap-3 px-4 py-2 border-b border-surface-border bg-[#FAFBFC]">
           <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider">Descrição</span>
           <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider">Categoria</span>
           <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider text-right">Planejado</span>
@@ -201,13 +201,13 @@ export default async function CustosPage({ params }: Props) {
         {cats.map(({ cat, label, itens: grupo }) => (
           <div key={cat}>
             {/* Subgrupo header */}
-            <div className="flex items-center justify-between px-4 py-1.5 bg-surface-page/30 border-b border-surface-border">
+            <div className="flex items-center justify-between px-4 py-1.5 bg-[#FAFBFC] border-b border-surface-border">
               <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider">{label}</span>
               <span className="text-[11px] text-text-disabled tabular-nums">
                 {fmt(grupo.reduce((s, i) => s + i.valor_planejado, 0))}
               </span>
             </div>
-            <div className="divide-y divide-surface-border">
+            <div className="divide-y divide-[#E9EBF0]">
               {grupo.map((item) => <OrcamentoRow key={item.id} item={item} />)}
             </div>
           </div>
@@ -221,7 +221,7 @@ export default async function CustosPage({ params }: Props) {
         {/* Empty state */}
         {itens.length === 0 && (
           <div className="flex flex-col items-center gap-3 py-10 text-center">
-            <div className="w-10 h-10 rounded-full bg-surface-input flex items-center justify-center">
+            <div className="w-10 h-10 rounded-full bg-[#F5F7FA] flex items-center justify-center">
               <IconCoin size={18} className="text-text-disabled" />
             </div>
             <div>

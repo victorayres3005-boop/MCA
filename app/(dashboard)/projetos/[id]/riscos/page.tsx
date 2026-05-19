@@ -44,7 +44,7 @@ export default async function RiscosPage({ params }: Props) {
 
       {/* KPI strip */}
       {riscos.length > 0 && (
-        <div className="flex items-center gap-0 bg-white border border-surface-border rounded-xl overflow-hidden divide-x divide-surface-border animate-stagger">
+        <div className="flex items-center gap-0 bg-white border border-[#E9EBF0] rounded-2xl overflow-hidden divide-x divide-[#E9EBF0] animate-stagger">
           <div className="flex-1 px-5 py-3.5">
             <p className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider mb-1">Ativos</p>
             <p className="text-lg font-bold text-text-primary tabular-nums">{ativos.length}</p>
@@ -70,8 +70,8 @@ export default async function RiscosPage({ params }: Props) {
       )}
 
       {/* Matriz P × I */}
-      <div className="bg-white border border-surface-border rounded-xl overflow-hidden">
-        <div className="flex items-center gap-2 px-4 py-2.5 border-b border-surface-border bg-surface-page/40">
+      <div className="bg-white border border-[#E9EBF0] rounded-2xl overflow-hidden">
+        <div className="flex items-center gap-2 px-4 py-2.5 border-b border-surface-border bg-[#FAFBFC]">
           <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider">
             Matriz de Risco — Probabilidade × Impacto
           </span>
@@ -141,8 +141,8 @@ export default async function RiscosPage({ params }: Props) {
       </div>
 
       {/* Tabela de riscos */}
-      <div className="bg-white border border-surface-border rounded-xl overflow-hidden">
-        <div className="grid items-center gap-3 px-4 py-2 border-b border-surface-border bg-surface-page/50"
+      <div className="bg-white border border-[#E9EBF0] rounded-2xl overflow-hidden">
+        <div className="grid items-center gap-3 px-4 py-2 border-b border-surface-border bg-[#FAFBFC]"
           style={{ gridTemplateColumns: "8px 1fr 90px 48px 48px 80px 90px 32px" }}>
           <span />
           <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider">Risco</span>
@@ -155,7 +155,7 @@ export default async function RiscosPage({ params }: Props) {
         </div>
 
         {ativosOrdenados.length > 0 && (
-          <div className="divide-y divide-surface-border">
+          <div className="divide-y divide-[#E9EBF0]">
             {ativosOrdenados.map((r) => <RiscoRow key={r.id} risco={r} />)}
           </div>
         )}
@@ -179,12 +179,12 @@ export default async function RiscosPage({ params }: Props) {
 
         {inativos.length > 0 && (
           <div className="border-t border-surface-border">
-            <div className="px-4 py-1.5 bg-surface-page/30">
+            <div className="px-4 py-1.5 bg-[#FAFBFC]">
               <p className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider">
                 Encerrados / Mitigados · {inativos.length}
               </p>
             </div>
-            <div className="divide-y divide-surface-border opacity-50">
+            <div className="divide-y divide-[#E9EBF0] opacity-50">
               {inativos.map((r) => <RiscoRow key={r.id} risco={r} />)}
             </div>
           </div>

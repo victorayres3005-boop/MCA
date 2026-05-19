@@ -31,7 +31,7 @@ export default async function AtasPage({ params }: Props) {
 
       {/* KPI strip */}
       {atas.length > 0 && (
-        <div className="flex items-center gap-0 bg-white border border-surface-border rounded-xl overflow-hidden divide-x divide-surface-border animate-stagger">
+        <div className="flex items-center gap-0 bg-white border border-[#E9EBF0] rounded-2xl overflow-hidden divide-x divide-[#E9EBF0] animate-stagger">
           <div className="flex-1 px-5 py-3.5">
             <p className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider mb-1">Total de atas</p>
             <p className="text-lg font-bold text-text-primary tabular-nums">{atas.length}</p>
@@ -57,9 +57,9 @@ export default async function AtasPage({ params }: Props) {
       )}
 
       {/* Lista de atas */}
-      <div className="bg-white border border-surface-border rounded-xl overflow-hidden">
+      <div className="bg-white border border-[#E9EBF0] rounded-2xl overflow-hidden">
         {/* Header da tabela */}
-        <div className="flex items-center gap-3 px-4 py-2 border-b border-surface-border bg-surface-page/50">
+        <div className="flex items-center gap-3 px-4 py-2 border-b border-surface-border bg-[#FAFBFC]">
           <span className="w-[13px]" />
           <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider w-[110px]">Data</span>
           <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider flex-1">Reunião</span>
@@ -69,14 +69,14 @@ export default async function AtasPage({ params }: Props) {
 
         {/* Atas ou estado vazio */}
         {atas.length > 0 ? (
-          <div className="divide-y divide-surface-border">
+          <div className="divide-y divide-[#E9EBF0]">
             {atas.map((ata) => (
               <AtaCard key={ata.id} ata={ata} projetoId={id} />
             ))}
           </div>
         ) : (
           <div className="flex flex-col items-center gap-3 py-12 text-center">
-            <div className="w-10 h-10 rounded-full bg-surface-input flex items-center justify-center">
+            <div className="w-10 h-10 rounded-full bg-[#F5F7FA] flex items-center justify-center">
               <IconNotes size={18} className="text-text-disabled" />
             </div>
             <div>
@@ -88,8 +88,8 @@ export default async function AtasPage({ params }: Props) {
       </div>
 
       {/* Formulário de nova ata */}
-      <div className="bg-white border border-surface-border rounded-xl overflow-hidden">
-        <div className="px-4 py-2.5 border-b border-surface-border bg-surface-page/40">
+      <div className="bg-white border border-[#E9EBF0] rounded-2xl overflow-hidden">
+        <div className="px-4 py-2.5 border-b border-surface-border bg-[#FAFBFC]">
           <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider">
             Nova Ata de Reunião
           </span>

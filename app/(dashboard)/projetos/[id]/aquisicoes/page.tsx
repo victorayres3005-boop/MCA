@@ -40,7 +40,7 @@ export default async function AquisicoesPage({ params }: Props) {
 
       {/* KPI strip */}
       {aquisicoes.length > 0 && (
-        <div className="flex items-center gap-0 bg-white border border-surface-border rounded-xl overflow-hidden divide-x divide-surface-border animate-stagger">
+        <div className="flex items-center gap-0 bg-white border border-[#E9EBF0] rounded-2xl overflow-hidden divide-x divide-[#E9EBF0] animate-stagger">
           <div className="flex-1 px-5 py-3.5">
             <p className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider mb-1">Contratos</p>
             <p className="text-lg font-bold text-text-primary tabular-nums">{aquisicoes.length}</p>
@@ -74,10 +74,10 @@ export default async function AquisicoesPage({ params }: Props) {
       )}
 
       {/* Tabela de aquisições */}
-      <div className="bg-white border border-surface-border rounded-xl overflow-hidden">
+      <div className="bg-white border border-[#E9EBF0] rounded-2xl overflow-hidden">
         {/* Header */}
         <div
-          className="grid items-center gap-3 px-4 py-2 border-b border-surface-border bg-surface-page/50"
+          className="grid items-center gap-3 px-4 py-2 border-b border-surface-border bg-[#FAFBFC]"
           style={{ gridTemplateColumns: "20px 1fr 110px 120px 120px 110px 120px 32px" }}
         >
           <span />
@@ -107,7 +107,7 @@ export default async function AquisicoesPage({ params }: Props) {
           </div>
         ) : (
           <div className="flex flex-col items-center gap-3 py-12 text-center">
-            <div className="w-10 h-10 rounded-full bg-surface-input flex items-center justify-center">
+            <div className="w-10 h-10 rounded-full bg-[#F5F7FA] flex items-center justify-center">
               <IconBuildingStore size={18} className="text-text-disabled" />
             </div>
             <div>
@@ -119,8 +119,8 @@ export default async function AquisicoesPage({ params }: Props) {
       </div>
 
       {/* Formulário de nova aquisição */}
-      <div className="bg-white border border-surface-border rounded-xl overflow-hidden">
-        <div className="px-4 py-2.5 border-b border-surface-border bg-surface-page/40">
+      <div className="bg-white border border-[#E9EBF0] rounded-2xl overflow-hidden">
+        <div className="px-4 py-2.5 border-b border-surface-border bg-[#FAFBFC]">
           <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider">
             Novo Contrato
           </span>

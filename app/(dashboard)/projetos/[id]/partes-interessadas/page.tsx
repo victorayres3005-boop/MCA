@@ -22,7 +22,7 @@ export default async function PartesInteressadasPage({ params }: Props) {
     <div className="p-6 space-y-4 animate-page">
       {/* KPI strip */}
       {total > 0 && (
-        <div className="flex items-center gap-0 bg-white border border-surface-border rounded-xl overflow-hidden divide-x divide-surface-border animate-stagger">
+        <div className="flex items-center gap-0 bg-white border border-[#E9EBF0] rounded-2xl overflow-hidden divide-x divide-[#E9EBF0] animate-stagger">
           <div className="flex-1 px-5 py-3.5">
             <p className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider mb-1">Mapeadas</p>
             <p className="text-lg font-bold text-text-primary tabular-nums">{total}</p>
@@ -41,9 +41,9 @@ export default async function PartesInteressadasPage({ params }: Props) {
       )}
 
       {/* Tabela de partes */}
-      <div className="bg-white border border-surface-border rounded-xl overflow-hidden">
+      <div className="bg-white border border-[#E9EBF0] rounded-2xl overflow-hidden">
         {/* Cabeçalho */}
-        <div className="grid grid-cols-[200px_1fr_70px_70px_160px_80px_32px] items-center gap-3 px-4 py-2 border-b border-surface-border bg-surface-page/50">
+        <div className="grid grid-cols-[200px_1fr_70px_70px_160px_80px_32px] items-center gap-3 px-4 py-2 border-b border-surface-border bg-[#FAFBFC]">
           <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider">Nome</span>
           <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider">Papel / Organização</span>
           <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider text-center">Infl.</span>
@@ -54,7 +54,7 @@ export default async function PartesInteressadasPage({ params }: Props) {
         </div>
 
         {partes.length > 0 && (
-          <div className="divide-y divide-surface-border">
+          <div className="divide-y divide-[#E9EBF0]">
             {partes.map((p) => <ParteRow key={p.id} parte={p} />)}
           </div>
         )}
@@ -70,7 +70,7 @@ export default async function PartesInteressadasPage({ params }: Props) {
         {/* Empty state */}
         {total === 0 && (
           <div className="flex flex-col items-center gap-3 py-8 text-center border-t border-surface-border">
-            <div className="w-10 h-10 rounded-full bg-surface-input flex items-center justify-center">
+            <div className="w-10 h-10 rounded-full bg-[#F5F7FA] flex items-center justify-center">
               <IconUsers size={18} className="text-text-disabled" />
             </div>
             <div>

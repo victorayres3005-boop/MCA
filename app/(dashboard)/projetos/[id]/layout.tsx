@@ -20,11 +20,11 @@ const STATUS_LABEL: Record<Projeto["status"], string> = {
 };
 
 const STATUS_CLS: Record<Projeto["status"], string> = {
-  planejamento:  "bg-blue-500/20 text-blue-200 border-blue-400/25",
-  execucao:      "bg-teal-400/20 text-teal-200 border-teal-400/25",
-  monitoramento: "bg-purple-500/20 text-purple-200 border-purple-400/25",
-  encerrado:     "bg-green-500/20 text-green-200 border-green-400/25",
-  suspenso:      "bg-white/10 text-white/45 border-white/15",
+  planejamento:  "bg-blue-50 text-blue-600 border-blue-200",
+  execucao:      "bg-teal-50 text-teal-600 border-teal-200",
+  monitoramento: "bg-purple-50 text-purple-600 border-purple-200",
+  encerrado:     "bg-green-50 text-green-600 border-green-200",
+  suspenso:      "bg-gray-100 text-gray-500 border-gray-200",
 };
 
 function formatCurrency(value: number) {
@@ -56,73 +56,71 @@ export default async function ProjetoLayout({ children, params }: LayoutProps) {
       {/* Header do projeto */}
       <div className="print:hidden shrink-0">
 
-        {/* Slim brand bar */}
-        <div
-          className="flex items-center gap-3 px-6 h-[56px]"
-          style={{
-            background: "linear-gradient(110deg, #0D2B45 0%, #0D2B45 50%, #0A7B72 80%, #00B4A6 100%)",
-            borderBottom: "1px solid rgba(255,255,255,0.07)",
-          }}
-        >
+        {/* Slim info bar */}
+        <div className="flex items-center gap-3 px-6 h-[56px] bg-white border-b-2 border-[#00B4A6]">
           <Link
             href="/projetos"
-            className="flex items-center gap-1 text-[11.5px] text-white/50 hover:text-white/80 transition-colors shrink-0"
+            className="flex items-center gap-1 text-[11.5px] text-text-disabled hover:text-text-secondary transition-colors shrink-0"
           >
             <IconChevronLeft size={13} />
             Carteira
           </Link>
-          <span className="text-white/15 shrink-0 text-xs">/</span>
+          <span className="text-[#E9EBF0] shrink-0 text-xs">/</span>
 
-          <h1 className="text-[14px] font-semibold text-white truncate flex-1 min-w-0">
+          <h1 className="text-[14px] font-semibold text-[#0D2B45] truncate flex-1 min-w-0">
             {projeto.nome}
           </h1>
 
-          <div className="flex items-center gap-3 shrink-0">
-            <span
-              className={`text-[10.5px] font-medium px-2 py-0.5 rounded-md border ${STATUS_CLS[projeto.status]}`}
-            >
+          <div className="flex items-center gap-4 shrink-0">
+
+            {/* Status */}
+            <span className={`text-[11px] font-medium px-2.5 py-1 rounded-md border ${STATUS_CLS[projeto.status]}`}>
               {STATUS_LABEL[projeto.status]}
             </span>
 
-            <span
-              className="w-2 h-2 rounded-full"
-              style={{ background: SEM_COLOR[projeto.semaforo] }}
-            />
+            <div className="h-4 w-px bg-[#E9EBF0]" />
 
-            {/* Progresso */}
+            {/* Saúde + progresso */}
             <div className="hidden sm:flex items-center gap-2">
-              <div className="w-16 h-[3px] bg-white/15 rounded-full overflow-hidden">
+              <span className="w-2 h-2 rounded-full shrink-0" style={{ background: SEM_COLOR[projeto.semaforo] }} />
+              <div className="w-20 h-1.5 bg-[#F0F2F5] rounded-full overflow-hidden">
                 <div
-                  className="h-full rounded-full"
-                  style={{
-                    width: `${projeto.percentual_concluido}%`,
-                    background: SEM_COLOR[projeto.semaforo],
-                  }}
+                  className="h-full rounded-full transition-all"
+                  style={{ width: `${projeto.percentual_concluido}%`, background: SEM_COLOR[projeto.semaforo] }}
                 />
               </div>
-              <span className="text-[11px] font-mono text-white/55 tabular-nums">
+              <span className="text-[12px] font-semibold text-[#0D2B45] tabular-nums w-8">
                 {projeto.percentual_concluido}%
               </span>
             </div>
 
             {projeto.data_fim_prevista && (
-              <div className="hidden md:flex flex-col items-end leading-none gap-0.5">
-                <span className="text-[9px] font-semibold uppercase tracking-wider text-white/30">Prazo</span>
-                <span className="text-[11px] font-mono text-white/70">{formatDate(projeto.data_fim_prevista)}</span>
-              </div>
+              <>
+                <div className="hidden md:block h-4 w-px bg-[#E9EBF0]" />
+                <div className="hidden md:flex flex-col items-start leading-none gap-[3px]">
+                  <span className="text-[9px] font-bold uppercase tracking-[0.12em] text-text-disabled">Prazo</span>
+                  <span className="text-[12px] font-medium text-[#0D2B45]">{formatDate(projeto.data_fim_prevista)}</span>
+                </div>
+              </>
             )}
 
             {projeto.valor_contrato && projeto.valor_contrato > 0 && (
-              <div className="hidden lg:flex flex-col items-end leading-none gap-0.5">
-                <span className="text-[9px] font-semibold uppercase tracking-wider text-white/30">Contrato</span>
-                <span className="text-[11px] font-mono text-white/70">{formatCurrency(projeto.valor_contrato)}</span>
-              </div>
+              <>
+                <div className="hidden lg:block h-4 w-px bg-[#E9EBF0]" />
+                <div className="hidden lg:flex flex-col items-start leading-none gap-[3px]">
+                  <span className="text-[9px] font-bold uppercase tracking-[0.12em] text-text-disabled">Contrato</span>
+                  <span className="text-[12px] font-medium text-[#0D2B45]">{formatCurrency(projeto.valor_contrato)}</span>
+                </div>
+              </>
             )}
 
             {projeto.codigo && (
-              <span className="hidden md:block text-[10px] font-mono text-white/35 bg-white/[0.08] px-1.5 py-0.5 rounded">
-                {projeto.codigo}
-              </span>
+              <>
+                <div className="hidden md:block h-4 w-px bg-[#E9EBF0]" />
+                <span className="hidden md:block text-[10.5px] font-mono text-text-disabled">
+                  #{projeto.codigo}
+                </span>
+              </>
             )}
           </div>
         </div>
