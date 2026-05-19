@@ -17,7 +17,6 @@ export default async function ContratadaDetailPage({ params }: Props) {
     <>
       <PageTitle
         title={contratada.nome}
-        description="Editando dados da contratada"
         backHref="/contratadas"
         backLabel="Contratadas"
       />

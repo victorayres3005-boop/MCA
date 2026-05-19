@@ -1,15 +1,16 @@
 import Link from "next/link";
 import { IconChevronLeft } from "@tabler/icons-react";
+import type { TablerIcon } from "@tabler/icons-react";
 
 interface PageTitleProps {
   title: string;
-  description?: string;
+  icon?: TablerIcon;
   action?: React.ReactNode;
   backHref?: string;
   backLabel?: string;
 }
 
-export function PageTitle({ title, description, action, backHref, backLabel }: PageTitleProps) {
+export function PageTitle({ title, icon: Icon, action, backHref, backLabel }: PageTitleProps) {
   return (
     <div
       className="shrink-0 print:hidden flex items-center justify-between px-7 h-[56px]"
@@ -19,7 +20,7 @@ export function PageTitle({ title, description, action, backHref, backLabel }: P
       }}
     >
       <div className="flex items-center gap-3 min-w-0">
-        {backHref && (
+        {backHref ? (
           <>
             <Link
               href={backHref}
@@ -30,18 +31,20 @@ export function PageTitle({ title, description, action, backHref, backLabel }: P
             </Link>
             <span className="text-white/20 text-xs shrink-0">/</span>
           </>
-        )}
-        <div className="min-w-0">
-          {description && (
-            <p className="text-[9.5px] font-semibold uppercase tracking-[0.18em] text-white/30 leading-none mb-0.5">
-              {description}
-            </p>
-          )}
-          <h1 className="text-[15px] font-semibold text-white tracking-tight leading-none truncate">
-            {title}
-          </h1>
-        </div>
+        ) : Icon ? (
+          <div
+            className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0"
+            style={{ background: "rgba(255,255,255,0.10)" }}
+          >
+            <Icon size={15} className="text-white/80" />
+          </div>
+        ) : null}
+
+        <h1 className="text-[15px] font-semibold text-white tracking-tight leading-none truncate">
+          {title}
+        </h1>
       </div>
+
       {action && <div className="shrink-0 ml-4">{action}</div>}
     </div>
   );

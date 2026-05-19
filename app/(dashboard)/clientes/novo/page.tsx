@@ -7,7 +7,6 @@ export default function NovoClientePage() {
     <>
       <PageTitle
         title="Novo cliente"
-        description="Cadastre uma nova empresa contratante"
         backHref="/clientes"
         backLabel="Clientes"
       />

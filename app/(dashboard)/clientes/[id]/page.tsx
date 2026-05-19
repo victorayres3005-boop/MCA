@@ -17,7 +17,6 @@ export default async function ClienteDetailPage({ params }: Props) {
     <>
       <PageTitle
         title={cliente.nome}
-        description="Editando dados do cliente"
         backHref="/clientes"
         backLabel="Clientes"
       />

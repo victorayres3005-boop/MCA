@@ -7,7 +7,6 @@ export default function NovaContratadaPage() {
     <>
       <PageTitle
         title="Nova contratada"
-        description="Cadastre uma construtora, projetista ou fornecedor"
         backHref="/contratadas"
         backLabel="Contratadas"
       />

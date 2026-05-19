@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { IconPlus } from "@tabler/icons-react";
+import { IconPlus, IconBuilding } from "@tabler/icons-react";
 import { getClientes } from "@/app/actions/clientes";
 import { ClientesLista } from "@/components/clientes/clientes-lista";
 import { PageTitle } from "@/components/shared/page-title";
@@ -11,7 +11,7 @@ export default async function ClientesPage() {
     <>
       <PageTitle
         title="Clientes"
-        description="Empresas e organizações vinculadas aos projetos"
+        icon={IconBuilding}
         action={
           <Link
             href="/clientes/novo"

@@ -35,7 +35,7 @@ export default async function ConfiguracoesPage() {
     <>
       <PageTitle
         title="Configurações"
-        description="Perfil, organização e equipe"
+        icon={IconSettings}
       />
       <div className="p-6 space-y-5 max-w-3xl">
 

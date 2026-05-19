@@ -1,3 +1,4 @@
+import { IconLayoutDashboard } from "@tabler/icons-react";
 import { getProjetos } from "@/app/actions/projetos";
 import { KpiCards } from "@/components/dashboard/kpi-cards";
 import { ProjetosGrid } from "@/components/projetos/projetos-grid";
@@ -14,16 +15,19 @@ export default async function ProjetosPage() {
 
       {/* Slim brand header */}
       <div
-        className="shrink-0 flex items-center px-7 h-[56px] print:hidden"
+        className="shrink-0 flex items-center justify-between px-7 h-[56px] print:hidden"
         style={{
           background: "linear-gradient(110deg, #0D2B45 0%, #0D2B45 50%, #0A7B72 80%, #00B4A6 100%)",
           borderBottom: "1px solid rgba(255,255,255,0.07)",
         }}
       >
-        <div>
-          <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-white/30 leading-none mb-1">
-            MCA Engenharia
-          </p>
+        <div className="flex items-center gap-3">
+          <div
+            className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0"
+            style={{ background: "rgba(255,255,255,0.10)" }}
+          >
+            <IconLayoutDashboard size={15} className="text-white/80" />
+          </div>
           <h1 className="text-[15px] font-semibold text-white tracking-tight leading-none">
             Carteira de Obras
           </h1>

@@ -10,7 +10,6 @@ export default async function NovoProjetoPage() {
     <>
       <PageTitle
         title="Novo projeto"
-        description="Cadastre um novo projeto na carteira"
         backHref="/projetos"
         backLabel="Carteira de Projetos"
       />

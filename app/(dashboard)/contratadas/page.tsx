@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { IconPlus } from "@tabler/icons-react";
+import { IconPlus, IconHelmet } from "@tabler/icons-react";
 import { getContratadas } from "@/app/actions/contratadas";
 import { ContratadasLista } from "@/components/contratadas/contratadas-lista";
 import { PageTitle } from "@/components/shared/page-title";
@@ -11,7 +11,7 @@ export default async function ContratadasPage() {
     <>
       <PageTitle
         title="Contratadas"
-        description="Construtoras, projetistas e fornecedores dos projetos"
+        icon={IconHelmet}
         action={
           <Link
             href="/contratadas/novo"
