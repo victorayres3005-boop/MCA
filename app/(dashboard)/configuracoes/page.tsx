@@ -4,6 +4,7 @@ import { getProfile, getOrg, getMembers, updateProfile, updateOrg } from "@/app/
 import { ProfileForm } from "@/components/configuracoes/profile-form";
 import { OrgForm } from "@/components/configuracoes/org-form";
 import { MembersTable } from "@/components/configuracoes/members-table";
+import { InviteForm } from "@/components/configuracoes/invite-form";
 import { PageTitle } from "@/components/shared/page-title";
 
 function Card({ title, icon: Icon, children }: { title: string; icon: React.ElementType; children: React.ReactNode }) {
@@ -62,6 +63,12 @@ export default async function ConfiguracoesPage() {
           <p className="text-[12px] text-text-disabled italic py-4 text-center">Nenhum membro encontrado.</p>
         ) : (
           <>
+            {isAdmin && (
+              <div className="mb-4 pb-4 border-b border-surface-border">
+                <p className="text-[11px] text-text-secondary mb-3">Convidar novo membro por e-mail:</p>
+                <InviteForm />
+              </div>
+            )}
             {!isAdmin && (
               <p className="text-[11px] text-text-disabled mb-3 px-0.5">
                 Apenas administradores podem alterar os papéis dos membros.
