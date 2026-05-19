@@ -6,7 +6,7 @@ import { OrcamentoRow } from "@/components/custos/orcamento-row";
 import { InlineAddOrcamento } from "@/components/custos/inline-add-orcamento";
 import { CurvaS, type CurvaSPoint } from "@/components/charts/curva-s";
 import { IconCoin } from "@tabler/icons-react";
-import type { OrcamentoItem, CategoriaOrcamento, Aquisicao, Projeto } from "@/lib/types";
+import type { CategoriaOrcamento, Aquisicao, Projeto } from "@/lib/types";
 
 interface Props { params: Promise<{ id: string }> }
 

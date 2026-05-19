@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { IconSearch, IconLayoutDashboard, IconPlus } from "@tabler/icons-react";
+import { IconSearch, IconLayoutDashboard } from "@tabler/icons-react";
 import { EmptyState } from "@/components/shared/empty-state";
 import type { Projeto, StatusProjeto, Semaforo } from "@/lib/types";
 

@@ -2,14 +2,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
   IconChevronLeft,
-  IconLayoutList,
-  IconCalendar,
-  IconCoin,
-  IconAlertTriangle,
-  IconMessage,
-  IconUsers,
-  IconSparkles,
-  IconPencil,
 } from "@tabler/icons-react";
 import { getProjeto } from "@/app/actions/projetos";
 import { ProjectTabBar } from "@/components/projetos/project-tab-bar";

@@ -27,8 +27,8 @@ export default async function ConfiguracoesPage() {
   if (!profile) redirect("/login");
 
   const isAdmin = profile.role === "admin";
-  const saveProfile = updateProfile.bind(null, null);
-  const saveOrg     = updateOrg.bind(null, null);
+  const saveProfile = updateProfile;
+  const saveOrg     = updateOrg;
 
   return (
     <div className="p-6 space-y-5 max-w-3xl">

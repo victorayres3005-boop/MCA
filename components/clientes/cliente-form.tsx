@@ -1,7 +1,6 @@
 "use client";
 
 import { useTransition, useState } from "react";
-import { useRouter } from "next/navigation";
 import { IconTrash, IconLoader2 } from "@tabler/icons-react";
 import type { Cliente, Setor } from "@/lib/types";
 
@@ -25,7 +24,6 @@ export function ClienteForm({ action, deleteAction, defaultValues }: ClienteForm
   const [isPending,  startTransition]  = useTransition();
   const [isDeleting, startDelTransition] = useTransition();
   const [error, setError] = useState<string | null>(null);
-  const router = useRouter();
   const isEdit = !!defaultValues?.id;
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
