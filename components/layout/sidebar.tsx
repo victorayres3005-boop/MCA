@@ -144,17 +144,6 @@ export function Sidebar({ userEmail = "" }: SidebarProps) {
         className="shrink-0 px-3 py-3 space-y-1"
         style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}
       >
-        {userEmail && (
-          <div className="flex items-center gap-2.5 px-3 py-[8px] rounded-xl">
-            <div
-              className="w-[26px] h-[26px] rounded-full flex items-center justify-center shrink-0"
-              style={{ background: "rgba(0,180,166,0.18)" }}
-            >
-              <span className="text-[10px] font-bold" style={{ color: "#00B4A6" }}>{initials}</span>
-            </div>
-            <span className="text-[12px] text-white/40 truncate flex-1">{userEmail}</span>
-          </div>
-        )}
         <form action={signOut}>
           <button
             type="submit"
@@ -164,6 +153,20 @@ export function Sidebar({ userEmail = "" }: SidebarProps) {
             Sair
           </button>
         </form>
+        {userEmail && (
+          <div
+            className="flex items-center gap-2 px-3 py-2 mt-1"
+            style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}
+          >
+            <div
+              className="w-5 h-5 rounded-full flex items-center justify-center shrink-0"
+              style={{ background: "rgba(0,180,166,0.18)" }}
+            >
+              <span className="text-[9px] font-bold" style={{ color: "#00B4A6" }}>{initials}</span>
+            </div>
+            <span className="text-[11px] text-white/30 truncate">{userEmail}</span>
+          </div>
+        )}
       </div>
     </aside>
   );
