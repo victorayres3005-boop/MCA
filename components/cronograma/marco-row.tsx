@@ -7,6 +7,8 @@ import { toast } from "sonner";
 import { setMarcoStatus, deleteMarco, updateMarco } from "@/app/actions/cronograma";
 import type { Marco } from "@/lib/types";
 
+export const MARCO_COLS = "16px 1fr 140px 100px 80px 64px";
+
 function getSemaforo(marco: Marco): "concluido" | "atrasado" | "atencao" | "ok" | "cancelado" {
   if (marco.status === "concluido") return "concluido";
   if (marco.status === "cancelado") return "cancelado";
@@ -54,26 +56,24 @@ function EditRow({ marco, onCancel }: { marco: Marco; onCancel: () => void }) {
   const inp = "px-2 py-1.5 text-[12px] bg-white border border-surface-border rounded-md focus:outline-none focus:ring-1 focus:ring-brand-500 text-text-primary w-full";
 
   return (
-    <tr className="bg-brand-50/30">
-      <td colSpan={6} className="px-4 py-2">
-        <form action={formAction} className="grid grid-cols-[1fr_140px_100px_auto] gap-2 items-center">
-          <input name="nome" defaultValue={marco.nome} required placeholder="Nome do marco"
-            className={inp} />
-          <input name="responsavel" defaultValue={marco.responsavel ?? ""} placeholder="Responsável"
-            className={inp} />
-          <input name="data_prevista" type="date" defaultValue={marco.data_prevista} required
-            className={inp} />
-          <div className="flex items-center gap-1">
-            <SaveBtn />
-            <button type="button" onClick={onCancel}
-              className="p-1.5 text-text-disabled hover:text-text-primary transition-colors">
-              <IconX size={13} />
-            </button>
-          </div>
-        </form>
-        {state?.error && <p className="text-[11px] text-red-600 mt-1">{state.error}</p>}
-      </td>
-    </tr>
+    <div className="bg-brand-50/30 px-4 py-2">
+      <form action={formAction} className="grid grid-cols-[1fr_140px_100px_auto] gap-2 items-center">
+        <input name="nome" defaultValue={marco.nome} required placeholder="Nome do marco"
+          className={inp} />
+        <input name="responsavel" defaultValue={marco.responsavel ?? ""} placeholder="Responsável"
+          className={inp} />
+        <input name="data_prevista" type="date" defaultValue={marco.data_prevista} required
+          className={inp} />
+        <div className="flex items-center gap-1">
+          <SaveBtn />
+          <button type="button" onClick={onCancel}
+            className="p-1.5 text-text-disabled hover:text-text-primary transition-colors">
+            <IconX size={13} />
+          </button>
+        </div>
+      </form>
+      {state?.error && <p className="text-[11px] text-red-600 mt-1">{state.error}</p>}
+    </div>
   );
 }
 
@@ -104,16 +104,10 @@ export function MarcoRow({ marco }: { marco: Marco }) {
     });
   }
 
-  if (editing) {
-    return (
-      <table className="w-full"><tbody>
-        <EditRow marco={marco} onCancel={() => setEditing(false)} />
-      </tbody></table>
-    );
-  }
+  if (editing) return <EditRow marco={marco} onCancel={() => setEditing(false)} />;
 
   return (
-    <div className="group grid grid-cols-[16px_1fr_140px_100px_80px_64px] items-center gap-3 px-4 py-2.5 hover:bg-surface-input/40 transition-colors">
+    <div className="group grid items-center gap-3 px-4 py-2.5 hover:bg-surface-input/40 transition-colors" style={{ gridTemplateColumns: MARCO_COLS }}>
       {/* dot */}
       <span className={`w-2 h-2 rounded-full shrink-0 ${cfg.dot}`} />
 

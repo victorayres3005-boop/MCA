@@ -3,8 +3,9 @@ import { IconBuildingStore } from "@tabler/icons-react";
 import { getProjeto } from "@/app/actions/projetos";
 import { getAquisicoes, createAquisicao, addMedicao } from "@/app/actions/aquisicoes";
 import { getContratadas } from "@/app/actions/contratadas";
-import { AquisicaoRow } from "@/components/aquisicoes/aquisicao-row";
+import { AquisicaoRow, AQUISICAO_COLS } from "@/components/aquisicoes/aquisicao-row";
 import { AddAquisicaoForm } from "@/components/aquisicoes/add-aquisicao-form";
+import { DataTable } from "@/components/shared/data-table";
 
 interface Props { params: Promise<{ id: string }> }
 
@@ -23,7 +24,6 @@ export default async function AquisicoesPage({ params }: Props) {
 
   const addAquisicao = createAquisicao.bind(null, id);
 
-  // KPIs
   const ativos        = aquisicoes.filter((a) => a.status === "ativo").length;
   const totalContrato = aquisicoes.reduce((s, a) => s + a.valor_contrato, 0);
   const totalMedido   = aquisicoes.reduce((s, a) => {
@@ -74,25 +74,21 @@ export default async function AquisicoesPage({ params }: Props) {
       )}
 
       {/* Tabela de aquisições */}
-      <div className="bg-white border border-[#E9EBF0] rounded-2xl overflow-hidden">
-        {/* Header */}
-        <div
-          className="grid items-center gap-3 px-4 py-2 border-b border-surface-border bg-[#FAFBFC]"
-          style={{ gridTemplateColumns: "20px 1fr 110px 120px 120px 110px 120px 32px" }}
-        >
-          <span />
-          <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider">Contrato / Objeto</span>
-          <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider">Nº Contrato</span>
-          <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider text-right">Valor</span>
-          <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider text-right">Medido</span>
-          <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider text-right">Saldo</span>
-          <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider">Status</span>
-          <span />
-        </div>
-
-        {/* Linhas */}
+      <DataTable
+        cols={AQUISICAO_COLS}
+        headers={[
+          { label: "" },
+          { label: "Contrato / Objeto" },
+          { label: "Nº Contrato" },
+          { label: "Valor", align: "right" },
+          { label: "Medido", align: "right" },
+          { label: "Saldo", align: "right" },
+          { label: "Status" },
+          { label: "" },
+        ]}
+      >
         {aquisicoes.length > 0 ? (
-          <div>
+          <>
             {aquisicoes.map((aq) => {
               const medicaoAction = addMedicao.bind(null, aq.id, id);
               return (
@@ -104,7 +100,7 @@ export default async function AquisicoesPage({ params }: Props) {
                 />
               );
             })}
-          </div>
+          </>
         ) : (
           <div className="flex flex-col items-center gap-3 py-12 text-center">
             <div className="w-10 h-10 rounded-full bg-[#F5F7FA] flex items-center justify-center">
@@ -116,7 +112,7 @@ export default async function AquisicoesPage({ params }: Props) {
             </div>
           </div>
         )}
-      </div>
+      </DataTable>
 
       {/* Formulário de nova aquisição */}
       <div className="bg-white border border-[#E9EBF0] rounded-2xl overflow-hidden">

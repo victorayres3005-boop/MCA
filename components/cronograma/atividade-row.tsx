@@ -7,6 +7,8 @@ import { toast } from "sonner";
 import { setAtividadeStatus, deleteAtividade, updateAtividade } from "@/app/actions/atividades";
 import type { Atividade } from "@/lib/types";
 
+export const ATIVIDADE_COLS = "16px 1fr 140px 100px 80px 64px";
+
 function getSemaforo(a: Atividade): "concluida" | "atrasada" | "atencao" | "ok" | "cancelada" {
   if (a.status === "concluida") return "concluida";
   if (a.status === "cancelada") return "cancelada";
@@ -51,23 +53,21 @@ function EditRow({ atividade, onCancel }: { atividade: Atividade; onCancel: () =
   const inp = "px-2 py-1.5 text-[12px] bg-white border border-surface-border rounded-md focus:outline-none focus:ring-1 focus:ring-brand-500 text-text-primary w-full";
 
   return (
-    <tr className="bg-brand-50/30">
-      <td colSpan={6} className="px-4 py-2">
-        <form action={formAction} className="grid grid-cols-[1fr_140px_100px_auto] gap-2 items-center">
-          <input name="nome" defaultValue={atividade.nome} required placeholder="Nome da atividade" className={inp} />
-          <input name="responsavel" defaultValue={atividade.responsavel ?? ""} placeholder="Responsável" className={inp} />
-          <input name="data_fim_prevista" type="date" defaultValue={atividade.data_fim_prevista} required className={inp} />
-          <div className="flex items-center gap-1">
-            <SaveBtn />
-            <button type="button" onClick={onCancel}
-              className="p-1.5 text-text-disabled hover:text-text-primary transition-colors">
-              <IconX size={13} />
-            </button>
-          </div>
-        </form>
-        {state?.error && <p className="text-[11px] text-red-600 mt-1">{state.error}</p>}
-      </td>
-    </tr>
+    <div className="bg-brand-50/30 px-4 py-2">
+      <form action={formAction} className="grid grid-cols-[1fr_140px_100px_auto] gap-2 items-center">
+        <input name="nome" defaultValue={atividade.nome} required placeholder="Nome da atividade" className={inp} />
+        <input name="responsavel" defaultValue={atividade.responsavel ?? ""} placeholder="Responsável" className={inp} />
+        <input name="data_fim_prevista" type="date" defaultValue={atividade.data_fim_prevista} required className={inp} />
+        <div className="flex items-center gap-1">
+          <SaveBtn />
+          <button type="button" onClick={onCancel}
+            className="p-1.5 text-text-disabled hover:text-text-primary transition-colors">
+            <IconX size={13} />
+          </button>
+        </div>
+      </form>
+      {state?.error && <p className="text-[11px] text-red-600 mt-1">{state.error}</p>}
+    </div>
   );
 }
 
@@ -100,16 +100,10 @@ export function AtividadeRow({ atividade }: { atividade: Atividade }) {
     });
   }
 
-  if (editing) {
-    return (
-      <table className="w-full"><tbody>
-        <EditRow atividade={atividade} onCancel={() => setEditing(false)} />
-      </tbody></table>
-    );
-  }
+  if (editing) return <EditRow atividade={atividade} onCancel={() => setEditing(false)} />;
 
   return (
-    <div className="group grid grid-cols-[16px_1fr_140px_100px_80px_64px] items-center gap-3 px-4 py-2.5 hover:bg-surface-input/40 transition-colors">
+    <div className="group grid items-center gap-3 px-4 py-2.5 hover:bg-surface-input/40 transition-colors" style={{ gridTemplateColumns: ATIVIDADE_COLS }}>
       <span className={`w-2 h-2 rounded-full shrink-0 ${cfg.dot}`} />
 
       <div className="min-w-0">

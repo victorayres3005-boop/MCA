@@ -2,8 +2,9 @@ import { notFound } from "next/navigation";
 import { IconUsersGroup } from "@tabler/icons-react";
 import { getProjeto } from "@/app/actions/projetos";
 import { getRecursos, createRecurso } from "@/app/actions/recursos";
-import { RecursoRow } from "@/components/recursos/recurso-row";
+import { RecursoRow, RECURSO_COLS } from "@/components/recursos/recurso-row";
 import { AddRecursoForm } from "@/components/recursos/add-recurso-form";
+import { DataTable } from "@/components/shared/data-table";
 
 interface Props { params: Promise<{ id: string }> }
 
@@ -48,19 +49,17 @@ export default async function RecursosPage({ params }: Props) {
       )}
 
       {/* Tabela */}
-      <div className="bg-white border border-[#E9EBF0] rounded-2xl overflow-hidden">
-        <div
-          className="grid items-center gap-3 px-4 py-2 border-b border-surface-border bg-[#FAFBFC]"
-          style={{ gridTemplateColumns: "1fr 130px 100px 80px 180px 32px" }}
-        >
-          <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider">Recurso</span>
-          <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider">Tipo</span>
-          <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider">Dedicação</span>
-          <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider">Início</span>
-          <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider">Saída</span>
-          <span />
-        </div>
-
+      <DataTable
+        cols={RECURSO_COLS}
+        headers={[
+          { label: "Recurso" },
+          { label: "Tipo" },
+          { label: "Dedicação" },
+          { label: "Início" },
+          { label: "Saída" },
+          { label: "" },
+        ]}
+      >
         {recursos.length > 0 ? (
           <div className="divide-y divide-[#E9EBF0]">
             {recursos.map((r) => <RecursoRow key={r.id} recurso={r} projetoId={id} />)}
@@ -76,7 +75,7 @@ export default async function RecursosPage({ params }: Props) {
             </div>
           </div>
         )}
-      </div>
+      </DataTable>
 
       {/* Formulário */}
       <div className="bg-white border border-[#E9EBF0] rounded-2xl overflow-hidden">

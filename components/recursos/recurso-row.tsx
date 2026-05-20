@@ -5,6 +5,8 @@ import { IconTrash } from "@tabler/icons-react";
 import { deleteRecurso } from "@/app/actions/recursos";
 import type { Recurso, TipoRecurso } from "@/lib/types";
 
+export const RECURSO_COLS = "1fr 130px 100px 80px 180px 32px";
+
 const TIPO_LABEL: Record<TipoRecurso, string> = {
   interno:    "Interno",
   externo:    "Externo",
@@ -37,7 +39,7 @@ export function RecursoRow({ recurso, projetoId }: RecursoRowProps) {
   return (
     <div
       className={`grid items-center gap-3 px-4 py-2.5 border-b border-surface-border last:border-0 ${isPending ? "opacity-60" : ""}`}
-      style={{ gridTemplateColumns: "1fr 130px 100px 80px 180px 32px" }}
+      style={{ gridTemplateColumns: RECURSO_COLS }}
     >
       {/* Nome + papel */}
       <div className="min-w-0">

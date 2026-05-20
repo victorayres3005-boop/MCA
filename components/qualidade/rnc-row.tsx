@@ -5,6 +5,8 @@ import { IconChevronDown, IconChevronRight, IconTrash } from "@tabler/icons-reac
 import { updateRNCStatus, deleteRNC } from "@/app/actions/rncs";
 import type { RNC, StatusRNC, CategoriaRNC } from "@/lib/types";
 
+export const RNC_COLS = "20px 72px 1fr 90px 110px 120px 32px";
+
 export const STATUS_LABEL: Record<StatusRNC, string> = {
   aberta:        "Aberta",
   em_tratamento: "Em tratamento",
@@ -56,7 +58,7 @@ export function RNCRow({ rnc, projetoId }: RNCRowProps) {
     <div className={`border-b border-surface-border last:border-0 ${isPending ? "opacity-60" : ""}`}>
       <div
         className="grid items-center gap-3 px-4 py-2.5 hover:bg-surface-page/50 transition-colors cursor-pointer"
-        style={{ gridTemplateColumns: "20px 72px 1fr 90px 110px 120px 32px" }}
+        style={{ gridTemplateColumns: RNC_COLS }}
         onClick={() => hasDetails && setExpanded((v) => !v)}
       >
         <span className="text-text-disabled">

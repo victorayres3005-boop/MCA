@@ -7,6 +7,8 @@ import { IconChevronDown, IconChevronRight, IconTrash, IconPlus } from "@tabler/
 import { updateAquisicaoStatus, deleteAquisicao, deleteMedicao } from "@/app/actions/aquisicoes";
 import type { Aquisicao, StatusAquisicao } from "@/lib/types";
 
+export const AQUISICAO_COLS = "20px 1fr 110px 120px 120px 110px 120px 32px";
+
 export const STATUS_LABEL: Record<StatusAquisicao, string> = {
   planejado: "Planejado",
   ativo:     "Ativo",
@@ -98,7 +100,7 @@ export function AquisicaoRow({ aquisicao, projetoId, addMedicaoFn }: AquisicaoRo
       {/* Linha principal */}
       <div
         className="grid items-center gap-3 px-4 py-2.5 hover:bg-surface-page/50 transition-colors cursor-pointer"
-        style={{ gridTemplateColumns: "20px 1fr 110px 120px 120px 110px 120px 32px" }}
+        style={{ gridTemplateColumns: AQUISICAO_COLS }}
         onClick={() => setExpanded((v) => !v)}
       >
         {/* Toggle */}

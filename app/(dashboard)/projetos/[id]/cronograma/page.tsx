@@ -2,9 +2,9 @@ import { notFound } from "next/navigation";
 import { getProjeto } from "@/app/actions/projetos";
 import { getMarcos, createMarco } from "@/app/actions/cronograma";
 import { getAtividades, createAtividade } from "@/app/actions/atividades";
-import { MarcoRow } from "@/components/cronograma/marco-row";
+import { MarcoRow, MARCO_COLS } from "@/components/cronograma/marco-row";
 import { InlineAddMarco } from "@/components/cronograma/inline-add-marco";
-import { AtividadeRow } from "@/components/cronograma/atividade-row";
+import { AtividadeRow, ATIVIDADE_COLS } from "@/components/cronograma/atividade-row";
 import { InlineAddAtividade } from "@/components/cronograma/inline-add-atividade";
 import { CurvaS, type CurvaSPoint } from "@/components/charts/curva-s";
 import { ModuleSection, ModuleKpis, KpiCell } from "@/components/shared/module-section";
@@ -139,7 +139,7 @@ export default async function CronogramaPage({ params }: Props) {
         badge={total > 0 ? `${total} ${total === 1 ? "marco" : "marcos"}` : undefined}
         noPadding
       >
-        <div className="grid grid-cols-[16px_1fr_140px_100px_80px_64px] items-center gap-3 px-5 py-2.5 border-b border-[#F0F2F5]">
+        <div className="grid items-center gap-3 px-5 py-2.5 border-b border-[#F0F2F5]" style={{ gridTemplateColumns: MARCO_COLS }}>
           <span />
           <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider">Marco</span>
           <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider">Responsável</span>
@@ -189,7 +189,7 @@ export default async function CronogramaPage({ params }: Props) {
         badge={totalAtividades > 0 ? `${totalAtividades} ${totalAtividades === 1 ? "atividade" : "atividades"}` : undefined}
         noPadding
       >
-        <div className="grid grid-cols-[16px_1fr_140px_100px_80px_64px] items-center gap-3 px-5 py-2.5 border-b border-[#F0F2F5]">
+        <div className="grid items-center gap-3 px-5 py-2.5 border-b border-[#F0F2F5]" style={{ gridTemplateColumns: ATIVIDADE_COLS }}>
           <span />
           <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider">Atividade</span>
           <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider">Responsável</span>

@@ -1,8 +1,9 @@
 import { notFound } from "next/navigation";
 import { getProjeto } from "@/app/actions/projetos";
 import { getComunicacoes, createComunicacao } from "@/app/actions/comunicacao";
-import { ComunicacaoRow } from "@/components/comunicacao/comunicacao-row";
+import { ComunicacaoRow, COM_COLS } from "@/components/comunicacao/comunicacao-row";
 import { AddComunicacaoForm } from "@/components/comunicacao/add-comunicacao-form";
+import { DataTable } from "@/components/shared/data-table";
 import { IconMessage } from "@tabler/icons-react";
 
 interface Props { params: Promise<{ id: string }> }
@@ -14,9 +15,9 @@ export default async function ComunicacaoPage({ params }: Props) {
 
   const addComunicacao = createComunicacao.bind(null, id);
 
-  const semanais       = comunicacoes.filter((c) => c.frequencia === "semanal").length;
-  const mensais        = comunicacoes.filter((c) => c.frequencia === "mensal").length;
-  const responsaveis   = new Set(comunicacoes.map((c) => c.responsavel).filter(Boolean)).size;
+  const semanais     = comunicacoes.filter((c) => c.frequencia === "semanal").length;
+  const mensais      = comunicacoes.filter((c) => c.frequencia === "mensal").length;
+  const responsaveis = new Set(comunicacoes.map((c) => c.responsavel).filter(Boolean)).size;
 
   return (
     <div className="p-6 space-y-4 animate-page">
@@ -44,6 +45,7 @@ export default async function ComunicacaoPage({ params }: Props) {
           </div>
         </div>
       )}
+
       {/* Formulário de adição compacto */}
       <div className="bg-white border border-[#E9EBF0] rounded-2xl overflow-hidden">
         <div className="flex items-center gap-2 px-4 py-2.5 border-b border-surface-border bg-[#FAFBFC]">
@@ -55,37 +57,22 @@ export default async function ComunicacaoPage({ params }: Props) {
       </div>
 
       {/* Matriz */}
-      <div className="bg-white border border-[#E9EBF0] rounded-2xl overflow-hidden">
-        <div className="flex items-center justify-between px-4 py-2.5 border-b border-surface-border bg-[#FAFBFC]">
-          <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider">
-            Matriz de Comunicação
-          </span>
-          {comunicacoes.length > 0 && (
-            <span className="text-[11px] text-text-disabled tabular-nums">
-              {comunicacoes.length} {comunicacoes.length === 1 ? "item" : "itens"}
-            </span>
-          )}
-        </div>
-
+      <DataTable
+        cols={COM_COLS}
+        title="Matriz de Comunicação"
+        badge={comunicacoes.length > 0 ? `${comunicacoes.length} ${comunicacoes.length === 1 ? "item" : "itens"}` : undefined}
+        headers={[
+          { label: "Assunto" },
+          { label: "Tipo" },
+          { label: "Destinatários" },
+          { label: "Responsável" },
+          { label: "Frequência" },
+          { label: "Meio" },
+          { label: "" },
+        ]}
+      >
         {comunicacoes.length > 0 ? (
-          <div className="overflow-x-auto">
-            <table className="w-full text-left min-w-[700px]">
-              <thead>
-                <tr className="border-b border-[#E9EBF0] bg-[#FAFBFC]">
-                  <th className="px-4 py-2 text-[10px] font-semibold text-text-disabled uppercase tracking-wider w-[200px]">Assunto</th>
-                  <th className="px-4 py-2 text-[10px] font-semibold text-text-disabled uppercase tracking-wider w-[90px]">Tipo</th>
-                  <th className="px-4 py-2 text-[10px] font-semibold text-text-disabled uppercase tracking-wider">Destinatários</th>
-                  <th className="px-4 py-2 text-[10px] font-semibold text-text-disabled uppercase tracking-wider w-[110px]">Responsável</th>
-                  <th className="px-4 py-2 text-[10px] font-semibold text-text-disabled uppercase tracking-wider w-[100px]">Frequência</th>
-                  <th className="px-4 py-2 text-[10px] font-semibold text-text-disabled uppercase tracking-wider w-[120px]">Meio</th>
-                  <th className="px-4 py-2 w-16" />
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-[#E9EBF0]">
-                {comunicacoes.map((c) => <ComunicacaoRow key={c.id} c={c} />)}
-              </tbody>
-            </table>
-          </div>
+          <>{comunicacoes.map((c) => <ComunicacaoRow key={c.id} c={c} />)}</>
         ) : (
           <div className="flex flex-col items-center gap-3 py-10 text-center">
             <div className="w-10 h-10 rounded-full bg-[#F5F7FA] flex items-center justify-center">
@@ -97,7 +84,7 @@ export default async function ComunicacaoPage({ params }: Props) {
             </div>
           </div>
         )}
-      </div>
+      </DataTable>
     </div>
   );
 }

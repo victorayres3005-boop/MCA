@@ -8,6 +8,8 @@ import { deleteRisco, updateRisco, setRiscoStatus } from "@/app/actions/riscos";
 import { nivelRisco } from "@/components/riscos/risco-card";
 import type { Risco, StatusRisco, CategoriaRisco } from "@/lib/types";
 
+export const RISCO_COLS = "8px 1fr 90px 48px 48px 80px 90px 32px";
+
 const NIVEL_CFG = {
   alto:  { dot: "bg-red-500",    badge: "bg-red-50 text-red-700 border-red-100",     label: "Alto",  pCls: "text-red-600"   },
   medio: { dot: "bg-amber-400",  badge: "bg-amber-50 text-amber-700 border-amber-100", label: "Médio", pCls: "text-amber-600" },
@@ -129,7 +131,7 @@ export function RiscoRow({ risco }: { risco: Risco }) {
 
   return (
     <div className="group grid items-start gap-3 px-4 py-3 hover:bg-surface-input/40 transition-colors"
-      style={{ gridTemplateColumns: "8px 1fr 90px 48px 48px 80px 90px 32px" }}>
+      style={{ gridTemplateColumns: RISCO_COLS }}>
 
       {/* nível dot */}
       <span className={`mt-1.5 w-2 h-2 rounded-full shrink-0 ${ncfg.dot}`} />

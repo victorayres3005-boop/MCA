@@ -2,8 +2,9 @@ import { notFound } from "next/navigation";
 import { IconClipboardCheck } from "@tabler/icons-react";
 import { getProjeto } from "@/app/actions/projetos";
 import { getRNCs, createRNC } from "@/app/actions/rncs";
-import { RNCRow } from "@/components/qualidade/rnc-row";
+import { RNCRow, RNC_COLS } from "@/components/qualidade/rnc-row";
 import { AddRNCForm } from "@/components/qualidade/add-rnc-form";
+import { DataTable } from "@/components/shared/data-table";
 
 interface Props { params: Promise<{ id: string }> }
 
@@ -49,20 +50,18 @@ export default async function QualidadePage({ params }: Props) {
       )}
 
       {/* Tabela */}
-      <div className="bg-white border border-[#E9EBF0] rounded-2xl overflow-hidden">
-        <div
-          className="grid items-center gap-3 px-4 py-2 border-b border-surface-border bg-[#FAFBFC]"
-          style={{ gridTemplateColumns: "20px 72px 1fr 90px 110px 120px 32px" }}
-        >
-          <span />
-          <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider">Nº</span>
-          <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider">Não Conformidade</span>
-          <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider">Categoria</span>
-          <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider">Abertura</span>
-          <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider">Status</span>
-          <span />
-        </div>
-
+      <DataTable
+        cols={RNC_COLS}
+        headers={[
+          { label: "" },
+          { label: "Nº" },
+          { label: "Não Conformidade" },
+          { label: "Categoria" },
+          { label: "Abertura" },
+          { label: "Status" },
+          { label: "" },
+        ]}
+      >
         {ativas.length > 0 && (
           <div className="divide-y divide-[#E9EBF0]">
             {ativas.map((r) => <RNCRow key={r.id} rnc={r} projetoId={id} />)}
@@ -93,7 +92,7 @@ export default async function QualidadePage({ params }: Props) {
             </div>
           </div>
         )}
-      </div>
+      </DataTable>
 
       {/* Formulário */}
       <div className="bg-white border border-[#E9EBF0] rounded-2xl overflow-hidden">

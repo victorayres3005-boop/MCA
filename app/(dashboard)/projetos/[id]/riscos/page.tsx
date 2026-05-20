@@ -1,9 +1,10 @@
 import { notFound } from "next/navigation";
 import { getProjeto } from "@/app/actions/projetos";
 import { getRiscos, createRisco } from "@/app/actions/riscos";
-import { RiscoRow } from "@/components/riscos/risco-row";
+import { RiscoRow, RISCO_COLS } from "@/components/riscos/risco-row";
 import { InlineAddRisco } from "@/components/riscos/inline-add-risco";
 import { nivelRisco } from "@/components/riscos/risco-card";
+import { DataTable } from "@/components/shared/data-table";
 import { IconAlertTriangle } from "@tabler/icons-react";
 
 interface Props { params: Promise<{ id: string }> }
@@ -78,46 +79,36 @@ export default async function RiscosPage({ params }: Props) {
           <span className="ml-auto text-[11px] text-text-disabled">escala 1–5 · PMBOK</span>
         </div>
         <div className="p-5 flex gap-5 items-start">
-          {/* Y-axis label */}
           <div className="flex items-center justify-center self-stretch">
             <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-widest select-none"
               style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}>
               Probabilidade
             </span>
           </div>
-
-          {/* Grid */}
           <div className="flex-1 min-w-0">
-            {/* Column headers */}
             <div className="grid gap-1 mb-1" style={{ gridTemplateColumns: "28px repeat(5, 1fr)" }}>
               <div />
               {[1, 2, 3, 4, 5].map((i) => (
                 <div key={i} className="text-center text-[10px] font-semibold text-text-disabled">{i}</div>
               ))}
             </div>
-
-            {/* Rows: p 5→1 */}
             {[5, 4, 3, 2, 1].map((p) => (
               <div key={p} className="grid gap-1 mb-1" style={{ gridTemplateColumns: "28px repeat(5, 1fr)" }}>
                 <div className="flex items-center justify-end pr-1.5 text-[10px] font-semibold text-text-disabled">{p}</div>
                 {[1, 2, 3, 4, 5].map((i) => {
                   const count = matrixCount[`${p}-${i}`] ?? 0;
                   return (
-                    <div key={i}
-                      className={`border rounded-md h-10 flex items-center justify-center ${cellStyle(p, i)}`}>
+                    <div key={i} className={`border rounded-md h-10 flex items-center justify-center ${cellStyle(p, i)}`}>
                       {count > 0 && <span className="text-[13px] font-bold">{count}</span>}
                     </div>
                   );
                 })}
               </div>
             ))}
-
             <div className="text-center text-[10px] font-semibold text-text-disabled uppercase tracking-widest mt-2">
               Impacto
             </div>
           </div>
-
-          {/* Legenda */}
           <div className="shrink-0 flex flex-col gap-2.5 self-center">
             <div className="flex items-center gap-2">
               <div className="w-4 h-4 bg-red-100 border border-red-200 rounded-sm" />
@@ -141,19 +132,19 @@ export default async function RiscosPage({ params }: Props) {
       </div>
 
       {/* Tabela de riscos */}
-      <div className="bg-white border border-[#E9EBF0] rounded-2xl overflow-hidden">
-        <div className="grid items-center gap-3 px-4 py-2 border-b border-surface-border bg-[#FAFBFC]"
-          style={{ gridTemplateColumns: "8px 1fr 90px 48px 48px 80px 90px 32px" }}>
-          <span />
-          <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider">Risco</span>
-          <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider">Categoria</span>
-          <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider text-center">Prob.</span>
-          <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider text-center">Imp.</span>
-          <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider">Nível</span>
-          <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider">Status</span>
-          <span />
-        </div>
-
+      <DataTable
+        cols={RISCO_COLS}
+        headers={[
+          { label: "" },
+          { label: "Risco" },
+          { label: "Categoria" },
+          { label: "Prob.", align: "center" },
+          { label: "Imp.", align: "center" },
+          { label: "Nível" },
+          { label: "Status" },
+          { label: "" },
+        ]}
+      >
         {ativosOrdenados.length > 0 && (
           <div className="divide-y divide-[#E9EBF0]">
             {ativosOrdenados.map((r) => <RiscoRow key={r.id} risco={r} />)}
@@ -172,7 +163,6 @@ export default async function RiscosPage({ params }: Props) {
           </div>
         )}
 
-        {/* Linha inline de adição */}
         <div className="border-t border-dashed border-surface-border">
           <InlineAddRisco action={addRisco} />
         </div>
@@ -189,7 +179,7 @@ export default async function RiscosPage({ params }: Props) {
             </div>
           </div>
         )}
-      </div>
+      </DataTable>
 
     </div>
   );

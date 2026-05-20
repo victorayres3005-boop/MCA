@@ -5,6 +5,8 @@ import { IconChevronDown, IconChevronRight, IconTrash } from "@tabler/icons-reac
 import { updateMudancaStatus, deleteMudanca } from "@/app/actions/mudancas";
 import type { Mudanca, StatusMudanca } from "@/lib/types";
 
+export const MUDANCA_COLS = "20px 72px 1fr 110px 80px 90px 130px 32px";
+
 export const STATUS_LABEL: Record<StatusMudanca, string> = {
   rascunho:      "Rascunho",
   em_analise:    "Em análise",
@@ -63,7 +65,7 @@ export function MudancaRow({ mudanca, projetoId }: MudancaRowProps) {
       {/* Linha principal */}
       <div
         className="grid items-center gap-3 px-4 py-2.5 hover:bg-surface-page/50 transition-colors cursor-pointer"
-        style={{ gridTemplateColumns: "20px 72px 1fr 110px 80px 90px 130px 32px" }}
+        style={{ gridTemplateColumns: MUDANCA_COLS }}
         onClick={() => hasDetails && setExpanded((v) => !v)}
       >
         <span className="text-text-disabled">

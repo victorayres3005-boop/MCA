@@ -7,6 +7,8 @@ import { toast } from "sonner";
 import { deleteParteInteressada, updateParteInteressada } from "@/app/actions/partes-interessadas";
 import type { ParteInteressada, NivelEngajamento } from "@/lib/types";
 
+export const PARTE_COLS = "200px 1fr 70px 70px 160px 80px 32px";
+
 const NIVEIS: NivelEngajamento[] = ["desconhecido", "resistente", "neutro", "apoiador", "lider"];
 const ESCALA = [1, 2, 3, 4, 5];
 
@@ -115,7 +117,7 @@ export function ParteRow({ parte }: { parte: ParteInteressada }) {
   if (editing) return <EditRow parte={parte} onCancel={() => setEditing(false)} />;
 
   return (
-    <div className="group grid grid-cols-[200px_1fr_70px_70px_160px_80px_32px] items-center gap-3 px-4 py-3 hover:bg-surface-input/40 transition-colors">
+    <div className="group grid items-center gap-3 px-4 py-3 hover:bg-surface-input/40 transition-colors" style={{ gridTemplateColumns: PARTE_COLS }}>
       {/* nome + avatar */}
       <div className="flex items-center gap-2.5 min-w-0">
         <div className="w-7 h-7 rounded-full bg-navy-700 text-white flex items-center justify-center text-[11px] font-bold shrink-0">

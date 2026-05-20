@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 import { toast } from "sonner";
 import { IconPlus, IconCheck, IconLoader2 } from "@tabler/icons-react";
+import { MARCO_COLS } from "@/components/cronograma/marco-row";
 
 interface Props {
   action: (prev: unknown, formData: FormData) => Promise<{ error?: string }>;
@@ -34,7 +35,8 @@ export function InlineAddMarco({ action }: Props) {
 
   return (
     <form ref={formRef} action={formAction}
-      className="grid grid-cols-[16px_1fr_140px_100px_80px_64px] items-center gap-3 px-4 py-2 bg-surface-page/30 hover:bg-surface-page/60 transition-colors group">
+      className="grid items-center gap-3 px-4 py-2 bg-surface-page/30 hover:bg-surface-page/60 transition-colors group"
+      style={{ gridTemplateColumns: MARCO_COLS }}>
       <IconPlus size={12} className="text-text-disabled group-focus-within:text-brand-500 transition-colors" />
       <input
         ref={inputRef}

@@ -2,8 +2,9 @@ import { notFound } from "next/navigation";
 import { IconGitPullRequest } from "@tabler/icons-react";
 import { getProjeto } from "@/app/actions/projetos";
 import { getMudancas, createMudanca } from "@/app/actions/mudancas";
-import { MudancaRow } from "@/components/mudancas/mudanca-row";
+import { MudancaRow, MUDANCA_COLS } from "@/components/mudancas/mudanca-row";
 import { AddMudancaForm } from "@/components/mudancas/add-mudanca-form";
+import { DataTable } from "@/components/shared/data-table";
 
 interface Props { params: Promise<{ id: string }> }
 
@@ -18,21 +19,18 @@ export default async function MudancasPage({ params }: Props) {
 
   const addMudanca = createMudanca.bind(null, id);
 
-  // KPIs
-  const pendentes     = mudancas.filter((m) => m.status === "rascunho" || m.status === "em_analise").length;
-  const aprovadas     = mudancas.filter((m) => m.status === "aprovada" || m.status === "implementada").length;
-  const rejeitadas    = mudancas.filter((m) => m.status === "rejeitada").length;
-  const impactoCusto  = mudancas
+  const pendentes    = mudancas.filter((m) => m.status === "rascunho" || m.status === "em_analise").length;
+  const aprovadas    = mudancas.filter((m) => m.status === "aprovada" || m.status === "implementada").length;
+  const rejeitadas   = mudancas.filter((m) => m.status === "rejeitada").length;
+  const impactoCusto = mudancas
     .filter((m) => m.status === "aprovada" || m.status === "implementada")
     .reduce((s, m) => s + (m.impacto_custo ?? 0), 0);
-  const impactoPrazo  = mudancas
+  const impactoPrazo = mudancas
     .filter((m) => m.status === "aprovada" || m.status === "implementada")
     .reduce((s, m) => s + (m.impacto_prazo ?? 0), 0);
 
-  // Número sequencial sugerido
   const nextNumero = `M-${String(mudancas.length + 1).padStart(3, "0")}`;
 
-  // Separar ativas das encerradas
   const ativas     = mudancas.filter((m) => m.status !== "rejeitada" && m.status !== "implementada");
   const encerradas = mudancas.filter((m) => m.status === "rejeitada" || m.status === "implementada");
 
@@ -76,30 +74,25 @@ export default async function MudancasPage({ params }: Props) {
       )}
 
       {/* Tabela */}
-      <div className="bg-white border border-[#E9EBF0] rounded-2xl overflow-hidden">
-        {/* Header */}
-        <div
-          className="grid items-center gap-3 px-4 py-2 border-b border-surface-border bg-[#FAFBFC]"
-          style={{ gridTemplateColumns: "20px 72px 1fr 110px 80px 90px 130px 32px" }}
-        >
-          <span />
-          <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider">Nº</span>
-          <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider">Mudança</span>
-          <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider">Data</span>
-          <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider text-right">± Prazo</span>
-          <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider text-right">± Custo</span>
-          <span className="text-[10px] font-semibold text-text-disabled uppercase tracking-wider">Status</span>
-          <span />
-        </div>
-
-        {/* Ativas */}
+      <DataTable
+        cols={MUDANCA_COLS}
+        headers={[
+          { label: "" },
+          { label: "Nº" },
+          { label: "Mudança" },
+          { label: "Data" },
+          { label: "± Prazo", align: "right" },
+          { label: "± Custo", align: "right" },
+          { label: "Status" },
+          { label: "" },
+        ]}
+      >
         {ativas.length > 0 && (
           <div className="divide-y divide-[#E9EBF0]">
             {ativas.map((m) => <MudancaRow key={m.id} mudanca={m} projetoId={id} />)}
           </div>
         )}
 
-        {/* Dashed add separator */}
         {mudancas.length === 0 && (
           <div className="flex flex-col items-center gap-3 py-12 text-center">
             <div className="w-10 h-10 rounded-full bg-[#F5F7FA] flex items-center justify-center">
@@ -112,7 +105,6 @@ export default async function MudancasPage({ params }: Props) {
           </div>
         )}
 
-        {/* Encerradas (rejeitadas + implementadas) */}
         {encerradas.length > 0 && (
           <div className="border-t border-surface-border">
             <div className="px-4 py-2 bg-[#FAFBFC]">
@@ -125,7 +117,7 @@ export default async function MudancasPage({ params }: Props) {
             </div>
           </div>
         )}
-      </div>
+      </DataTable>
 
       {/* Formulário de nova mudança */}
       <div className="bg-white border border-[#E9EBF0] rounded-2xl overflow-hidden">
